@@ -8,16 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rtmpdump
-PKG_VERSION:=2.4-20210219
-PKG_REV:=f1b83c10d8beb43fcc70a6e88cf4325499f25857
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=git://git.ffmpeg.org/rtmpdump
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=9f02d03b2ba3c48ca5333be1490dbbe881f0b9effa5b6029725cdebc1f73a9e9
+PKG_SOURCE_DATE:=2021-02-19
+PKG_SOURCE_VERSION:=f1b83c10d8beb43fcc70a6e88cf4325499f25857
+PKG_SOURCE_URL:=https://git.ffmpeg.org/rtmpdump.git
+PKG_MIRROR_HASH:=18d001a03861b4d80300ab5a68484e2bca67bd84a0e58749418a5e87553e316d
+
+PKG_VERSION=2.4_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
 
 PKG_INSTALL:=1
 
@@ -27,8 +26,8 @@ define Package/rtmpdump/Default
 	SECTION:=net
 	CATEGORY:=Network
 	DEPENDS:=+libgnutls +zlib
-	TITLE:=rtmpdump is a toolkit for RTMP streams
-	URL:=http://rtmpdump.mplayerhq.hu/
+	TITLE:=a toolkit for RTMP streams
+	URL:=https://rtmpdump.mplayerhq.hu/
 	MAINTAINER:=Entware team, https://entware.net
 endef
 
@@ -51,10 +50,10 @@ endef
 
 MAKE_VARS += \
 	XCFLAGS="$(TARGET_CFLAGS) -I$(STAGING_DIR)/opt/include" \
-	XLDFLAGS="$(TARGET_LDFLAGS)" \
+	XLDFLAGS="$(TARGET_LDFLAGS)"
 
 MAKE_FLAGS += \
-	prefix="/opt" \
+	prefix="/opt"
 
 define Package/librtmp/install
 	$(INSTALL_DIR) $(1)/opt/lib
