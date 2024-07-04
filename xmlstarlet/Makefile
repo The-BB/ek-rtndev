@@ -9,15 +9,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xmlstarlet
 PKG_VERSION:=1.6.1
-PKG_REV:=4ad40171da05c4f7a01c367dfefe0bb188008899
 PKG_RELEASE:=3
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=http://git.code.sf.net/p/xmlstar/code
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=19f01cb959d8f04ce8849a4b24762f74a329927bda5a77a4dc86dac7f89ea862
+PKG_SOURCE_VERSION:=4ad40171da05c4f7a01c367dfefe0bb188008899
+PKG_SOURCE_URL:=https://git.code.sf.net/p/xmlstar/code
+PKG_MIRROR_HASH:=9ac2b067f39adc5e92b35a44661c671bfca35425a9ea90980916621989599058
 
 PKG_FIXUP:=autoreconf
 
@@ -29,7 +26,7 @@ define Package/xmlstarlet
 	CATEGORY:=Utilities
 	DEPENDS:=+libexslt
 	TITLE:=command line XML toolkit
-	URL:=http://xmlstar.sourceforge.net/
+	URL:=https://xmlstar.sourceforge.net/
 	MAINTAINER:=Entware team, https://entware.net
 endef
 
