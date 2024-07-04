@@ -9,16 +9,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nfusr
-PKG_VERSION:=1.0.0-20190319
-PKG_REV:=4c21b69f201b50b8f1dd3aac0125baa3b5d02ade
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/facebookarchive/nfusr.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=5917ee6bdeccce72fbb195fc19d2071ed85a08bb4fb48bdb86389c0ba0a640c8
+PKG_SOURCE_DATE:=2019-03-19
+PKG_SOURCE_VERSION:=4c21b69f201b50b8f1dd3aac0125baa3b5d02ade
+PKG_SOURCE_URL:=https://github.com/facebookarchive/nfusr.git
+PKG_MIRROR_HASH:=a56106eac203b648a5f96f18a6e5bb7ef704d20f595e3b77b279fb7fb8016b48
+
+PKG_VERSION=1.0.0_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
