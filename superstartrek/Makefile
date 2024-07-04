@@ -8,11 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=superstartrek
-PKG_VERSION:=0.0.21-2015
-PKG_RELEASE:=2
+PKG_VERSION:=0.0.21_2019
+PKG_RELEASE:=1
 
 PKG_SOURCE:=sstsrc.zip
-PKG_SOURCE_URL:=http://www.almy.us/files
+PKG_SOURCE_URL:=https://www.almy.us/files
 PKG_HASH:=2b9b7ca0ef9900caa6c0ba0a34534d5e8f6a95d7c829c8f80719fd3421a4a501
 
 PKG_UNPACK:=unzip -j $(DL_DIR)/$(PKG_SOURCE) -d $(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
@@ -23,7 +23,7 @@ define Package/superstartrek
 	SECTION:=games
 	CATEGORY:=Games
 	TITLE:=A quite possibly the best of the Star Trek games from the 1970s
-	URL:=http://www.almy.us/sst.html
+	URL:=https://www.almy.us/sst.html
 	MAINTAINER:=Entware team, https://entware.net
 endef
 
