@@ -4,20 +4,18 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# XXX BROKEN: new mbedtls API
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dislocker
 PKG_VERSION:=0.7.3
-PKG_REV:=6662821483d953bf23464ffd64d100d0b8dc3e4c
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/Aorimn/dislocker.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=6164cbca3e0bcca33e00df4189bf908650b8c3871d5dd252fdd6db15c657d465
+PKG_SOURCE_VERSION:=6662821483d953bf23464ffd64d100d0b8dc3e4c
+PKG_SOURCE_URL:=https://github.com/Aorimn/dislocker.git
+PKG_MIRROR_HASH:=0772c3e0972aab1fe56f2662c0f861c5ed5f483a296cfa8aba286f245b47167b
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -26,7 +24,7 @@ define Package/dislocker
 	SECTION:=utils
 	CATEGORY:=Utilities
 	SUBMENU:=Filesystem
-	DEPENDS:=+libfuse +libmbedtls
+	DEPENDS:=+libfuse +libmbedtls @BROKEN
 	TITLE:=Read BitLocker encrypted volumes under Linux
 	URL:=https://github.com/Aorimn/dislocker
 	MAINTAINER:=Entware team, https://entware.net
