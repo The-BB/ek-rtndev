@@ -8,16 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=transmission-cfp
-PKG_VERSION:=2.77plus-20210309
-PKG_REV:=8106a8571e54385351de0a92d15b3257abc12f72
+PKG_VERSION:=2.77plus14734-19
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/cfpp2p/transmission.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=skip
+PKG_SOURCE_VERSION:=8106a8571e54385351de0a92d15b3257abc12f72
+PKG_SOURCE_URL:=https://github.com/cfpp2p/transmission.git
+PKG_MIRROR_HASH:=13e7cef201457ba8a628a019a12b2a379b745d7af75de0b827b6eb495b3479ea
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -76,25 +73,25 @@ define Package/transmission-cfp-web/description
  Webinterface resources for transmission.
 endef
 
-define Download/transmission-cfp-web-client
-	FILE:=transmission-cfp-web-client-$(PKG_VERSION).tar.bz2
-	URL:=$(PKG_SOURCE_URL)
-	MIRROR_HASH:=skip
+WEB_CLIENT_FILE:=web-client-cfp-2019-01-28.tar.zst
+define Download/web-client-cfp
 	PROTO:=git
-	VERSION:=f104a68aa2a5b76914cdebaf7ded7ba09defd23b
-	SUBDIR:=transmission-cfp-web-client-$(PKG_VERSION)
+	FILE:=$(WEB_CLIENT_FILE)
+	SOURCE_VERSION:=f104a68aa2a5b76914cdebaf7ded7ba09defd23b
+	URL:=https://git.code.sf.net/p/transmission-daemon-cfp/code
+	SUBDIR:=web-client-cfp
+	MIRROR_HASH:=dce2cc966b4a9ed5c5204a08cb9d5aaf3b5f747926ec85134f37d8242d389279
 endef
-$(eval $(call Download,transmission-cfp-web-client))
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
-	$(TAR) -C $(PKG_BUILD_DIR) -xjf $(DL_DIR)/transmission-cfp-web-client-$(PKG_VERSION).tar.bz2 --strip-components=1
+	$(TAR) -xf $(DL_DIR)/$(WEB_CLIENT_FILE) --strip-components=1 -C $(PKG_BUILD_DIR)
 	chmod +x $(PKG_BUILD_DIR)/third-party/miniupnp/updateminiupnpcstrings.sh
 	chmod +x $(PKG_BUILD_DIR)/update-version-h.sh
 endef
 
 define Build/Configure
-	(cd $(PKG_BUILD_DIR) && ./update-version-h.sh)
+	( cd $(PKG_BUILD_DIR) && ./update-version-h.sh )
 	$(call Build/Configure/Default)
 endef
 
@@ -102,7 +99,7 @@ CONFIGURE_ARGS += \
 	--enable-utp \
 	--enable-lightweight \
 	--enable-cli \
-	--enable-daemon \
+	--enable-daemon
 
 define Package/transmission-daemon-openssl/conffiles
 /opt/etc/transmission/settings.json
@@ -134,10 +131,10 @@ endef
 
 define Package/transmission-cfp-web/install
 	$(INSTALL_DIR) $(1)/opt/share/transmission/web
-	$(CP) $(PKG_BUILD_DIR)/web-client-cfp/* \
-		$(1)/opt/share/transmission/web
+	$(CP) $(PKG_BUILD_DIR)/web-client-cfp/* $(1)/opt/share/transmission/web
 endef
 
+$(eval $(call Download,web-client-cfp))
 $(eval $(call BuildPackage,transmission-cfp-daemon))
 $(eval $(call BuildPackage,transmission-cfp-cli))
 $(eval $(call BuildPackage,transmission-cfp-remote))
