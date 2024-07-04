@@ -13,7 +13,7 @@ PKG_VERSION:=4.1
 PKG_RELEASE:=7
 
 PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).shar
-PKG_SOURCE_URL:=ftp://ftp.isc.org/isc/cron
+PKG_SOURCE_URL:=https://ftp.isc.org/isc/cron
 PKG_HASH:=c445837756fb988f2c95db8dc55d7937d14bca0cdfa292de81322ca2556ec39a
 
 include $(INCLUDE_DIR)/package.mk
@@ -24,7 +24,7 @@ define Package/cron
 	SECTION:=utils
 	CATEGORY:=Utilities
 	TITLE:=Vixie cron
-	URL:=ftp://ftp.isc.org/isc/cron
+	URL:=https://ftp.isc.org/isc/cron
 	MAINTAINER:=Entware team, https://entware.net
 	ALTERNATIVES:= \
 		200:/opt/bin/crontab:/opt/bin/crontab-vixie \
