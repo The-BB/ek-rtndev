@@ -9,15 +9,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tty-solitaire
 PKG_VERSION:=1.3.1
-PKG_REV:=4875f34e6bbdb6e975bdcedefd5c1d0acf6e19e5
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/mpereira/tty-solitaire.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=69f4df139f30aae1d21583cb0954081a5a1b417ac1b6bc23324a162c5ca24aba
+PKG_SOURCE_VERSION:=4875f34e6bbdb6e975bdcedefd5c1d0acf6e19e5
+PKG_SOURCE_URL:=https://github.com/mpereira/tty-solitaire.git
+PKG_MIRROR_HASH:=80837a930bafbd08f8b1efe3b5eb976e828e2602db10ce153e05bd22d61c3b2b
 
 include $(INCLUDE_DIR)/package.mk
 
