@@ -9,15 +9,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=freediameter
 PKG_VERSION:=1.5.0
-PKG_REV:=8ac823b77653a03da82232470b376c2b281b0973
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/freeDiameter/freeDiameter.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=69cd6ff3f3199d2a2062b282c1a20ab05250b3c1e437701b343e5ea4cb49b2cc
+PKG_SOURCE_VERSION:=8ac823b77653a03da82232470b376c2b281b0973
+PKG_SOURCE_URL:=https://github.com/freeDiameter/freeDiameter.git
+PKG_MIRROR_HASH:=5cac14aff0dd632402b14b286ccfa875a7d56accd3741171bb4b8519b97b60c8
 
 # FIXME ninja: error: manifest 'build.ninja' still dirty after 100 tries
 PKG_USE_NINJA:=0
