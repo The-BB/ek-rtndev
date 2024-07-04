@@ -6,15 +6,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=minissdpd
 PKG_VERSION:=2.3.4
-PKG_REV:=f22a96b4697699d32fdc2d17c5d0ad7880a99c24
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/miniupnp/miniupnp.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=0d29ef82399ed264fc1b40ff68086841fc95b27c7885ba8e43eeea6d0298c6bb
+PKG_SOURCE_VERSION:=f22a96b4697699d32fdc2d17c5d0ad7880a99c24
+PKG_SOURCE_URL:=https://github.com/miniupnp/miniupnp.git
+PKG_MIRROR_HASH:=61f49cf00eecb855a39dbc418e2cb6c618e3a83b9cedc67379b71a50aa6daf7a
 
 include $(INCLUDE_DIR)/package.mk
 
