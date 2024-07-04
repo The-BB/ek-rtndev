@@ -224,7 +224,7 @@ QT_CONFIGURE_OPTS += \
 	-skip xmlpatterns
 
 # x86 options
-ifneq ($(or $(CONFIG_i386),$(CONFIG_x86_64)),y)
+ifneq ($(CONFIG_x86_64),y)
 QT_CONFIGURE_OPTS += \
 	-no-avx \
 	-no-avx2 \
