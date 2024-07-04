@@ -11,15 +11,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=shellinabox
 PKG_VERSION:=2.20
-PKG_REV:=048cecd2e77d659c8fefcd2e7dc437c533abeab4
 PKG_RELEASE:=2
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/shellinabox/shellinabox.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=b9698c4f8e93ac0501315d2e937da3b1c8083cffdc9ced221eed82996e0968e4
+PKG_SOURCE_VERSION:=048cecd2e77d659c8fefcd2e7dc437c533abeab4
+PKG_SOURCE_URL:=https://github.com/shellinabox/shellinabox.git
+PKG_MIRROR_HASH:=f8d3e591a97fe47a1a9b223feec139a6ceb363ade07b083742cc471a9d75898d
 
 PKG_FIXUP:=autoreconf
 
