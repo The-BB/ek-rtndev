@@ -2,21 +2,19 @@
 #
 # Copyright (C) 2011-2024 Entware
 #
-# No chance to get stable PKG_MIRROR_HASH from SVN sources
+# Streamboard/OScam Repository has been migrated to GitLab
+# https://svn.streamboard.tv/oscam/tags/1.20@11745
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=oscam
-PKG_REV:=11725
-PKG_VERSION:=1.20-r$(PKG_REV)
+PKG_VERSION:=1.20
 PKG_RELEASE:=1
 
-PKG_SOURCE_PROTO:=svn
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_SOURCE_SUBDIR:=oscam-$(PKG_VERSION)
-PKG_SOURCE_URL:=http://www.streamboard.tv/svn/oscam/trunk
-PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.gz
-PKG_MIRROR_HASH:=skip
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=fd15b442ae0e38814f24543e663d2dcad6516e7d
+PKG_SOURCE_URL:=https://git.streamboard.tv/common/oscam
+PKG_MIRROR_HASH:=b542102d651832d8afbdcd005e2218088eb58bdb4b8d54a23d94427e9871a5fd
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -26,7 +24,7 @@ define Package/oscam
 	CATEGORY:=Network
 	DEPENDS:=+libpcsclite +libopenssl
 	TITLE:=CAM software
-	URL:=http://www.streamboard.tv/oscam/wiki
+	URL:=https://wiki.streamboard.tv/wiki/OSCam/en
 	MAINTAINER:=Entware team, https://entware.net
 endef
 
@@ -46,14 +44,7 @@ CMAKE_OPTIONS += \
 	-DOPTIONAL_LINK_DIR=$(STAGING_DIR)/opt/lib \
 	-DOPENSSL_INCLUDE_DIR=$(STAGING_DIR)/opt/include \
 	-DWITH_SSL=1 \
-	-DHAVE_LIBCRYPTO=1 \
-
-define Build/Configure
-	touch $(PKG_BUILD_DIR)/*
-	touch $(PKG_BUILD_DIR)/*/*
-	$(SED) 's,svnversion -n .,echo $(PKG_REV),g' $(PKG_BUILD_DIR)/config.sh
-	$(call Build/Configure/Default)
-endef
+	-DHAVE_LIBCRYPTO=1
 
 define Build/InstallDev
 	true

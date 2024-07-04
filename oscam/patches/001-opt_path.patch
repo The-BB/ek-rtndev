@@ -15,7 +15,7 @@
  #define BOX_COUNT 7
 --- a/globals.h
 +++ b/globals.h
-@@ -376,10 +376,10 @@
+@@ -381,10 +381,10 @@
  # define CS_TARGET				"unknown"
  #endif
  #ifndef CS_CONFDIR
@@ -78,7 +78,7 @@
  	return cs_tmpdir;
 --- a/oscam.c
 +++ b/oscam.c
-@@ -159,7 +159,7 @@ static void show_usage(void)
+@@ -157,7 +157,7 @@ static void show_usage(void)
  #if defined(__CYGWIN__)
  	printf("                         . Default: (OS-TMP)\n");
  #else
@@ -87,7 +87,7 @@
  #endif
  	printf("\n Startup:\n");
  #if defined(WITH_STAPI) || defined(WITH_STAPI5)
-@@ -652,12 +652,12 @@ static void cs_dumpstack(int32_t sig)
+@@ -649,12 +649,12 @@ static void cs_dumpstack(int32_t sig)
  	fprintf(fp, "FATAL: Signal %d: %s Fault. Logged StackTrace:\n\n", sig, (sig == SIGSEGV) ? "Segmentation" : ((sig == SIGBUS) ? "Bus" : "Unknown"));
  	fclose(fp);
  
@@ -102,7 +102,7 @@
  	if(system(buf) == -1)
  		{ fprintf(stderr, "Fatal error on trying to start gdb process."); }
  
-@@ -1665,15 +1665,15 @@ static void find_conf_dir(void)
+@@ -1662,15 +1662,15 @@ static void find_conf_dir(void)
  {
  	static const char* confdirs[] =
  		{
