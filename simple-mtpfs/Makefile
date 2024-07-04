@@ -9,15 +9,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=simple-mtpfs
 PKG_VERSION:=0.4.0
-PKG_REV:=19e7bb9b608b0c0dce2ee6f56fac75901bc69529
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/phatina/simple-mtpfs.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=ebea7984a6daf1fe37eea32a2f6f3f8877d66d4a9d66126443ef3e81173af33f
+PKG_SOURCE_VERSION:=19e7bb9b608b0c0dce2ee6f56fac75901bc69529
+PKG_SOURCE_URL:=https://github.com/phatina/simple-mtpfs.git
+PKG_MIRROR_HASH:=55db33ae2704f04a2b3222cc4c9d79edf8f3f376333ad52ddce024b05f7f96f2
 
 PKG_FIXUP:=autoreconf
 
