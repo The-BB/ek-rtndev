@@ -27,6 +27,7 @@ define Package/libnss-mdns
   SUBMENU:=Networking
   TITLE:=a plugin for the GNU Name Service Switch
   URL:=https://github.com/lathiat/nss-mdns
+  DEPENDS:=@USE_GLIBC
 endef
 
 define Package/libnss-mdns/description
