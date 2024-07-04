@@ -36,10 +36,10 @@ endef
 
 define Package/groff/install
 	$(INSTALL_DIR) $(1)/opt/{bin,share/groff}
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/{g,n,t}roff $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/grotty $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/tbl $(1)/opt/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin
 	$(CP) $(PKG_INSTALL_DIR)/opt/share/groff $(1)/opt/share
+	$(FIND) $(1)/opt/bin -type f | $(XARGS) $(SED) 's,^#!.*bash,#!/opt/bin/bash,'
+	$(FIND) $(1)/opt/bin -type f | $(XARGS) $(SED) 's,^#!.*perl,#!/opt/bin/perl,'
 	$(FIND) $(1)/opt/share -type f | $(XARGS) $(SED) 's,/usr/share,/opt/share,g'
 endef
 
