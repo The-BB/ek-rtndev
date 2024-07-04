@@ -9,15 +9,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=vitetris
 PKG_VERSION:=0.59.1
-PKG_REV:=9bbea4f5ab35d6fb8fe70c14daba19e7f35ab44e
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/vicgeralds/vitetris.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=add340e2495083e68d3cf86621f4205575848142a1716554ca5f1a68a041bcd6
+PKG_SOURCE_VERSION:=9bbea4f5ab35d6fb8fe70c14daba19e7f35ab44e
+PKG_SOURCE_URL:=https://github.com/vicgeralds/vitetris.git
+PKG_MIRROR_HASH:=4b1768c31692420f63ac76509b02b5bcc1ed12a4dd5fb85752cf8491c237ebfb
 
 include $(INCLUDE_DIR)/package.mk
 
