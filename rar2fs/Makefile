@@ -4,20 +4,18 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# XXX BROKEN: new unrar API
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rar2fs
 PKG_VERSION:=1.29.6
-PKG_REV:=5ae31771c3f335bbd53882ff70650aba1ab58917
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/hasse69/rar2fs.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=8b29a084f7fc037473bd2defbac8897956823eeef1e743848b681bf980a2496c
+PKG_SOURCE_VERSION:=5ae31771c3f335bbd53882ff70650aba1ab58917
+PKG_SOURCE_URL:=https://github.com/hasse69/rar2fs.git
+PKG_MIRROR_HASH:=4806b9bcff2a241622bb51e4474482401c99f41cd4aafaf5e02155c5b40b78b7
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -29,7 +27,7 @@ define Package/rar2fs
 	SECTION:=utils
 	CATEGORY:=Utilities
 	SUBMENU:=Filesystem
-	DEPENDS:=+libfuse +libunrar +librt $(ICONV_DEPENDS)
+	DEPENDS:=+libfuse +libunrar +librt $(ICONV_DEPENDS) @BROKEN
 	TITLE:=FUSE file system for reading RAR archives
 	URL:=https://github.com/hasse69/rar2fs
 	MAINTAINER:=Entware team, https://entware.net
