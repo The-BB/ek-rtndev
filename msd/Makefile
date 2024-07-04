@@ -9,15 +9,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=msd
 PKG_VERSION:=3.01.0
-PKG_REV:=e82bea960fc9f3a52c698721dc01c8fede468bd5
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/rozhuk-im/msd.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=77b07f8dd12d4c4f36fb2eaf7107af4bec5d0db4efede14054d0a8183e53e4b0
+PKG_SOURCE_VERSION:=e82bea960fc9f3a52c698721dc01c8fede468bd5
+PKG_SOURCE_URL:=https://github.com/rozhuk-im/msd.git
+PKG_MIRROR_HASH:=6ff00afaa8b37f2147e8ce73529df49a69cafa41fcd13ae8f670e36082de4f17
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
