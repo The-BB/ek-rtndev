@@ -8,26 +8,26 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libcryptopp
-PKG_VERSION:=5.6.4
-PKG_REV:=4132d85888ac6c30729f58bb442a4a26a5b16cfe
+PKG_VERSION:=8.8.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/weidai11/cryptopp.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=70f092de10ae3a5dfecbfb8eaabc6cf6df6530e844fda80b5fd431baedd6150e
+PKG_SOURCE_VERSION:=4d0cad5401d1a2c998b314bc89288c9620d3021d
+PKG_SOURCE_URL:=https://github.com/weidai11/cryptopp.git
+PKG_MIRROR_HASH:=a1919ed68fb9ac5571bd6b20113cdb5742ee12b8c325ff05cd9f4d7b43d17e7e
+
+PKG_CONFIG_DEPENDS:= \
+	CONFIG_LIBCRYPTOPP_TESTSUITE
+
+PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/cmake.mk
 
 define Package/libcryptopp
 	SECTION:=libs
 	CATEGORY:=Libraries
 	DEPENDS:=+libstdcpp
 	TITLE:=C++ class library of cryptographic schemes
-	MENU:=1
 	URL:=https://www.cryptopp.com/
 endef
 
@@ -36,25 +36,20 @@ define Package/libcryptopp/description
 endef
 
 define Package/libcryptopp/config
-	if PACKAGE_libcryptopp
-		config LIBCRYPTOPP_TESTSUITE
-			bool "Add native test suite"
-			default n
-	endif
+	config LIBCRYPTOPP_TESTSUITE
+		depends on PACKAGE_libcryptopp
+		bool "Add native test suite"
 endef
 
-define Build/Prepare
-	$(call Build/Prepare/Default)
-	$(RM) $(PKG_BUILD_DIR)/GNUmakefile
-endef
+MAKE_VARS += \
+	PREFIX=/opt \
+	PC_PREFIX=/opt \
+	HAS_SOLIB_VERSION=1 \
+	LINK_LIBRARY="libcryptopp.a libcryptopp.so"
 
-TARGET_CFLAGS += $(FPIC)
+TARGET_CPPFLAGS += -DCRYPTOPP_DISABLE_ASM
 
-CMAKE_OPTIONS += \
-	-DDISABLE_ASM=ON \
-	-DDISABLE_SSSE3=ON \
-	-DDISABLE_AESNI=ON \
-	-DBUILD_TESTING=$(if $(CONFIG_LIBCRYPTOPP_TESTSUITE),ON,OFF)
+TARGET_CXXFLAGS += $(FPIC)
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
