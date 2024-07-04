@@ -10,20 +10,21 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ltrace
 PKG_VERSION:=0.7.9
-PKG_REV:=82c66409c7a93ca6ad2e4563ef030dfb7e6df4d4
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/dkogan/ltrace.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=c0d12fe49de1c364ccf9cadf91c293fa6f47ae67be2b8de8c0b6780e46cb4963
+PKG_SOURCE_VERSION:=82c66409c7a93ca6ad2e4563ef030dfb7e6df4d4
+PKG_SOURCE_URL:=https://github.com/dkogan/ltrace.git
+PKG_MIRROR_HASH:=4927e88d902a8ef22955411c5bb8f03fe8e71a5222460e8160e23c22612fc00d
 
 PKG_LICENSE:=GPL-2.0-only
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
+
+PKG_CONFIG_DEPENDS:= \
+	CONFIG_LTRACE_ELFUTILS \
+	CONFIG_LTRACE_LIBUNWIND
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
@@ -33,7 +34,7 @@ define Package/ltrace
   CATEGORY:=Development
   TITLE:=tracks runtime library calls in dynamically linked programs
   URL:=https://ltrace.org/
-  DEPENDS:=+libelf +libdw +libstdcpp
+  DEPENDS:=+libelf +libstdcpp +LTRACE_ELFUTILS:libdw +LTRACE_LIBUNWIND:libunwind
 endef
 
 define Package/ltrace/description
@@ -42,8 +43,33 @@ by an executed process and the signals received by that process. It
 can also intercept and print the system calls executed by the program.
 endef
 
+define Package/ltrace/config
+choice
+	prompt "Use unwinding support"
+	default LTRACE_ELFUTILS
+
+	config LTRACE_ELFUTILS
+		bool "elfutils (libdw)"
+		help
+			Use elfutils libdwfl unwinding support.
+
+	config LTRACE_LIBUNWIND
+		bool "libunwind"
+		depends on !( mips||mipsel )
+		help
+			Use libunwind frame unwinding support.
+
+endchoice
+endef
+
 CONFIGURE_ARGS += \
-	--with-libunwind=no
+	--with$(if $(CONFIG_LTRACE_ELFUTILS),,out)-elfutils \
+	--with$(if $(CONFIG_LTRACE_LIBUNWIND),,out)-libunwind
+
+# or
+#CONFIGURE_ARGS += \
+#	--with-elfutils=$(if $(CONFIG_LTRACE_ELFUTILS),yes,no) \
+#	--with-libunwind=$(if $(CONFIG_LTRACE_LIBUNWIND),yes,no)
 
 CONFIGURE_VARS += \
 	ac_cv_lib_selinux_security_get_boolean_active=no
