@@ -9,16 +9,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=splix
-PKG_REV:=315
-PKG_VERSION:=2.0.0-r$(PKG_REV)
+PKG_VERSION:=2.0.0
 PKG_RELEASE:=2
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_PROTO:=svn
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=http://svn.code.sf.net/p/splix/code/splix
-PKG_MIRROR_HASH:=07318c2da9101f1acbd8e93444bb2d6394df4f63d9f18a1fed220cb86d6d0cc8
+PKG_SOURCE_VERSION:=315
+PKG_SOURCE_URL:=https://svn.code.sf.net/p/splix/code/splix
+PKG_MIRROR_HASH:=aaf4c18e4f44d641c4a13c8944e8339299848c47303234cb01f49e0585aa118a
 
 PKG_INSTALL:=1
 
@@ -40,11 +37,12 @@ define Package/splix/description
 endef
 
 MAKE_VARS += \
-	THREADS=1 \
+	THREADS=1
 
 define Build/Configure
 	$(CP) $(PKG_BUILD_DIR)/*.ppd $(PKG_BUILD_DIR)/ppd
 endef
+
 define Package/splix/install
 	$(INSTALL_DIR) $(1)/opt/lib/cups/filter
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/cups/filter/{raster,ps}toqpdl \
