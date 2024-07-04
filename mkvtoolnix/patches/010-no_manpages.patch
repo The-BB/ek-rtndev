@@ -1,6 +1,6 @@
 --- a/Rakefile
 +++ b/Rakefile
-@@ -273,23 +273,6 @@ def define_default_task
+@@ -286,23 +286,6 @@ def define_default_task
      targets << "BROWSE" if !c(:EBROWSE).empty?
    end
  
@@ -9,7 +9,7 @@
 -
 -  # Build man pages and translations?
 -  targets << "manpages"
--  targets << "translations:manpages" if c?(:PO4A_WORKS)
+-  targets << "translations:manpages" if $po4a_cfg
 -
 -  # Build translations for the programs
 -  targets << "translations:programs"
@@ -21,12 +21,12 @@
 -  # needed for running the tests.
 -  targets << "apps:tools:ebml_validator" if c(:host) == c(:build)
 -
-   targets << "src/benchmark/benchmark" if c?(:GOOGLE_BENCHMARK) && !$benchmark_sources.empty?
+   targets += $benchmark_programs
  
    task :default => targets do
 --- a/configure.ac
 +++ b/configure.ac
-@@ -45,7 +45,6 @@ m4_include(ac/boost.m4)
+@@ -46,7 +46,6 @@ m4_include(ac/boost.m4)
  m4_include(ac/gtest.m4)
  m4_include(ac/benchmark.m4)
  m4_include(ac/pandoc.m4)
