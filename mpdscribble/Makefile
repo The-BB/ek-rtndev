@@ -8,15 +8,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mpdscribble
 PKG_VERSION:=0.24
-PKG_REV:=a0ae861f2349c676eebedfbcebfae0b61090b6fb
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/MusicPlayerDaemon/mpdscribble.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=57557e13cf25ef4d6910451d3a7d3efab7537ec4e9a23b25cf161d1be7efae18
+PKG_SOURCE_VERSION:=a0ae861f2349c676eebedfbcebfae0b61090b6fb
+PKG_SOURCE_URL:=https://github.com/MusicPlayerDaemon/mpdscribble.git
+PKG_MIRROR_HASH:=af0b80e355ba139da3a8965d707970cddf5507e3aa7326479250ccd0958e0c4e
 
 PKG_BUILD_DEPENDS:=boost
 
