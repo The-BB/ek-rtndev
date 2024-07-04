@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=loggedfs
 PKG_VERSION:=0.9
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/rflament/loggedfs/archive
@@ -24,7 +24,7 @@ define Package/loggedfs
 	SECTION:=utils
 	CATEGORY:=Utilities
 	SUBMENU:=Filesystem
-	DEPENDS:=+fuse-utils +libstdcpp +libxml2 +libpcre
+	DEPENDS:=+fuse-utils +libstdcpp +libxml2 +libpcre2
 	TITLE:=Filesystem monitoring with Fuse
 	URL:=https://www.loggedfs.org
 	MAINTAINER:=Entware team, https://entware.net
