@@ -6,15 +6,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=entr
 PKG_VERSION:=5.5
-PKG_REV:=8ed69ace080a73ff923c20f01a3ded28df3b4e1c
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/eradman/entr.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=eb2dd0f11573a69c18a7d9dd2814a1f9da6f59337f0859e51fc0a69dab40cb13
+PKG_SOURCE_VERSION:=8ed69ace080a73ff923c20f01a3ded28df3b4e1c
+PKG_SOURCE_URL:=https://github.com/eradman/entr.git
+PKG_MIRROR_HASH:=48416ae04021c8ccbfc9dfda4aece8d4f985f82e8c3a8c412610ff9bb8c15811
 
 include $(INCLUDE_DIR)/package.mk
 
