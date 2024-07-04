@@ -9,15 +9,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=accel-ppp
 PKG_VERSION:=1.12.0
-PKG_REV:=6ce96d9d6eb3fa036d73aaf535784caddc7f3552
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/xebd/accel-ppp.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=9b2684187ef67fb55bb2ed76a968e15ed70a2aa4de39460e6c69b66b55e14cfa
+PKG_SOURCE_VERSION:=6ce96d9d6eb3fa036d73aaf535784caddc7f3552
+PKG_SOURCE_URL:=https://github.com/xebd/accel-ppp.git
+PKG_MIRROR_HASH:=63eb3a5c63f102a227a4f6532950c2c0c766d31a8963afb213865829ffbeded2
 
 CMAKE_BINARY_SUBDIR:=openwrt-build
 
@@ -42,17 +39,14 @@ endef
 
 CMAKE_OPTIONS += \
 	-DBUILD_DRIVER=FALSE \
-	-DCMAKE_INSTALL_PREFIX=/opt \
-	-DCMAKE_BUILD_TYPE=Release \
+	-DLIB_SUFFIX='' \
 	-DLOG_PGSQL=FALSE \
-	-DSHAPER=FALSE \
-	-DRADIUS=TRUE \
 	-DNETSNMP=FALSE \
-	-DLOG_FILE=FALSE \
-	-DLIB_SUFFIX= \
+	-DRADIUS=TRUE \
+	-DSHAPER=FALSE
 
 TARGET_CFLAGS += \
-	-I$(STAGING_DIR)/opt/include \
+	-I$(STAGING_DIR)/opt/include
 
 TARGET_LDFLAGS += \
 	-Wl,-rpath,/opt/lib/accel-ppp
@@ -85,7 +79,7 @@ define Package/accel-ppp/install
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/accel-pppd/accel-ppp.conf $(1)/opt/etc
 	$(INSTALL_BIN) files/S60accel-ppp $(1)/opt/etc/init.d
-	$(INSTALL_DIR) $(1)/opt/var/log/accel-ppp
+	$(INSTALL_DIR) $(1)/opt/var/{lib,log}/accel-ppp
 endef
 
 $(eval $(call BuildPackage,accel-ppp))
