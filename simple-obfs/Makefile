@@ -12,20 +12,15 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=simple-obfs
 PKG_VERSION:=0.0.5
-PKG_REV:=a9c43588e4cb038e6ac02f050e4cab81f8228dff
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE)
-PKG_SOURCE_URL:=https://github.com/shadowsocks/simple-obfs.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=f06cf0016f678d801180fc2310221f71ff0e53f757573e883dbde2eb1c27bac1
+PKG_SOURCE_VERSION:=a9c43588e4cb038e6ac02f050e4cab81f8228dff
+PKG_SOURCE_URL:=https://github.com/shadowsocks/simple-obfs.git
+PKG_MIRROR_HASH:=d7d28b2cc98e82b15e1c1b4f546a7d8124c853ab858cd6248ebbf1b1e765ab88
 
 PKG_LICENSE:=GPLv3
 PKG_LICENSE_FILES:=LICENSE
-
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)/$(PKG_SOURCE_SUBDIR)
 
 PKG_INSTALL:=1
 PKG_FIXUP:=autoreconf
@@ -40,7 +35,7 @@ define Package/simple-obfs/Default
 	SUBMENU:=Web Servers/Proxies
 	TITLE:=Simple-obfs
 	URL:=https://github.com/shadowsocks/simple-obfs
-	DEPENDS:=+libev +libpthread
+	DEPENDS:=+libev
 	MAINTAINER:=Entware team, https://entware.net
 endef
 
