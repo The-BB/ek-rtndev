@@ -26,7 +26,7 @@ define Package/wg-quick
 	URL:=https://www.wireguard.com
 	MAINTAINER:=Jason A. Donenfeld <Jason@zx2c4.com>
 	TITLE:=WireGuard wg-quick script
-	DEPENDS:=+bash +coreutils-stat @!LINUX_2_6_36
+	DEPENDS:=+bash +coreutils-stat
 	PKGARCH:=all
 endef
 
