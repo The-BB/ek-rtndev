@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tidy-html5
 PKG_VERSION:=5.8.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/htacg/tidy-html5/tar.gz/refs/tags/$(PKG_VERSION)?
@@ -18,15 +18,27 @@ PKG_HASH:=59c86d5b2e452f63c5cdb29c866a12a4c55b1741d7025cf2f3ce0cde99b0660e
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=README/LICENSE.md README/LICENSE.txt
 
+CMAKE_INSTALL:=1
+
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
-define Package/tidy-html5
-	SECTION:=utils
-	CATEGORY:=Utilities
+define Package/tidy-html5/Default
 	TITLE:=HTACG HTML Tidy
 	URL:=http://www.html-tidy.org/
 	MAINTAINER:=Entware team, https://entware.net
+endef
+
+define Package/libtidy
+	$(call Package/tidy-html5/Default)
+	SECTION:=libs
+	CATEGORY:=Libraries
+endef
+
+define Package/tidy-html5
+	$(call Package/tidy-html5/Default)
+	SECTION:=utils
+	CATEGORY:=Utilities
 endef
 
 define Package/tidy-html5/description
@@ -38,10 +50,14 @@ define Package/tidy-html5/conffiles
 endef
 
 CMAKE_OPTIONS += \
-	-DBUILD_SHARED_LIB=OFF \
 	-DSUPPORT_LOCALIZATIONS=OFF \
 	-DTIDY_CONFIG_FILE="/opt/etc/tidy.conf" \
 	-DXSLTPROC_FOUND=OFF
+
+define Package/libtidy/install
+	$(INSTALL_DIR) $(1)/opt/lib
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/libtidy.so* $(1)/opt/lib
+endef
 
 define Package/tidy-html5/install
 	$(INSTALL_DIR) $(1)/opt/bin
@@ -50,4 +66,5 @@ define Package/tidy-html5/install
 	$(INSTALL_CONF) ./files/tidy.conf $(1)/opt/etc
 endef
 
+$(eval $(call BuildPackage,libtidy))
 $(eval $(call BuildPackage,tidy-html5))
