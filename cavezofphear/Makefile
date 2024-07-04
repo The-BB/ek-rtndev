@@ -9,15 +9,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cavezofphear
 PKG_VERSION:=0.6.1
-PKG_REV:=fa0b1b1cb87b7de8beee6b1e658da90e6bd52d31
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/AMDmi3/cavezofphear.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=840b295adf5e75c6ba3806cbd7e93e6902c874b901220caab4150cf6c11360df
+PKG_SOURCE_VERSION:=fa0b1b1cb87b7de8beee6b1e658da90e6bd52d31
+PKG_SOURCE_URL:=https://github.com/AMDmi3/cavezofphear.git
+PKG_MIRROR_HASH:=651a3d129ea73fc3661002ccb1d1d5fd4d7fbd9fd44d2c2948fb80437cb8ac7a
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
