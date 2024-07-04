@@ -8,16 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=shake
-PKG_VERSION:=1.0-20170702
-PKG_REV:=33dd09dfd77dba8e73da194d2ea4c1e0d9c90ace
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/unbrice/shake.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=fa3dba7698a0af3a33a22e1b8a25fad011d67fe816c1bb603edd70f2faa96f0d
+PKG_SOURCE_DATE:=2017-07-02
+PKG_SOURCE_VERSION:=33dd09dfd77dba8e73da194d2ea4c1e0d9c90ace
+PKG_SOURCE_URL:=https://github.com/unbrice/shake.git
+PKG_MIRROR_HASH:=8a9137c02ea87c3a96691a2ebae11835b4945338b45a4546b7664e4f4f2f16e3
+
+PKG_VERSION=1.0_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
