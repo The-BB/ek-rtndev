@@ -9,15 +9,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=grive2
 PKG_VERSION:=0.5.3
-PKG_REV:=d03c4a24ceb179d0fdb4c47e3d144d547ffcc8b6
-PKG_RELEASE:=4
+PKG_RELEASE:=5
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/vitalif/grive2.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=89decea20cc1f63c46365b80c1f84a785e429d8129e5fbfb41d97ad9754e8437
+PKG_SOURCE_VERSION:=d03c4a24ceb179d0fdb4c47e3d144d547ffcc8b6
+PKG_SOURCE_URL:=https://github.com/vitalif/grive2.git
+PKG_MIRROR_HASH:=20eaafe0cb4fe0c58ef6ba0bbfd8f7be9f3b4f5de32cdc3d67edbdf43f00d43c
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -42,7 +39,7 @@ endef
 TARGET_CXXFLAGS += -fpermissive -DBOOST_BIND_GLOBAL_PLACEHOLDERS
 TARGET_LDFLAGS += $(if $(INTL_FULL),-lintl)
 
-ifneq ($(CONFIG_USE_UCLIBC),)
+ifneq ($(CONFIG_USE_GLIBC),y)
 define Build/Prepare
 	$(Build/Prepare/Default)
 	$(SED) 's,find_package(BFD),#find_package(BFD),g' $(PKG_BUILD_DIR)/libgrive/CMakeLists.txt
@@ -51,9 +48,7 @@ endif
 
 define Package/grive2/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/grive \
-		$(1)/opt/bin
-	$(INSTALL_DIR) $(1)/opt/lib
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/grive $(1)/opt/bin
 endef
 
 $(eval $(call BuildPackage,grive2))
