@@ -10,22 +10,18 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=espeak-ng
 PKG_VERSION:=1.50
-PKG_REV:=b702b03996de94035fadae0eb5ad9506c5a09f35
 PKG_RELEASE:=2
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/espeak-ng/espeak-ng.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=df67a947fb8b7519362fc3606dd55a9df193a58dee533c3cb6f6953dc69d9c85
+PKG_SOURCE_VERSION:=b702b03996de94035fadae0eb5ad9506c5a09f35
+PKG_SOURCE_URL:=https://github.com/espeak-ng/espeak-ng.git
+PKG_MIRROR_HASH:=13c25bb0ad5863500535586c2f8702c1bcc46b2879095a8a8e448e6be6be0d27
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 PKG_BUILD_DEPENDS:=espeak-ng/host
 
 include $(INCLUDE_DIR)/host-build.mk
-
 include $(INCLUDE_DIR)/package.mk
 
 define Package/espeak-ng/Default
