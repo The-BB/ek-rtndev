@@ -1,21 +1,18 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2023 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=radare2
-PKG_VERSION:=5.8.8
+PKG_VERSION:=5.9.2
 PKG_RELEASE:=1
 
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=ea7f0356519884715cf1d5fba16042bac72b2df5
+PKG_SOURCE_VERSION:=aea5c93a8f5a6ed360ea21d6a4e36f00accb8b7d
 PKG_SOURCE_URL:=https://github.com/radareorg/radare2.git
-PKG_MIRROR_HASH:=6c7ca0b3f6105523806118e320fb79d40eb4443fa603d9ab8d165633c1a96be4
+PKG_MIRROR_HASH:=12d71d2122c2da7f04b6c08d886a67b8c35420a6408f877def6716380cb8203b
 
 PKG_BUILD_DEPENDS:=python3/host
 
