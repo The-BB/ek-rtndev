@@ -4,13 +4,12 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# XXX BROKEN: new mbedtls API
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dislocker
 PKG_VERSION:=0.7.3
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=6662821483d953bf23464ffd64d100d0b8dc3e4c
@@ -24,7 +23,7 @@ define Package/dislocker
 	SECTION:=utils
 	CATEGORY:=Utilities
 	SUBMENU:=Filesystem
-	DEPENDS:=+libfuse +libmbedtls @BROKEN
+	DEPENDS:=+libfuse +libmbedtls
 	TITLE:=Read BitLocker encrypted volumes under Linux
 	URL:=https://github.com/Aorimn/dislocker
 	MAINTAINER:=Entware team, https://entware.net
