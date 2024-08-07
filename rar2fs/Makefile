@@ -1,21 +1,17 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
-# XXX BROKEN: new unrar API
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rar2fs
-PKG_VERSION:=1.29.6
+PKG_VERSION:=1.29.7
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=5ae31771c3f335bbd53882ff70650aba1ab58917
+PKG_SOURCE_VERSION:=799ca3be1a2d9dcee416a650d737fb333fb4be5b
 PKG_SOURCE_URL:=https://github.com/hasse69/rar2fs.git
-PKG_MIRROR_HASH:=4806b9bcff2a241622bb51e4474482401c99f41cd4aafaf5e02155c5b40b78b7
+PKG_MIRROR_HASH:=51092215a336608d84780991118cb576c729d89fc3bb9ee556b2ab27bbb3c418
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -27,7 +23,7 @@ define Package/rar2fs
 	SECTION:=utils
 	CATEGORY:=Utilities
 	SUBMENU:=Filesystem
-	DEPENDS:=+libfuse +libunrar +librt $(ICONV_DEPENDS) @BROKEN
+	DEPENDS:=+libfuse +libunrar +librt $(ICONV_DEPENDS)
 	TITLE:=FUSE file system for reading RAR archives
 	URL:=https://github.com/hasse69/rar2fs
 	MAINTAINER:=Entware team, https://entware.net
