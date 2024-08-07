@@ -1,9 +1,6 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
@@ -12,8 +9,8 @@ PKG_VERSION:=0.11.4
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/cryfs/cryfs.git
-PKG_SOURCE_VERSION:=2c86a6ed376244cb2e3e1fe7e174554b813fcec1
 PKG_MIRROR_HASH:=540d1703945b207d1c5f032cfb95fa48b568cde9c243dc154e66b1a478ea4b6e
 
 PKG_BUILD_DEPENDS:=range-v3 spdlog
@@ -25,16 +22,17 @@ define Package/cryfs
 	SECTION:=utils
 	CATEGORY:=Utilities
 	SUBMENU:=Filesystem
-	DEPENDS:=+fuse-utils +libatomic +libcurl +libfmt \
-		+boost-program_options +boost-thread +boost-filesystem
+	DEPENDS:=+boost-chrono +boost-filesystem +boost-program_options \
+		 +boost-thread +fuse-utils +libatomic +libcurl +libfmt
 	TITLE:=Cryptographic filesystem for the cloud
 	URL:=https://www.cryfs.org
 	MAINTAINER:=Entware team, https://entware.net
 endef
 
 define Package/cryfs/description
- CryFS encrypts your files, so you can safely store them anywhere. It works well
- together with cloud services like Dropbox, iCloud, OneDrive and others.
+ CryFS encrypts your files, so you can safely store them anywhere.
+ It works well together with cloud services like Dropbox, iCloud, OneDrive and
+ others.
 endef
 
 CMAKE_OPTIONS += \
