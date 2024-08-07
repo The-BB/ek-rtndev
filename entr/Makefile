@@ -5,13 +5,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=entr
-PKG_VERSION:=5.5
+PKG_VERSION:=5.6
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=8ed69ace080a73ff923c20f01a3ded28df3b4e1c
+PKG_SOURCE_VERSION:=3cd81272a2838fe5628de7f18ca45418792cca20
 PKG_SOURCE_URL:=https://github.com/eradman/entr.git
-PKG_MIRROR_HASH:=48416ae04021c8ccbfc9dfda4aece8d4f985f82e8c3a8c412610ff9bb8c15811
+PKG_MIRROR_HASH:=a6763c80ee79995de0762d2dd3b48a57e6e9b53c6d5e4b12affb6910f6639c59
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -28,7 +28,7 @@ define Package/entr/description
 endef
 
 define Build/Configure
-	$(LN) $(PKG_BUILD_DIR)/Makefile.linux $(PKG_BUILD_DIR)/Makefile
+	$(LN) $(PKG_BUILD_DIR)/Makefile.linux-compat $(PKG_BUILD_DIR)/Makefile
 endef
 
 define Package/entr/install
