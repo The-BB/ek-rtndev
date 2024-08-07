@@ -5,13 +5,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=unionfs-fuse
-PKG_VERSION:=3.4
+PKG_VERSION:=3.5
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=773f1853b043eeb64b7459f903a2c65bd096f9d9
+PKG_SOURCE_VERSION:=021c2c6dd2d74ab2ecdfccc39caf39e19ea17b06
 PKG_SOURCE_URL:=https://github.com/rpodgorny/unionfs-fuse.git
-PKG_MIRROR_HASH:=52eea42e97e63b2d5cd0e4bacf5da9318ad8ac46dac3969e14fcd3f0760b9cbe
+PKG_MIRROR_HASH:=b29065fd5a9b3cc957cb4b8d9d12a35c0cc000b85e91c91611d93b89fb89cbd4
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
