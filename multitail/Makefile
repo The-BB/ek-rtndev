@@ -5,13 +5,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=multitail
-PKG_VERSION:=7.1.2
+PKG_VERSION:=7.1.3
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=29bf3be699af83119389e35597892c5997cbc15d
+PKG_SOURCE_VERSION:=f24eb8d7706a87504acbeb860906528a4f58dd31
 PKG_SOURCE_URL:=https://github.com/folkertvanheusden/multitail.git
-PKG_MIRROR_HASH:=a37a824f68f66c7fae85beb37bc900190cd74f270ae2fafe86e3fa5e8ed0e935
+PKG_MIRROR_HASH:=aa1c2584e2c8a3a5c27127d3db5e21ce7e8f204b277b01ff1a112cc7645e88a5
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
