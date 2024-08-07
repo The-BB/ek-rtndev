@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011-2023 Entware
+# Copyright (C) 2011-2024 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=megacmd
-PKG_VERSION:=1.6.3
+PKG_VERSION:=1.7.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=98bb18010edcda1458ee4e790c75ad9f7c9fb21f
+PKG_SOURCE_VERSION:=bc0e4016eeb561677e8078294422e9b1619515b5
 PKG_SOURCE_URL:=https://github.com/meganz/MEGAcmd.git
-PKG_MIRROR_HASH:=465c625189e22ea6fea9cd0b561bb9e387b3567750179851e79fd92b1e72d2f8
+PKG_MIRROR_HASH:=54774b27d5093c2163bba38588f49f037d8ebcaeac26de6a9f50ed9566dfbd37
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -25,7 +25,7 @@ define Package/megacmd
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=File Transfer
-	DEPENDS:=+libcares +libcryptopp +libcurl +libffmpeg +libmediainfo \
+	DEPENDS:=+icu +libcares +libcryptopp +libcurl +libmediainfo \
 	    +libpcre +libreadline +libsodium +libsqlite3 +libuv
 	TITLE:=Command Line Interactive and Scriptable Application
 	URL:=https://github.com/meganz/megacmd
@@ -39,7 +39,8 @@ endef
 
 CONFIGURE_ARGS += \
     --disable-doxygen-doc \
-    --without-freeimage
+    --without-freeimage \
+    --without-ffmpeg
 
 define Package/megacmd/install
 	$(INSTALL_DIR) $(1)/opt/bin
