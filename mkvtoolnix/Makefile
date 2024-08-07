@@ -1,9 +1,6 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
@@ -24,9 +21,8 @@ include $(INCLUDE_DIR)/nls.mk
 define Package/mkvtoolnix
 	SECTION:=multimedia
 	CATEGORY:=Multimedia
-	DEPENDS:=+boost-filesystem +boost-regex +libbz2 +libexpat +libflac \
-		+libgmp +liblzo +libmagic +libvorbis +libfmt +libpcre2 \
-		+qt5-core $(ICONV_DEPENDS) $(INTL_DEPENDS)
+	DEPENDS:=+boost-filesystem +boost-system +libflac +libfmt +libgmp +libogg \
+		 +libvorbis +qt5-core +zlib $(ICONV_DEPENDS) $(INTL_DEPENDS)
 	TITLE:=tools for Matroska files
 	URL:=http://matroska.org/
 	MAINTAINER:=Entware team, https://entware.net
