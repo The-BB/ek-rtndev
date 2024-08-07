@@ -5,23 +5,63 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rutorrent
-PKG_VERSION:=4.2.10
+PKG_VERSION:=4.3.5
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=c9644dda7a9ac1b3fc8b663392c4168adbe5a312
+PKG_SOURCE_VERSION:=9bf6e15c4864a71ff9e9ca5ea689fd001931279b
 PKG_SOURCE_URL:=https://github.com/Novik/ruTorrent.git
-PKG_MIRROR_HASH:=4adf39ad70240f960134ad74f21a946c493e950e0bb4ae0b4a9f324f4ee0dc34
+PKG_MIRROR_HASH:=b0e4649eb5ce0537650f2774fe29d64b253c7ada56df4e4fe7e94c4ee3ee6d8a
 
 include $(INCLUDE_DIR)/package.mk
 
 RUTORRENT_PLUGINS := \
-	autotools bulk_magnet check_port chunks _cloudflare cookies cpuload create data datadir \
-	diskspace edit erasedata extratio extsearch feeds filedrop geoip \
-	_getdir history httprpc ipad loginmgr lookat mediainfo _noty _noty2 \
-	ratio retrackers rpc rss rssurlrewrite rutracker_check scheduler \
-	screenshots seedingtime show_peers_like_wtorrent source spectrogram _task theme \
-	throttle tracklabels trafic unpack uploadeta xmpp
+autotools \
+bulk_magnet \
+check_port \
+chunks \
+_cloudflare \
+cookies \
+cpuload \
+create \
+data \
+datadir \
+diskspace \
+edit \
+erasedata \
+extratio \
+extsearch \
+feeds \
+filedrop \
+geoip \
+_getdir \
+history \
+httprpc \
+ipad \
+loginmgr \
+lookat \
+mediainfo \
+_noty \
+_noty2 \
+ratio \
+retrackers \
+rss \
+rssurlrewrite \
+rutracker_check \
+scheduler \
+screenshots \
+seedingtime \
+show_peers_like_wtorrent \
+source \
+spectrogram \
+_task \
+theme \
+throttle \
+tracklabels \
+trafic \
+unpack \
+uploadeta \
+xmpp
 
 RUTORRENT_PLUGIN_DEPENDS_datadir = +php8-cgi
 RUTORRENT_PLUGIN_DEPENDS__getdir = +php8-cgi
