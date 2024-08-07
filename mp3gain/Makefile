@@ -1,9 +1,6 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
@@ -31,6 +28,8 @@ endef
 define Package/mp3gain/description
  MP3Gain analyzes and adjusts mp3 files so that they have the same volume.
 endef
+
+TARGET_CPPFLAGS += -D_FILE_OFFSET_BITS=64
 
 define Package/mp3gain/install
 	$(INSTALL_DIR) $(1)/opt/bin
