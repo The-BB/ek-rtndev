@@ -1,20 +1,17 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=s3fs-fuse
-PKG_VERSION:=1.93
-PKG_RELEASE:=2
+PKG_VERSION:=1.94
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=5371cd1468c84423729c334ac997f9621b797e9f
+PKG_SOURCE_VERSION:=70a30d6e26a5dfd07a00cf79ce1196079e5ab11a
 PKG_SOURCE_URL:=https://github.com/s3fs-fuse/s3fs-fuse.git
-PKG_MIRROR_HASH:=902317b9208c7813f4a4a3126912229d4f6557df72bd011814792aec69f7f1ef
+PKG_MIRROR_HASH:=fdcd3dac246a745518ed28225a792bef28c2ac070631cf4cc9446a94ebe78493
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
