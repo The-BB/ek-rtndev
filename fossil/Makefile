@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=fossil
-PKG_VERSION:=2.23
+PKG_VERSION:=2.24
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-src-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://www.fossil-scm.org/home/tarball/66ee0beb9b47d827bde533fe6a1fb2ead4ceb1936468881b4fb621bd6bdfd862
-PKG_HASH:=1749c4a58bbeee183f7372095259fda5d246778a19ac8251b88cc9b4997a9a99
+PKG_SOURCE_URL:=https://www.fossil-scm.org/home/tarball/8be0372c1051043761320c8ea8669c3cf320c406e5fe18ad36b7be5f844ca73b
+PKG_HASH:=e6f5a559369bf16baf539e69e6d0cea5a6410efa9a6e7f160c7a4932080413be
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-src-$(PKG_VERSION)
 
