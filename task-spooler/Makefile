@@ -1,16 +1,14 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
+
 # The newer versions requires CUDA libraries
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=task-spooler
 PKG_VERSION:=1.3.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=052db94bc588e4f4471e37599dfdff77dc44c8bb

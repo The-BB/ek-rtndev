@@ -1,0 +1,17 @@
+# https://github.com/justanhduc/task-spooler/commit/7ad73f001da883a88bcd53e3bf4e7157636ee637
+
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ jobs.o:(.bss+0x0): multiple definition of `logdir'; server.o:(.bss+0x0): first defined here
+collect2: error: ld returned 1 exit status
+---
+
+--- a/jobs.c
++++ b/jobs.c
+@@ -40,7 +40,6 @@ static struct Notify *first_notify = 0;
+ 
+ /* server will access them */
+ int max_jobs;
+-char* logdir;
+ 
+ static struct Job *get_job(int jobid);
+ 
