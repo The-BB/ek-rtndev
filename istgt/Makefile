@@ -1,16 +1,14 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
+
 # Abandoned in 2017
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=istgt
 PKG_VERSION:=20150713
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=14b0bacacedc9ac7e96fc34cf720800047f6194a

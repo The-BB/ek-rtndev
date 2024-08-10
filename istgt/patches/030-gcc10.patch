@@ -1,0 +1,26 @@
+Description: Fix ftbfs with GCC-10
+ The enum variable is not used, use it as typedef.
+
+Author: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
+Bug-Debian: https://bugs.debian.org/957380
+Forwarded: no
+---
+
+--- a/src/istgt_lu.h
++++ b/src/istgt_lu.h
+@@ -288,13 +288,13 @@ typedef struct istgt_lu_cmd_t {
+ } ISTGT_LU_CMD;
+ typedef ISTGT_LU_CMD *ISTGT_LU_CMD_Ptr;
+ 
+-enum {
++typedef enum {
+ 	ISTGT_LU_TASK_RESULT_IMMEDIATE = 0,
+ 	ISTGT_LU_TASK_RESULT_QUEUE_OK = 1,
+ 	ISTGT_LU_TASK_RESULT_QUEUE_FULL = 2,
+ } ISTGT_LU_TASK_RESULT;
+ 
+-enum {
++typedef enum {
+ 	ISTGT_LU_TASK_RESPONSE = 0,
+ 	ISTGT_LU_TASK_REQPDU = 1,
+ 	ISTGT_LU_TASK_REQUPDPDU = 2,
