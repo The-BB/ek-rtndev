@@ -1,16 +1,14 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
+
 # Abandoned in 2015, archieved
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=afpfs-ng
 PKG_VERSION:=0.8.2
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=f6e24eb73c9283732c3b5d9cb101a1e2e4fade3e

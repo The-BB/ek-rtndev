@@ -1,0 +1,24 @@
+In file included from fuse_int.c:28:
+.../include/asm/fcntl.h:63:8: error: redefinition of 'struct flock'
+   63 | struct flock {
+      |        ^~~~~
+---
+
+--- a/fuse/fuse_int.c
++++ b/fuse/fuse_int.c
+@@ -24,11 +24,11 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <errno.h>
+-#ifdef __linux__
+-#include <asm/fcntl.h>
+-#else
++//#ifdef __linux__
++//#include <asm/fcntl.h>
++//#else
+ #include <fcntl.h>
+-#endif
++//#endif
+ 
+ #include <utime.h>
+ #include <stdlib.h>

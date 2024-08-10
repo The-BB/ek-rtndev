@@ -1,0 +1,17 @@
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd: afpcmd-cmdline_main.o:(.bss+0x0):
+ multiple definition of `full_url'; afpcmd-cmdline_afp.o:(.bss+0x4): first defined here
+collect2: error: ld returned 1 exit status
+
+---
+
+--- a/cmdline/cmdline_afp.h
++++ b/cmdline/cmdline_afp.h
+@@ -1,7 +1,7 @@
+ #ifndef CMDLINE_AFP_H_
+ #define CMDLINE_AFP_H_
+ 
+-int full_url;
++extern int full_url;
+ 
+ int com_connect(char * arg);
+ int com_dir(char * arg);
