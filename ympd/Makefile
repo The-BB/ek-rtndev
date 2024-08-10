@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2011-2024 Entware
-#
+
 # Abandoned in 2018
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ympd
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2018-03-29
