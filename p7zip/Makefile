@@ -1,15 +1,12 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=p7zip
 PKG_VERSION:=16.02
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION)_src_all.tar.bz2
 PKG_SOURCE_URL:=@SF/p7zip/p7zip/$(PKG_VERSION)
@@ -23,7 +20,7 @@ define Package/p7zip
 	SECTION:=utils
 	CATEGORY:=Utilities
 	SUBMENU:=Compression
-	DEPENDS:=+libpthread +libstdcpp
+	DEPENDS:=+libstdcpp
 	TITLE:=Command line version of 7-zip for POSIX systems
 	URL:=http://p7zip.sourceforge.net
 	MAINTAINER:=Entware team, https://entware.net
@@ -33,12 +30,18 @@ define Package/p7zip/description
  Command line version of 7-zip for POSIX systems.
 endef
 
+TARGET_CFLAGS += -pthread
+TARGET_CXXFLAGS += -pthread
+
+TARGET_CXXFLAGS += -std=c++14
+
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		CC="$(TARGET_CC)" \
 		CXX="$(TARGET_CXX)" \
-		LOCAL_LIBS="$(TARGET_LDFLAGS)" \
-		OPTFLAGS="$(TARGET_CFLAGS) -pthread" \
+		ALLFLAGS_C="$(TARGET_CFLAGS)" \
+		ALLFLAGS_CPP="$(TARGET_CXXFLAGS)" \
+		LDFLAGS="$(TARGET_LDFLAGS)" \
 		DEST_HOME="$(PKG_INSTALL_DIR)/opt" \
 		all4 install
 endef
