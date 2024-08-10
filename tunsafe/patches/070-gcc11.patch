@@ -1,0 +1,23 @@
+# https://github.com/sytjason/TunSafe/commit/d9598a05019b320a7dcd91ca3cf400a7bd16a975
+
+ip_to_peer_map.cpp:109:109: error: 'bits' is not a constant expression
+  109 |   RoutingTrie32::Node *n = (RoutingTrie32::Node *)malloc(offsetof(RoutingTrie32::Node, child[(uint32)(1U << bits)]));
+      |                                                                                                             ^~~~
+---
+
+--- a/ip_to_peer_map.cpp
++++ b/ip_to_peer_map.cpp
+@@ -106,7 +106,13 @@ static uint32 make_cidr_mask(uint8 cidr)
+ #define VALUE_FROM_OLEAF(n) ((void*)((intptr_t)(n) - 1))
+ 
+ static RoutingTrie32::Node *NewNode(uint32 key, int pos, int bits) {
++  #if _cplusplus < 201103L
++  size_t offset_per_child = offsetof(RoutingTrie32::Node, child[1]) - sizeof(RoutingTrie32::Node);
++  uint32 n_child = 1U << bits;
++  RoutingTrie32::Node *n = (RoutingTrie32::Node *)malloc(sizeof(RoutingTrie32::Node) + n_child * offset_per_child);
++  #else
+   RoutingTrie32::Node *n = (RoutingTrie32::Node *)malloc(offsetof(RoutingTrie32::Node, child[(uint32)(1U << bits)]));
++  #endif
+   if (n) {
+     n->parent = NULL;
+     n->pos = pos;
