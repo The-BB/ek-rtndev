@@ -1,9 +1,6 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
@@ -63,6 +60,10 @@ TARGET_CFLAGS += \
 	-std=gnu99 \
 	-Iuthash-$(UTHASH_VER)/src \
 	-DJSON_INTEGER_IS_LONG_LONG
+
+ifneq ($(CONFIG_GCC_USE_VERSION_8),y)
+TARGET_CFLAGS += -fcommon
+endif
 
 define Build/Configure
 	chmod +x $(PKG_BUILD_DIR)/configure
