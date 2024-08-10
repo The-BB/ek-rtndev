@@ -1,0 +1,35 @@
+../libr/esil/esil.c: In function 'esil_float_add':
+../libr/esil/esil.c:3283:40: error: 'FE_OVERFLOW' undeclared (first use in this function); did you mean 'EOVERFLOW'?
+ 3283 |                         feclearexcept (FE_OVERFLOW);
+      |                                        ^~~~~~~~~~~
+      |                                        EOVERFLOW
+../libr/esil/esil.c:3283:40: note: each undeclared identifier is reported only once for each function it appears in
+../libr/esil/esil.c: In function 'esil_float_sub':
+../libr/esil/esil.c:3313:40: error: 'FE_OVERFLOW' undeclared (first use in this function); did you mean 'EOVERFLOW'?
+ 3313 |                         feclearexcept (FE_OVERFLOW);
+      |                                        ^~~~~~~~~~~
+      |                                        EOVERFLOW
+../libr/esil/esil.c: In function 'esil_float_mul':
+../libr/esil/esil.c:3343:40: error: 'FE_OVERFLOW' undeclared (first use in this function); did you mean 'EOVERFLOW'?
+ 3343 |                         feclearexcept (FE_OVERFLOW);
+      |                                        ^~~~~~~~~~~
+      |                                        EOVERFLOW
+../libr/esil/esil.c: In function 'esil_float_div':
+../libr/esil/esil.c:3373:40: error: 'FE_OVERFLOW' undeclared (first use in this function); did you mean 'EOVERFLOW'?
+ 3373 |                         feclearexcept (FE_OVERFLOW);
+      |                                        ^~~~~~~~~~~
+      |                                        EOVERFLOW
+ninja: build stopped: subcommand failed.
+---
+
+--- a/libr/esil/esil.c
++++ b/libr/esil/esil.c
+@@ -4,7 +4,7 @@
+ 
+ #include <r_anal.h>
+ 
+-#if __wasi__ || EMSCRIPTEN
++#if __wasi__ || EMSCRIPTEN || __mips_soft_float
+ #define FE_OVERFLOW 0
+ #define feclearexcept(x)
+ #endif
