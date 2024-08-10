@@ -1,17 +1,15 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2009 Brice DUBOST
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
+
 # Abandoned in 2009
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=transcode
 PKG_VERSION:=1.1.5
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=@SF/tcforge.berlios
