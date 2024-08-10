@@ -1,9 +1,7 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
+
 # This is the last version with V4L1 API support
 
 include $(TOPDIR)/rules.mk
@@ -35,19 +33,19 @@ define Package/xawtv/description
 endef
 
 CONFIGURE_ARGS += \
-	--disable-xfree-ext \
-	--disable-xvideo \
-	--disable-lirc \
-	--disable-quicktime \
-	--disable-motif \
 	--disable-aa \
-	--enable-alsa \
-	--disable-zvbi \
-	--disable-gl \
 	--disable-dv \
+	--disable-gl \
+	--disable-lirc \
 	--disable-mmx \
+	--disable-motif \
+	--disable-quicktime \
+	--disable-xfree-ext \
 	--disable-xft \
-	--without-x \
+	--disable-xvideo \
+	--disable-zvbi \
+	--enable-alsa \
+	--without-x
 
 BINARIES = \
 	dump-mixers \
@@ -59,7 +57,7 @@ BINARIES = \
 	streamer \
 	v4l-conf \
 	v4l-info \
-	webcam \
+	webcam
 
 define Package/xawtv/install
 	$(INSTALL_DIR) $(1)/opt/bin

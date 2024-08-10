@@ -1,0 +1,82 @@
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ common/commands.o:(.bss+0x40): multiple definition of `debug';
+ console/streamer.o:(.bss+0x0): first defined here
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ libng/libng.a(writefile.o):(.bss+0x0): multiple definition of `ng_lut_red';
+ libng/libng.a(grab-ng.o):(.bss+0x0): first defined here
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ libng/libng.a(writefile.o):(.bss+0x400): multiple definition of `ng_lut_green';
+ libng/libng.a(grab-ng.o):(.bss+0x400): first defined here
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ libng/libng.a(writefile.o):(.bss+0x800): multiple definition of `ng_lut_blue';
+ libng/libng.a(grab-ng.o):(.bss+0x800): first defined here
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ libng/libng.a(color_packed.o):(.bss+0x0): multiple definition of `ng_lut_red';
+ libng/libng.a(grab-ng.o):(.bss+0x0): first defined here
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ libng/libng.a(color_packed.o):(.bss+0x400): multiple definition of `ng_lut_green';
+ libng/libng.a(grab-ng.o):(.bss+0x400): first defined here
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ libng/libng.a(color_packed.o):(.bss+0x800): multiple definition of `ng_lut_blue';
+ libng/libng.a(grab-ng.o):(.bss+0x800): first defined here
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ libng/libng.a(color_yuv2rgb.o):(.bss+0x0): multiple definition of `ng_lut_red';
+ libng/libng.a(grab-ng.o):(.bss+0x0): first defined here
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ libng/libng.a(color_yuv2rgb.o):(.bss+0x400): multiple definition of `ng_lut_green';
+ libng/libng.a(grab-ng.o):(.bss+0x400): first defined here
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ libng/libng.a(color_yuv2rgb.o):(.bss+0x800): multiple definition of `ng_lut_blue';
+ libng/libng.a(grab-ng.o):(.bss+0x800): first defined here
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ libng/libng.a(color_common.o):(.bss+0x0): multiple definition of `ng_lut_red';
+ libng/libng.a(grab-ng.o):(.bss+0x0): first defined here
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ libng/libng.a(color_common.o):(.bss+0x400): multiple definition of `ng_lut_green';
+ libng/libng.a(grab-ng.o):(.bss+0x400): first defined here
+.../lib/gcc/*-*-linux-gnu/1*.*.*/../../../../*-*-linux-gnu/bin/ld.bfd:
+ libng/libng.a(color_common.o):(.bss+0x800): multiple definition of `ng_lut_blue';
+ libng/libng.a(grab-ng.o):(.bss+0x800): first defined here
+collect2: error: ld returned 1 exit status
+
+---
+
+--- a/console/streamer.c
++++ b/console/streamer.c
+@@ -59,7 +59,7 @@ static int  quiet = 0, fps = 10000;
+ 
+ static int  signaled = 0, wait_seconds = 0;
+ 
+-int debug = 0, have_dga = 0;
++//int debug = 0, have_dga = 0;
+ 
+ /* ---------------------------------------------------------------------- */
+ 
+--- a/libng/grab-ng.h
++++ b/libng/grab-ng.h
+@@ -481,9 +481,9 @@ void ng_color_yuv2rgb_init(void);
+ void ng_writefile_init(void);
+ 
+ /* for yuv2rgb using lookup tables (color_lut.c, color_yuv2rgb.c) */
+-unsigned long   ng_lut_red[256];
+-unsigned long   ng_lut_green[256];
+-unsigned long   ng_lut_blue[256];
++extern unsigned long ng_lut_red[256];
++extern unsigned long ng_lut_green[256];
++extern unsigned long ng_lut_blue[256];
+ void ng_yuv422_to_lut2(unsigned char *dest, unsigned char *s, int p);
+ void ng_yuv422_to_lut4(unsigned char *dest, unsigned char *s, int p);
+ void ng_yuv420p_to_lut2(void *h, struct ng_video_buf *out,
+--- a/x11/v4lctl.c
++++ b/x11/v4lctl.c
+@@ -26,8 +26,8 @@
+ #include "frequencies.h"
+ #include "commands.h"
+ 
+-int debug = 0;
+-int have_dga = 0;
++//int debug = 0;
++//int have_dga = 0;
+ #ifdef HAVE_LIBXV
+ Display *dpy;
+ #endif
