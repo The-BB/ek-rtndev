@@ -1,0 +1,19 @@
+In file included from Configuration.h:91,
+                 from Configuration.cpp:38:
+connection.h:48:10: fatal error: sys/sysctl.h: No such file or directory
+   48 | #include <sys/sysctl.h>
+      |          ^~~~~~~~~~~~~~
+---
+
+--- a/src/connection.h
++++ b/src/connection.h
+@@ -45,7 +45,9 @@
+ #include <sys/socket.h>
+ #include <sys/stat.h>
+ #include <netinet/in.h>
++#if defined __GLIBC__ && __GLIBC_MINOR__ < 32
+ #include <sys/sysctl.h>
++#endif
+ #include <netdb.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
