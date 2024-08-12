@@ -24,12 +24,23 @@ ninja: build stopped: subcommand failed.
 
 --- a/libr/esil/esil.c
 +++ b/libr/esil/esil.c
-@@ -4,7 +4,7 @@
+@@ -4,14 +4,15 @@
  
  #include <r_anal.h>
  
 -#if __wasi__ || EMSCRIPTEN
+-#define FE_OVERFLOW 0
+-#define feclearexcept(x)
+-#endif
+ #include <math.h>
+ #include <float.h>
+ #include <fenv.h>
+ 
 +#if __wasi__ || EMSCRIPTEN || __mips_soft_float
- #define FE_OVERFLOW 0
- #define feclearexcept(x)
- #endif
++#define FE_OVERFLOW 0
++#define feclearexcept(x)
++#endif
++
+ #define ESIL_MACRO 0
+ // TODO: replace esil->verbose with R_LOG_DEBUG
+ #define IFDBG if (esil->verbose > 1)
