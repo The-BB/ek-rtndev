@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=man-db
 PKG_VERSION:=2.12.1
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_URL:=@SAVANNAH/man-db
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
@@ -62,6 +62,8 @@ define Package/man-db/install
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/man-db/libman{,db}*.so $(1)/opt/lib/man-db
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/accessdb $(1)/opt/sbin
 	$(CP) $(PKG_INSTALL_DIR)/opt/share $(1)/opt
+	$(INSTALL_DIR) $(1)/opt/etc/ld.so.conf.d
+	$(INSTALL_DATA) ./files/mandb.conf $(1)/opt/etc/ld.so.conf.d
 endef
 
 $(eval $(call BuildPackage,man-db))
