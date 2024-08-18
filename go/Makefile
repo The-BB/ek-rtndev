@@ -80,7 +80,5 @@ endef
 
 Package/go_nohf/install=$(Package/go/install)
 
-Package/go_nohf/postinst=$(Package/go/postinst)
-
 $(eval $(call BuildPackage,go))
 $(eval $(call BuildPackage,go_nohf))
