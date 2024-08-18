@@ -26,8 +26,8 @@ define Package/go/Default
 	URL:=https://golang.org/
 	MAINTAINER:=Entware team, https://entware.net
 	ALTERNATIVES:= \
-		100:/opt/bin/go:/opt/bin/go/bin/go \
-		100:/opt/bin/gofmt:/opt/bin/go/bin/gofmt
+		100:/opt/sbin/go:/opt/bin/go/bin/go \
+		100:/opt/sbin/gofmt:/opt/bin/go/bin/gofmt
 endef
 
 define Package/go
