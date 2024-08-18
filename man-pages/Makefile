@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=man-pages
 PKG_VERSION:=6.9
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_URL:=https://www.kernel.org/pub/linux/docs/man-pages
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
@@ -39,8 +39,19 @@ endef
 
 define Package/man-pages/postinst
 #!/bin/sh
-echo 'Creating man database...'
-mandb -c
+
+### colors
+ansi_red="\033[1;31m"
+ansi_blue="\033[1;34m"
+ansi_white="\033[1;37m"
+ansi_std="\033[0m"
+
+printf "\n$$ansi_blue %s $$ansi_white %s $$ansi_std" "Info:" "creating man database ..."
+if ! mandb -cq > /dev/null 2>&1 ; then
+  printf "$$ansi_red %s $$ansi_std\n\n" "faild"
+else
+  printf "$$ansi_white %s $$ansi_std\n\n" "done"
+fi
 endef
 
 $(eval $(call BuildPackage,man-pages))
