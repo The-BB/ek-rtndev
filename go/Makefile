@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=go
-PKG_VERSION:=1.22.5
+PKG_VERSION:=1.22.6
 PKG_RELEASE:=1
 
 PKG_SOURCE:=go$(PKG_VERSION).src.tar.gz
 PKG_SOURCE_URL:=https://dl.google.com/go
-PKG_HASH:=ac9c723f224969aee624bc34fd34c9e13f2a212d75c71c807de644bb46e112f6
+PKG_HASH:=9e48d99d519882579917d8189c17e98c373ce25abaebb98772e2927088992a51
 
 PKG_BUILD_PARALLEL:=1
 
@@ -25,6 +25,9 @@ define Package/go/Default
 	TITLE:=The Go Programming Language
 	URL:=https://golang.org/
 	MAINTAINER:=Entware team, https://entware.net
+	ALTERNATIVES:= \
+		100:/opt/bin/go:/opt/bin/go/bin/go \
+		100:/opt/bin/gofmt:/opt/bin/go/bin/gofmt
 endef
 
 define Package/go
@@ -76,12 +79,6 @@ define Package/go/install
 endef
 
 Package/go_nohf/install=$(Package/go/install)
-
-define Package/go/postinst
-#!/bin/sh
-
-echo "Please add /opt/bin/go/bin to your PATH"
-endef
 
 Package/go_nohf/postinst=$(Package/go/postinst)
 
