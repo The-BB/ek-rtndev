@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=trafficserver
 PKG_VERSION:=9.2.4
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/apache/trafficserver/tar.gz/refs/tags/$(PKG_VERSION)?
@@ -54,15 +54,15 @@ define Package/trafficserver/conffiles
 /opt/etc/trafficserver/volume.config
 endef
 
-TARGET_CFLAGS += -pthread
+TARGET_CXXFLAGS += -pthread
 TARGET_LDFLAGS += -latomic -ldl
 
 ifeq ($(CONFIG_aarch64),y)
-TARGET_CFLAGS += -fsigned-char
+TARGET_CXXFLAGS += -fsigned-char
 endif
 
 ifeq ($(CONFIG_arm),y)
-TARGET_CFLAGS += -Wno-narrowing
+TARGET_CXXFLAGS += -Wno-narrowing
 endif
 
 CONFIGURE_ARGS:=$(filter-out	\
@@ -76,6 +76,7 @@ CONFIGURE_ARGS += \
 	--libexecdir=/opt/lib/trafficserver/plugins \
 	--sysconfdir=/opt/etc/trafficserver \
 	\
+	--disable-hwloc \
 	--disable-tests \
 	--disable-unwind \
 	--enable-experimental-plugins
