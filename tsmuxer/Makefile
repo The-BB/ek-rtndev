@@ -14,7 +14,7 @@ PKG_SOURCE_VERSION:=7f8667d1e6100a5b6407340d91ad80d57d976e58
 PKG_SOURCE_URL:=https://github.com/justdan96/tsMuxer.git
 PKG_MIRROR_HASH:=46440bbff2d903ec989273f963d9a92a67265dc3715d04f1f57508873b784d56
 
-PKG_VERSION=2.6.16_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
