@@ -1,14 +1,13 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+
 # Abandoned in 2016
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=telegram-cli
+PKG_VERSION:=1.3.1
 PKG_RELEASE:=3
 
 PKG_SOURCE_PROTO:=git
@@ -17,7 +16,7 @@ PKG_SOURCE_VERSION:=6547c0b21b977b327b3c5e8142963f4bc246187a
 PKG_SOURCE_URL:=https://github.com/vysheng/tg.git
 PKG_MIRROR_HASH:=4f632a38fce08b981253358eb5fab565e02b647bbda3b715924b23cee74cefd2
 
-PKG_VERSION=1.3.1_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
 
 PKG_REMOVE_FILES:=ax_lua.m4
 PKG_FIXUP:=autoreconf
