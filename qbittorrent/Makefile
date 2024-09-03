@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2017-2024 Entware
-#
+
 # ported to Entware from https://github.com/KryptonLee/qBittorrent-openwrt-package
 
 include $(TOPDIR)/rules.mk
