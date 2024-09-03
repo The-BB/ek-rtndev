@@ -1,10 +1,8 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2013 Francisco Borges
 # Copyright (C) 2011-2023 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+
 # Makefile taken from http://github.com/FranciscoBorges/openwrt-printing-packages
 # 21.12.0+ requires GCC 9.4.0
 
