@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=entware-release
-PKG_VERSION:=2024.08
+PKG_VERSION:=2024.09
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -40,6 +40,16 @@ ifeq ($(CONFIG_SOFT_FLOAT),y)
     endif
 endif
 
+ifeq ($(CONFIG_USE_GLIBC),y)
+LIBCTYPE=glibc
+LIBC_VERSION=$(call qstrip,$(CONFIG_GLIBC_VERSION))
+endif
+
+ifeq ($(CONFIG_USE_MUSL),y)
+LIBCTYPE=musl
+LIBC_VERSION=$(call qstrip,$(CONFIG_MUSL_VERSION))
+endif
+
 # skip steps
 Build/Prepare:=:
 Build/Configure:=:
@@ -47,14 +57,14 @@ Build/Compile:=:
 
 define Package/entware-release/install
 	$(INSTALL_DIR) $(1)/opt/etc
-	echo "PRETTY_NAME=\"Entware $(PKG_VERSION)\"" > $(1)/opt/etc/entware_release
-	echo "NAME=\"Entware\"" >> $(1)/opt/etc/entware_release
+	echo "PRETTY_NAME=\"Entware-Keenetic $(PKG_VERSION)\"" > $(1)/opt/etc/entware_release
+	echo "NAME=\"Entware-Keenetic\"" >> $(1)/opt/etc/entware_release
 	echo "VERSION_ID=\"$(PKG_VERSION)\"" >> $(1)/opt/etc/entware_release
 	echo "VERSION=\"$(PKG_VERSION) (sync with OpenWrt)\"" >> $(1)/opt/etc/entware_release
 	echo "ID=entware" >> $(1)/opt/etc/entware_release
-	echo "HOME_URL=\"https://entware.net/\"" >> $(1)/opt/etc/entware_release
-	echo "SUPPORT_URL=\"https://github.com/Entware/Entware/discussions/\"" >> $(1)/opt/etc/entware_release
-	echo "BUG_REPORT_URL=\"https://github.com/Entware/Entware/issues/\"" >> $(1)/opt/etc/entware_release
+	echo "HOME_URL=\"empty\"" >> $(1)/opt/etc/entware_release
+	echo "SUPPORT_URL=\"empty\"" >> $(1)/opt/etc/entware_release
+	echo "BUG_REPORT_URL=\"empty\"" >> $(1)/opt/etc/entware_release
 	echo "" >> $(1)/opt/etc/entware_release
 	echo "Build summary:" >> $(1)/opt/etc/entware_release
 	echo "Linux Kernel $(LINUX_VERSION)" >> $(1)/opt/etc/entware_release
@@ -65,8 +75,8 @@ define Package/entware-release/install
 	echo "binutils_version=\"$(call qstrip,$(CONFIG_BINUTILS_VERSION))\"" >> $(1)/opt/etc/entware_release
 	echo "gcc_version=\"$(call qstrip,$(CONFIG_GCC_VERSION))\"" >> $(1)/opt/etc/entware_release
 	echo "gcc_flags=\"$(ENVCFLAGS)\"" >> $(1)/opt/etc/entware_release
-	echo "libc_type=glibc" >> $(1)/opt/etc/entware_release
-	echo "libc_version=\"$(call qstrip,$(CONFIG_GLIBC_VERSION))\"" >> $(1)/opt/etc/entware_release
+	echo "libc_type=$(LIBCTYPE)" >> $(1)/opt/etc/entware_release
+	echo "libc_version=\"$(LIBC_VERSION)\"" >> $(1)/opt/etc/entware_release
 endef
 
 $(eval $(call BuildPackage,entware-release))
