@@ -3,6 +3,8 @@
 # Copyright (C) 2017-2020 Yousong Zhou <yszhou4tech@gmail.com>
 # Copyright (C) 2024 Entware
 
+# Abandoned in 2022
+
 include $(TOPDIR)/rules.mk
 
 # Checklist when bumping versions
