@@ -62,8 +62,21 @@ define Package/man-db/install
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/man-db/libman{,db}*.so $(1)/opt/lib/man-db
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/accessdb $(1)/opt/sbin
 	$(CP) $(PKG_INSTALL_DIR)/opt/share $(1)/opt
+  ifneq ($(CONFIG_USE_MUSL),y)
 	$(INSTALL_DIR) $(1)/opt/etc/ld.so.conf.d
 	$(INSTALL_DATA) ./files/mandb.conf $(1)/opt/etc/ld.so.conf.d
+  endif
 endef
+
+ifeq ($(CONFIG_USE_MUSL),y)
+define Package/man-db/postinst
+#!/bin/sh
+
+if ! grep -q 'man-db' /opt/etc/ld-musl-$(ARCH)$(if $(or $(CONFIG_mips),$(CONFIG_mipsel)),-sf).path; then
+  printf "# path to man-db libs\n/opt/lib/man-db\n" >> \
+  /opt/etc/ld-musl-$(ARCH)$(if $(or $(CONFIG_mips),$(CONFIG_mipsel)),-sf).path
+fi
+endef
+endif
 
 $(eval $(call BuildPackage,man-db))
