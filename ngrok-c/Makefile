@@ -1,14 +1,13 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+
 # This is the last version without G_SockList objects
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ngrok-c
+PKG_VERSION:=1.45
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
@@ -17,7 +16,7 @@ PKG_SOURCE_VERSION:=990efc7efa325689697c2bc3807f5753a39d74b7
 PKG_SOURCE_URL:=https://github.com/dosgo/ngrok-c.git
 PKG_MIRROR_HASH:=dd36a10140968df16ac6b1c64d35e8f7bdc7569af47f7c46a2292b8f3f9adb89
 
-PKG_VERSION=1.45_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
 
 include $(INCLUDE_DIR)/package.mk
 
