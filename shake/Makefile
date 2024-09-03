@@ -1,13 +1,11 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=shake
+PKG_VERSION:=1.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
@@ -16,7 +14,7 @@ PKG_SOURCE_VERSION:=33dd09dfd77dba8e73da194d2ea4c1e0d9c90ace
 PKG_SOURCE_URL:=https://github.com/unbrice/shake.git
 PKG_MIRROR_HASH:=8a9137c02ea87c3a96691a2ebae11835b4945338b45a4546b7664e4f4f2f16e3
 
-PKG_VERSION=1.0_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
