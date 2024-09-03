@@ -1,12 +1,13 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2011-2024 Entware
-#
+
 # Abandoned in 2018
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=zork
+PKG_VERSION:=1.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
@@ -15,7 +16,7 @@ PKG_SOURCE_VERSION:=95cd009d235ea921b1c1f70e1a2f6b9e335aa37c
 PKG_SOURCE_URL:=https://github.com/brhamon/zork.git
 PKG_MIRROR_HASH:=7cdbebfce2641eca9f11f64c2c8b24a6b1b1edb2678a85a09d70f897c93d417a
 
-PKG_VERSION=1.0_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
 
 include $(INCLUDE_DIR)/package.mk
 
