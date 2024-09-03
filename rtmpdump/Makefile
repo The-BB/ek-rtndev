@@ -1,13 +1,11 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rtmpdump
+PKG_VERSION:=2.4
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
@@ -16,7 +14,7 @@ PKG_SOURCE_VERSION:=f1b83c10d8beb43fcc70a6e88cf4325499f25857
 PKG_SOURCE_URL:=https://git.ffmpeg.org/rtmpdump.git
 PKG_MIRROR_HASH:=18d001a03861b4d80300ab5a68484e2bca67bd84a0e58749418a5e87553e316d
 
-PKG_VERSION=2.4_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
 
 PKG_INSTALL:=1
 
