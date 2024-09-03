@@ -5,6 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xupnpd2
+PKG_VERSION:=2.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
@@ -13,7 +14,7 @@ PKG_SOURCE_VERSION:=9dc123d7e034b338ef5824c390d1b4ae8b2cf639
 PKG_SOURCE_URL:=https://github.com/clark15b/xupnpd2.git
 PKG_MIRROR_HASH:=bb6524c547ce6751fcb5ce476be396f25e35fd7c18c7c1dd987d0a94c588baca
 
-PKG_VERSION=2.0_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
 
 include $(INCLUDE_DIR)/package.mk
 
