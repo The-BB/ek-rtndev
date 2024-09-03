@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2024 Entware
+# Copyright (C) 2016-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
@@ -79,6 +79,12 @@ define Package/go/install
 endef
 
 Package/go_nohf/install=$(Package/go/install)
+
+ifneq ($(CONFIG_USE_GLIBC),y)
+  define Package/go/extra_provides
+	echo 'libc.so.6'
+  endef
+endif
 
 $(eval $(call BuildPackage,go))
 $(eval $(call BuildPackage,go_nohf))
