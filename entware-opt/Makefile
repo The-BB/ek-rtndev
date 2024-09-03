@@ -26,7 +26,7 @@ define Package/entware-opt
 		+entware-upgrade
 	TITLE:=provides basic toolchain libraries (dummy)
 	MAINTAINER:=Entware team, https://entware.net
-	CONFLICTS:=opt-ndmsv2
+	CONFLICTS:=opt-ndmsv2 opt-ndmsv4
 	PKGARCH:=all
 endef
 
