@@ -1,0 +1,85 @@
+.../include/sys/signal.h:1:2: warning: #warning redirecting incorrect #include <sys/signal.h> to <signal.h> [-Wcpp]
+    1 | #warning redirecting incorrect #include <sys/signal.h> to <signal.h>
+      |  ^~~~~~~
+...
+libng/grab-ng.c:568:27: error: 'PATH_MAX' undeclared (first use in this function)
+  568 |         snprintf(devpath, PATH_MAX, "/dev/%s", device);
+      |                           ^~~~~~~~
+...
+libng/grab-ng.c:656:22: error: 'PATH_MAX' undeclared (first use in this function)
+  656 |         char devpath[PATH_MAX];
+...
+console/ftp.c:152:5: error: unknown type name 'fd_set'
+  152 |     fd_set set;
+      |     ^~~~~~
+...
+.../*-openwrt-linux-musl/bin/ld.bfd: structs/struct-dump.o: in function `print_ioctl':
+struct-dump.c:(.text+0x13f4): undefined reference to `_IOC_NR'
+---
+
+--- a/common/get_media_devices.c
++++ b/common/get_media_devices.c
+@@ -27,6 +27,10 @@
+ # include <sys/mkdev.h>
+ #endif
+ 
++#ifndef __GLIBC__
++#include <limits.h>
++#endif /* musl */
++
+ #include <stdio.h>
+ #include <unistd.h>
+ #include <sys/types.h>
+--- a/libng/grab-ng.c
++++ b/libng/grab-ng.c
+@@ -21,6 +21,10 @@
+ #include <sys/time.h>
+ #include <sys/types.h>
+ 
++#ifndef __GLIBC__
++#include <limits.h>
++#endif /* musl */
++
+ #include <dlfcn.h>
+ #ifndef RTLD_NOW
+ # define RTLD_NOW RTLD_LAZY
+--- a/console/ftp.c
++++ b/console/ftp.c
+@@ -15,6 +15,9 @@
+ #include <fcntl.h>
+ #include <stdarg.h>
+ #include <signal.h>
++#ifndef __GLIBC__
++#include <sys/select.h>
++#endif /* musl */
+ 
+ #include "ftp.h"
+ 
+--- a/console/record.c
++++ b/console/record.c
+@@ -11,7 +11,11 @@
+ #include <signal.h>
+ #include <inttypes.h>
+ #include <sys/time.h>
++#ifdef __GLIBC__
+ #include <sys/signal.h>
++#else
++#include <signal.h>
++#endif  /* musl */
+ #include <sys/ioctl.h>
+ #include <sys/types.h>
+ #ifdef HAVE_SOUNDCARD_H
+--- a/structs/struct-dump.c
++++ b/structs/struct-dump.c
+@@ -3,7 +3,11 @@
+ #include <string.h>
+ #include <inttypes.h>
+ #include <ctype.h>
++#ifdef __GLIBC__
+ #include <sys/ioctl.h>
++#else
++#include <linux/ioctl.h>
++#endif /* musl */
+ 
+ #include "struct-dump.h"
+ 
