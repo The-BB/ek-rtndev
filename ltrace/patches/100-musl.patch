@@ -1,0 +1,21 @@
+plt.c:27:10: fatal error: error.h: No such file or directory
+   27 | #include <error.h>
+      |          ^~~~~~~~~
+compilation terminated.
+
+---
+
+--- a/sysdeps/linux-gnu/mips/plt.c
++++ b/sysdeps/linux-gnu/mips/plt.c
+@@ -23,7 +23,11 @@
+ 
+ #include <sys/ptrace.h>
+ #include <errno.h>
++#ifdef __GLIBC__
+ #include <error.h>
++#else
++#include <err.h>
++#endif /* musl */
+ #include <gelf.h>
+ #include <inttypes.h>
+ #include <string.h>
