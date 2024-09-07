@@ -1,0 +1,56 @@
+outputfiles.c: In function 'OpenSaveFile':
+outputfiles.c:132:28: error: 'LOCK_EX' undeclared (first use in this function)
+  132 |         if (! STREAMLock(S,LOCK_EX|LOCK_NB))
+      |                            ^~~~~~~
+outputfiles.c:132:28: note: each undeclared identifier is reported only once for each function it appears in
+outputfiles.c:132:36: error: 'LOCK_NB' undeclared (first use in this function)
+  132 |         if (! STREAMLock(S,LOCK_EX|LOCK_NB))
+      |                                    ^~~~~~~
+...
+SecureMem.c:116:15: error: 'O_RDONLY' undeclared (first use in this function); did you mean 'SMEM_RDONLY'?
+  116 | fd=open(Path, O_RDONLY);
+      |               ^~~~~~~~
+      |               SMEM_RDONLY
+SecureMem.c:116:15: note: each undeclared identifier is reported only once for each function it appears in
+SecureMem.c: In function 'SecureStoreLoad':
+SecureMem.c:154:15: error: 'O_RDONLY' undeclared (first use in this function); did you mean 'SMEM_RDONLY'?
+  154 | fd=open(Path, O_RDONLY);
+      |               ^~~~~~~~
+      |               SMEM_RDONLY
+
+---
+
+--- a/libUseful-2.8/Log.c
++++ b/libUseful-2.8/Log.c
+@@ -2,6 +2,9 @@
+ #include "Time.h"
+ #include "FileSystem.h"
+ #include <syslog.h>
++#ifndef __GLIBC__
++#include <sys/file.h> /* musl LOCK_** */
++#endif
+ 
+ 
+ //When logs are used by 'child processes', it's only the 'parent' process that should be
+--- a/libUseful-2.8/SecureMem.c
++++ b/libUseful-2.8/SecureMem.c
+@@ -8,6 +8,9 @@
+ #include <sys/mman.h>
+ #include <sys/file.h>
+ #include <sys/stat.h>
++#ifndef __GLIBC__
++#include <fcntl.h> /* musl O_RDONLY */
++#endif
+ #include "String.h"
+ #include "Errors.h"
+ #include "GeneralFunctions.h"
+--- a/outputfiles.c
++++ b/outputfiles.c
+@@ -1,4 +1,7 @@
+ #include "outputfiles.h"
++#ifndef __GLIBC__
++#include <sys/file.h> /* musl LOCK_** */
++#endif
+ 
+ 
+ ListNode *OutputFiles;
