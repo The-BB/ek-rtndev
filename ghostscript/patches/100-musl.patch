@@ -1,0 +1,20 @@
+.../*-openwrt-linux-musl/bin/ld.bfd: ./obj/gdevcups.o: in function `cups_set_color_info':
+gdevcups.c:(.text+0x581c): undefined reference to `DO_NOT_USE_SPRINTF'
+.../*-openwrt-linux-musl/bin/ld.bfd: gdevcups.c:(.text+0x5d50): undefined reference to `DO_NOT_USE_SPRINTF'
+
+---
+
+--- a/base/stdio_.h
++++ b/base/stdio_.h
+@@ -84,9 +84,11 @@ int unlink(const char *);
+ /* only *really* required for floating point conversions */
+ #include "gssprintf.h"
+ 
++#ifdef __GLIBC__
+ #ifndef sprintf
+ #define sprintf DO_NOT_USE_SPRINTF
+ #endif
++#endif
+ 
+ 
+ #ifndef fopen

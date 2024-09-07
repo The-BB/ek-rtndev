@@ -1,12 +1,9 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
+
 # Based on https://github.com/FranciscoBorges/openwrt-printing-packages
 # This is the last release with old PDF implementation
-#
 
 include $(TOPDIR)/rules.mk
 
