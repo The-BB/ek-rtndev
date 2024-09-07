@@ -34,6 +34,10 @@ define Package/megacmd/description
  functionality with your MEGA account via commands.
 endef
 
+ifeq ($(CONFIG_USE_MUSL),y)
+TARGET_CXXFLAGS += -fpermissive
+endif
+
 CONFIGURE_ARGS += \
     --disable-doxygen-doc \
     --without-freeimage \
