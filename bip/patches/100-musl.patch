@@ -1,0 +1,24 @@
+log.h:17: error: "_XOPEN_SOURCE" redefined [-Werror]
+   17 | #define _XOPEN_SOURCE 500
+      | 
+In file included from .../include/stdlib.h:8,
+                 from .../include/fortify/stdlib.h:22,
+                 from bip_main.c:15:
+.../include/features.h:16: note: this is the location of the previous definition
+   16 | #define _XOPEN_SOURCE 700
+      | 
+cc1: all warnings being treated as errors
+---
+
+--- a/src/log.h
++++ b/src/log.h
+@@ -13,7 +13,9 @@
+ 
+ #ifndef LOG_H
+ #define LOG_H
++#ifndef _XOPEN_SOURCE
+ #define _XOPEN_SOURCE 500
++#endif
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <sys/types.h>
