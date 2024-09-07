@@ -21,7 +21,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/urbackup-server
 	SECTION:=utils
 	CATEGORY:=Utilities
-	DEPENDS:=+libcurl +zlib +libstdcpp +zstd
+	DEPENDS:=+libcurl +libstdcpp +zlib +zstd
 	TITLE:=UrBackup Server
 	URL:=http://www.urbackup.org/
 	MAINTAINER:=Entware team, https://entware.net
@@ -35,7 +35,11 @@ CONFIGURE_ARGS += \
 	--enable-embedded-cryptopp \
 	--oldincludedir="$(STAGING_DIR)/opt/include"
 
-TARGET_LDFLAGS += -lssp
+ifeq ($(CONFIG_USE_MUSL),y)
+TARGET_CXXFLAGS += -D_LARGEFILE64_SOURCE
+endif
+
+TARGET_LDFLAGS += $(if $(CONFIG_GCC_LIBSSP),-lssp)
 
 define Package/urbackup-server/install
 	$(INSTALL_DIR) $(1)/opt/bin

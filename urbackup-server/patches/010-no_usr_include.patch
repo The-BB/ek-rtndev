@@ -5,7 +5,7 @@
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if zlib is wanted" >&5
  $as_echo_n "checking if zlib is wanted... " >&6; }
 -zlib_places="/usr/local /usr /opt/local /sw"
-+zlib_places="/opt/local /sw"
++zlib_places="/opt"
  
  # Check whether --with-zlib was given.
  if test "${with_zlib+set}" = set; then :
