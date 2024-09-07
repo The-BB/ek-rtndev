@@ -1,9 +1,7 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2015-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2015-2024 Entware
+
 # Abandoned in 2012
 
 include $(TOPDIR)/rules.mk
@@ -16,6 +14,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://releases.pagure.org/mlocate
 PKG_HASH:=3063df79fe198fb9618e180c54baf3105b33d88fe602ff2d8570aaf944f1263e
 
+PKG_FORTIFY_SOURCE:=0
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
