@@ -1,9 +1,7 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2017-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2017-2024 Entware
+
 # Initial port of shellinabox to OpenWrt - Jan Jaeger 25-MAR-2010
 # Makefile from OnionIoT/OpenWRT-Packages was used as a start
 
@@ -39,6 +37,11 @@ CONFIGURE_ARGS += \
 	--disable-pam \
 	--disable-runtime-loading \
 	--bindir="/opt/sbin"
+
+ifeq ($(CONFIG_USE_MUSL),y)
+CONFIGURE_ARGS += \
+	--disable-utmp
+endif
 
 define Package/shellinabox/install
 	$(INSTALL_DIR) $(1)/opt/sbin
