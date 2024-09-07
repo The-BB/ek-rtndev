@@ -1,0 +1,20 @@
+.../include/sys/errno.h:1:2: warning: #warning redirecting incorrect #include <sys/errno.h> to <errno.h> [-Wcpp]
+    1 | #warning redirecting incorrect #include <sys/errno.h> to <errno.h>
+      |  ^~~~~~~
+
+---
+
+--- a/lmon16q.c
++++ b/lmon16q.c
+@@ -61,7 +61,11 @@ static char *SccsId = "nmon " VERSION;
+ #include <fcntl.h>
+ #include <math.h>
+ #include <time.h>
++#ifdef __GLIBC__
+ #include <sys/errno.h>
++#else
++#include <errno.h> /* musl */
++#endif
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <sys/ioctl.h>
