@@ -1,9 +1,6 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
@@ -38,7 +35,7 @@ endef
 
 TARGET_CFLAGS += -Wno-error
 
-ifeq ($(or $(CONFIG_GCC_USE_VERSION_8),$(CONFIG_GCC_USE_VERSION_9)),y)
+ifeq ($(CONFIG_GCC_USE_VERSION_8),y)
 TARGET_CFLAGS += -Wno-error=stringop-truncation
 endif
 

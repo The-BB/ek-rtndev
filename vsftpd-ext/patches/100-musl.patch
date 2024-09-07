@@ -1,0 +1,26 @@
+sysdeputil.c:1222:12: error: 'WTMPX_FILE' undeclared (first use in this function); did you mean 'MAP_FILE'?
+ 1222 |   updwtmpx(WTMPX_FILE, &s_utent);
+      |            ^~~~~~~~~~
+      |            MAP_FILE
+...
+sysdeputil.c: In function 'vsf_remove_uwtmp':
+sysdeputil.c:1241:12: error: 'WTMPX_FILE' undeclared (first use in this function); did you mean 'MAP_FILE'?
+ 1241 |   updwtmpx(WTMPX_FILE, &s_utent);
+      |            ^~~~~~~~~~
+      |            MAP_FILE
+
+---
+
+--- a/sysdeputil.c
++++ b/sysdeputil.c
+@@ -58,7 +58,9 @@
+ #define VSF_SYSDEP_HAVE_SHADOW
+ #define VSF_SYSDEP_HAVE_USERSHELL
+ #define VSF_SYSDEP_HAVE_LIBCAP
+-#define VSF_SYSDEP_HAVE_UTMPX
++#ifdef __GLIBC__
++  #define VSF_SYSDEP_HAVE_UTMPX
++#endif
+ 
+ #define __USE_GNU
+ #include <utmpx.h>
