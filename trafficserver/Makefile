@@ -65,6 +65,10 @@ ifeq ($(CONFIG_arm),y)
 TARGET_CXXFLAGS += -Wno-narrowing
 endif
 
+ifeq ($(CONFIG_USE_MUSL),y)
+TARGET_CXXFLAGS += -fpermissive
+endif
+
 CONFIGURE_ARGS:=$(filter-out	\
 	--libdir=%		\
 	--libexecdir=%		\
