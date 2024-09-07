@@ -36,6 +36,12 @@ define Package/airsane/conffiles
 /opt/etc/config/airsaned.conf
 endef
 
+# undefined reference to symbol '__atomic_store_8@@LIBATOMIC_1.0'
+# error adding symbols: DSO missing from command line
+ifeq ($(CONFIG_USE_MUSL),y)
+TARGET_LDFLAGS += -latomic
+endif
+
 define Package/airsane/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/airsaned $(1)/opt/bin
