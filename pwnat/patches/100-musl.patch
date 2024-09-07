@@ -1,0 +1,39 @@
+In file included from src/packet.c:10:
+.../include/sys/fcntl.h:1:2: warning: #warning redirecting incorrect #include <sys/fcntl.h> to <fcntl.h> [-Wcpp]
+    1 | #warning redirecting incorrect #include <sys/fcntl.h> to <fcntl.h>
+      |  ^~~~~~~
+In file included from src/packet.c:28:
+src/packet.h:7:25: fatal error: sys/unistd.h: No such file or directory
+    7 |         #include        <sys/unistd.h>
+      |                         ^~~~~~~~~~~~~~
+compilation terminated.
+---
+
+--- a/src/packet.c
++++ b/src/packet.c
+@@ -7,7 +7,11 @@
+ #ifndef WIN32
+ #include <unistd.h>
+ #include <sys/socket.h>
++#ifdef __GLIBC__
+ #include <sys/fcntl.h>
++#else
++#include <fcntl.h>
++#endif
+ #include <sys/time.h>
+ #include <sys/select.h>
+ #include <netinet/in.h> /* IPPROTO_RAW def. */
+--- a/src/packet.h
++++ b/src/packet.h
+@@ -4,7 +4,11 @@
+ 
+ //	Includes
+ #ifndef WIN32
++#ifdef __GLIBC__
+   	#include	<sys/unistd.h>
++#else
++  	#include	<unistd.h>
++#endif
+   	#include	<sys/types.h>
+   	#include	<sys/socket.h>
+   	#include	<netinet/in.h>

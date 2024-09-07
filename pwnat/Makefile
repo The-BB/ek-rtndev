@@ -1,20 +1,20 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2023 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pwnat
-PKG_VERSION:=0.3.1_beta
+PKG_VERSION:=0.3.1
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
+PKG_SOURCE_DATE:=2023-03-31
 PKG_SOURCE_VERSION:=c2d3bf4b41fed65ea930ecb345eabe8453310eea
-PKG_SOURCE_URL:=https://github.com/samyk/pwnat.git
-PKG_MIRROR_HASH:=a3c2563ff3ec3ac0560d249340302b72eb545aa9fa7a2a3477366c2a00605a92
+PKG_SOURCE_URL:=https://github.com/samyk/pwnat
+PKG_MIRROR_HASH:=2d57cc63d85c7d9789a79dc14955f6b09b265b4c2562d0c500492cb1cd93352d
+
+PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
 
 include $(INCLUDE_DIR)/package.mk
 
