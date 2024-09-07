@@ -1,9 +1,6 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2017-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2017-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
@@ -13,7 +10,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=8106a8571e54385351de0a92d15b3257abc12f72
-PKG_SOURCE_URL:=https://github.com/cfpp2p/transmission.git
+PKG_SOURCE_URL:=https://github.com/cfpp2p/transmission
 PKG_MIRROR_HASH:=13e7cef201457ba8a628a019a12b2a379b745d7af75de0b827b6eb495b3479ea
 
 PKG_FIXUP:=autoreconf

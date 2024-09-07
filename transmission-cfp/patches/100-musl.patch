@@ -1,0 +1,24 @@
+fdlimit.h:39:51: error: unknown type name 'off_t'
+   39 | ssize_t tr_pread(int fd, void *buf, size_t count, off_t offset);
+      |                                                   ^~~~~
+fdlimit.h:40:58: error: unknown type name 'off_t'
+   40 | ssize_t tr_pwrite(int fd, const void *buf, size_t count, off_t offset);
+      |                                                          ^~~~~
+fdlimit.h:41:25: error: unknown type name 'off_t'
+   41 | int tr_prefetch(int fd, off_t offset, size_t count);
+      |                         ^~~~~
+
+___
+
+--- a/libtransmission/fdlimit.h
++++ b/libtransmission/fdlimit.h
+@@ -16,6 +16,9 @@
+ 
+ #include "transmission.h"
+ #include "net.h"
++#ifndef __GLIBC__
++#include <fcntl.h> /* musl off_t */
++#endif
+ 
+ /**
+  * @addtogroup file_io File IO
