@@ -1,0 +1,47 @@
+Log.c: In function 'LogFileAppendTempLog':
+Log.c:452:31: error: 'LOCK_EX' undeclared (first use in this function)
+  452 |         STREAMLock(LogFile->S,LOCK_EX);
+      |                               ^~~~~~~
+Log.c:452:31: note: each undeclared identifier is reported only once for each function it appears in
+Log.c:460:31: error: 'LOCK_UN' undeclared (first use in this function)
+  460 |         STREAMLock(LogFile->S,LOCK_UN);
+      |                               ^~~~~~~
+
+---
+
+--- a/libUseful/Log.c
++++ b/libUseful/Log.c
+@@ -2,6 +2,9 @@
+ #include "Time.h"
+ #include "FileSystem.h"
+ #include <syslog.h>
++#ifndef __GLIBC__
++#include <sys/file.h> /* musl LOCK_** */
++#endif
+ 
+ 
+ //When logs are used by 'child processes', it's only the 'parent' process that should be
+--- a/libUseful/OAuth.c
++++ b/libUseful/OAuth.c
+@@ -4,6 +4,9 @@
+ #include "DataParser.h"
+ #include "Encodings.h"
+ #include "Hash.h"
++#ifndef __GLIBC__
++#include <sys/file.h> /* musl LOCK_** */
++#endif
+ 
+ 
+ static ListNode *OAuthTypes=NULL;
+--- a/upload.c
++++ b/upload.c
+@@ -1,6 +1,9 @@
+ #include "upload.h"
+ #include "server.h"
+ #include "Events.h"
++#ifndef __GLIBC__
++#include <sys/file.h> /* musl LOCK_** */
++#endif
+ 
+ #define UPLOAD_FAILED -1
+ #define UPLOAD_DONE 1
