@@ -13,6 +13,8 @@ PKG_SOURCE_VERSION:=d4225458db37eac4232bd86231a976e91d1cd369
 PKG_SOURCE_URL:=https://github.com/darrylb123/usbrelay.git
 PKG_MIRROR_HASH:=a51caf6b386bf7cfa4187214f279524793dab4f472bfecb0f34b6c0d5ecf6b87
 
+PKG_BUILD_DEPENDS:=USE_MUSL:argp-standalone
+
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 
@@ -28,6 +30,8 @@ endef
 define Package/usbrelay/description
  USB Relay driver for linux.
 endef
+
+TARGET_LDFLAGS += $(if $(CONFIG_USE_GLIBC),,-largp)
 
 define Package/usbrelay/install
 	$(INSTALL_DIR) $(1)/opt/bin
