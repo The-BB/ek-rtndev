@@ -1,9 +1,6 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
@@ -13,7 +10,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=6ce96d9d6eb3fa036d73aaf535784caddc7f3552
-PKG_SOURCE_URL:=https://github.com/xebd/accel-ppp.git
+PKG_SOURCE_URL:=https://github.com/xebd/accel-ppp
 PKG_MIRROR_HASH:=63eb3a5c63f102a227a4f6532950c2c0c766d31a8963afb213865829ffbeded2
 
 CMAKE_BINARY_SUBDIR:=openwrt-build
@@ -25,7 +22,7 @@ define Package/accel-ppp
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=VPN
-	DEPENDS:=+libopenssl +libpcre +libpthread +librt
+	DEPENDS:=+libopenssl +libpcre +USE_MUSL:libucontext
 	TITLE:=accel-ppp VPN server
 	URL:=https://accel-ppp.org/
 	MAINTAINER:=Entware team, https://entware.net

@@ -1,0 +1,97 @@
+--- a/accel-pppd/ctrl/ipoe/arp.c
++++ b/accel-pppd/ctrl/ipoe/arp.c
+@@ -13,7 +13,9 @@
+ #include <netinet/ip.h>
+ #include <sys/socket.h>
+ #include <sys/ioctl.h>
++#ifdef __GLIBC__
+ #include <linux/if_arp.h>
++#endif /* musl */
+ #include <linux/if_packet.h>
+ 
+ #include "list.h"
+--- a/accel-pppd/ctrl/ipoe/ipoe.c
++++ b/accel-pppd/ctrl/ipoe/ipoe.c
+@@ -15,7 +15,9 @@
+ #include <sys/socket.h>
+ #include <sys/ioctl.h>
+ #include <linux/if.h>
++#ifdef __GLIBC__
+ #include <linux/if_arp.h>
++#endif /* musl */
+ #include <linux/route.h>
+ 
+ #include <pcre.h>
+--- a/accel-pppd/ctrl/l2tp/l2tp.c
++++ b/accel-pppd/ctrl/l2tp/l2tp.c
+@@ -845,12 +845,20 @@ out_err:
+ 	return -1;
+ }
+ 
++#ifndef __GLIBC__
++typedef void (*free_fn_t)(void *);
++#endif /* musl */
++
+ static void l2tp_tunnel_free_sessions(struct l2tp_conn_t *conn)
+ {
+ 	void *sessions = conn->sessions;
+ 
+ 	conn->sessions = NULL;
++#ifndef __GLIBC__
++	tdestroy(sessions, (free_fn_t)l2tp_session_free);
++#else /* musl */
+ 	tdestroy(sessions, (__free_fn_t)l2tp_session_free);
++#endif
+ 	/* Let l2tp_session_free() handle the session counter and
+ 	 * the reference held by the tunnel.
+ 	 */
+--- a/accel-pppd/ctrl/pppoe/pppoe.c
++++ b/accel-pppd/ctrl/pppoe/pppoe.c
+@@ -11,7 +11,9 @@
+ #include <net/ethernet.h>
+ #include <netpacket/packet.h>
+ #include <arpa/inet.h>
++#ifdef __GLIBC__
+ #include <printf.h>
++#endif /* musl */
+ 
+ #include "crypto.h"
+ 
+--- a/accel-pppd/triton/CMakeLists.txt
++++ b/accel-pppd/triton/CMakeLists.txt
+@@ -10,8 +10,13 @@ SET(sources_c
+ )
+ 
+ INCLUDE(CheckFunctionExists)
++CHECK_FUNCTION_EXISTS(getcontext HAVE_GETCONTEXT)
+ CHECK_FUNCTION_EXISTS(timerfd_create HAVE_TIMERFD)
+ 
++IF (NOT HAVE_GETCONTEXT)
++	SET(ucontext_lib ucontext)
++ENDIF (NOT HAVE_GETCONTEXT)
++
+ IF (HAVE_TIMERFD)
+ 	ADD_DEFINITIONS(-DHAVE_TIMERFD)
+ ELSE (HAVE_TIMERFD)
+@@ -33,7 +38,7 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOUR
+ ADD_DEFINITIONS(-DMODULE_PATH="${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}/accel-ppp")
+ 
+ ADD_LIBRARY(triton SHARED ${sources_c})
+-TARGET_LINK_LIBRARIES(triton dl)
++TARGET_LINK_LIBRARIES(triton dl ${ucontext_lib})
+ 
+ INSTALL(TARGETS triton
+ 	LIBRARY DESTINATION lib${LIB_SUFFIX}/accel-ppp
+--- a/accel-pppd/session.c
++++ b/accel-pppd/session.c
+@@ -26,6 +26,10 @@
+ #include "mempool.h"
+ #include "memdebug.h"
+ 
++#ifndef __GLIBC__
++#include <bits/reg.h> /* __WORDSIZE */
++#endif
++
+ #define SID_SOURCE_SEQ 0
+ #define SID_SOURCE_URANDOM 1
+ 
