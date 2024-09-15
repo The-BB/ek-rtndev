@@ -85,18 +85,13 @@ endef
 define Package/ntopng/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ntopng $(1)/opt/bin
-
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/S72ntopng $(1)/opt/etc/init.d
-
 	$(INSTALL_DIR) $(1)/opt/etc/ntopng
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/packages/etc/ntopng/ntopng.conf \
 		 $(1)/opt/etc/ntopng
-
 	$(INSTALL_DIR) $(1)/opt/share
 	$(CP) $(PKG_INSTALL_DIR)/opt/share/ntopng $(1)/opt/share
-
-	$(INSTALL_DIR) $(1)/opt/var/lib/ntopng
 endef
 
 define Package/ntopng/postinst
