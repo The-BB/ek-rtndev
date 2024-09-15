@@ -1,12 +1,19 @@
 #!/bin/sh
 
 ENABLED=yes
-PROCS=ss-local
-ARGS="-c /opt/etc/shadowsocks.json"
-PREARGS=""
-DESC=$PROCS
-PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-[ -z "$(which $PROCS)" ] && exit 0
+DESC="ShadowSocks local service"
+PROCS="ss-local"
+PROG="/opt/bin/$PROCS"
+
+PID_FILE="/opt/var/run/$PROCS.pid"
+
+pre_cmd() {
+  rm -f "PID_FILE"
+}
+
+PRECMD="pre_cmd"
+ARGS="-f $PID_FILE -c /opt/etc/shadowsocks.json"
+PREARGS=""
 
 . /opt/etc/init.d/rc.func
