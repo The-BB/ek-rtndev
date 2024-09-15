@@ -1,10 +1,18 @@
 #!/bin/sh
 
 ENABLED=yes
-PROCS=vsftpd
+
+DESC="FTP server"
+PROCS="vsftpd"
+PROG="/opt/sbin/$PROCS"
+
+pre_cmd() {
+  [ -d "/opt/var/run/$PROCS" ] || \
+  mkdir -pm 0755 /opt/var/run/"$PROCS"
+}
+
+PRECMD="pre_cmd"
 ARGS=""
 PREARGS=""
-DESC=$PROCS
-PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 . /opt/etc/init.d/rc.func
