@@ -1,7 +1,11 @@
 --- a/totd.conf.sample
 +++ b/totd.conf.sample
-@@ -14,6 +14,5 @@ port 5005
- pidfile /var/run/totd5005.pid
+@@ -11,9 +11,8 @@ prefix 3ffe:abcd:1234:9876::
+ ; the port totd listens on for incoming requests
+ port 5005
+ ; the pidfile to use (default: /var/run/totd.pid)
+-pidfile /var/run/totd5005.pid
++pidfile /opt/var/run/totd.pid
  ; interfaces totd listens on (UDP only for now and not on Linux)
  ; If left out totd will only open wildcard sockets.
 -interfaces lo0 ep0 ex0 an0

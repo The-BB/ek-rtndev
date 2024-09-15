@@ -1,0 +1,20 @@
+.../include/sys/termios.h:1:2: warning: #warning redirecting incorrect #include <sys/termios.h> to <termios.h> [-Wcpp]
+    1 | #warning redirecting incorrect #include <sys/termios.h> to <termios.h>
+      |  ^~~~~~~
+
+---
+
+--- a/totd.h
++++ b/totd.h
+@@ -52,7 +52,11 @@
+ #ifdef HAVE_SYS_SOCKIO_H
+ #include <sys/sockio.h>
+ #endif
++#ifdef __GLIBC__
+ #include <sys/termios.h>
++#else
++#include <termios.h>
++#endif
+ #include <net/if.h>
+ #include <netinet/in.h>
+ #include <arpa/inet.h>
