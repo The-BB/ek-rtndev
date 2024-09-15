@@ -44,7 +44,7 @@ define Package/incron/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/incrontab $(1)/opt/bin
 	$(INSTALL_DIR) $(1)/opt/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/incrond $(1)/opt/sbin
-	$(INSTALL_DIR) $(1)/opt/var/spool/incron $(1)/opt/etc/incron.d
+	$(INSTALL_DIR) $(1)/opt/etc/incron.d
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/incron.conf.example  $(1)/opt/etc/incron.conf
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/S12incron $(1)/opt/etc/init.d

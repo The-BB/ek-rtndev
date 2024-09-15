@@ -1,0 +1,109 @@
+--- a/appinst.h
++++ b/appinst.h
+@@ -25,7 +25,7 @@
+ #include <string>
+ 
+ 
+-#define APPLOCK_BASEDIR "/var/run"
++#define APPLOCK_BASEDIR "/opt/var/run"
+ 
+ 
+ /// Exception class.
+--- a/ict-main.cpp
++++ b/ict-main.cpp
+@@ -41,7 +41,7 @@
+ 
+ 
+ /// Alternative editor
+-#define INCRON_ALT_EDITOR "/etc/alternatives/editor"
++#define INCRON_ALT_EDITOR "/opt/bin/nano"
+ 
+ /// Default (hard-wired) editor
+ #define INCRON_DEFAULT_EDITOR "vim"
+@@ -193,7 +193,7 @@ bool edit_table(const std::string& rUser
+   uid_t gid = ppwd->pw_gid;
+ 
+   char s[NAME_MAX];
+-  strcpy(s, "/tmp/incron.table-XXXXXX");
++  strcpy(s, "/opt/tmp/incron.table-XXXXXX");
+ 
+   uid_t iu = geteuid();
+   uid_t ig = getegid();
+--- a/incron.conf.example
++++ b/incron.conf.example
+@@ -11,7 +11,7 @@
+ # Default:     /opt/etc/incron.d
+ #
+ # Example:
+-# system_table_dir = /var/spool/incron.systables
++# system_table_dir = /opt/var/spool/incron.systables
+ 
+ 
+ # Parameter:   user_table_dir
+@@ -20,7 +20,7 @@
+ # Default:     /opt/var/spool/incron
+ #
+ # Example:
+-# user_table_dir = /var/spool/incron.usertables
++# user_table_dir = /opt/var/spool/incron.usertables
+ 
+ 
+ # Parameter:   allowed_users
+@@ -29,7 +29,7 @@
+ # Default:     /opt/etc/incron.allow
+ #
+ # Example:
+-# allowed_users = /etc/incron/allow
++# allowed_users = /opt/etc/incron/allow
+ 
+ 
+ # Parameter:   denied_users
+@@ -38,7 +38,7 @@
+ # Default:     /opt/etc/incron.deny
+ #
+ # Example:
+-# denied_users = /etc/incron/deny
++# denied_users = /opt/etc/incron/deny
+ 
+ 
+ # Parameter:   lockfile_dir
+@@ -48,7 +48,7 @@
+ # Default:     /opt/var/run
+ #
+ # Example:
+-# lockfile_dir = /tmp
++# lockfile_dir = /opt/var/lock
+ 
+ 
+ # Parameter:   lockfile_name
+--- a/incron.h
++++ b/incron.h
+@@ -31,7 +31,7 @@
+ #define INCRON_VERSION "0.5.12"
+ 
+ /// Default configuration file
+-#define INCRON_CONFIG "/etc/incron.conf"
++#define INCRON_CONFIG "/opt/etc/incron.conf"
+ 
+ 
+ #endif //_INCRON_H_
+--- a/usertable.cpp
++++ b/usertable.cpp
+@@ -44,7 +44,7 @@
+ #endif // IN_DONT_FOLLOW
+ 
+ // this is not enough, but...
+-#define DEFAULT_PATH "/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin"
++#define DEFAULT_PATH "/opt/usr/bin:/opt/bin:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin"
+ 
+ 
+ PROC_MAP UserTable::s_procMap;
+@@ -597,7 +597,7 @@ void UserTable::RunAsUser(std::string cm
+     }
+   }
+   
+-  execlp("/bin/bash","/bin/bash", "-c", cmd.c_str(), (char *)NULL);
++  execlp("/bin/sh","/bin/sh", "-c", cmd.c_str(), (char *)NULL);
+ 
+ failed:
+ 

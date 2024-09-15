@@ -25,7 +25,7 @@
 +  m_defaults.insert(CFG_MAP::value_type("lockfile_dir", "/opt/var/run"));
    m_defaults.insert(CFG_MAP::value_type("lockfile_name", "incrond"));
 -  m_defaults.insert(CFG_MAP::value_type("editor", ""));
-+  m_defaults.insert(CFG_MAP::value_type("editor", "/bin/vi"));
++  m_defaults.insert(CFG_MAP::value_type("editor", "/opt/bin/vi"));
  }
  
  void IncronCfg::Load(const std::string& rPath)

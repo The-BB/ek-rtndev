@@ -1,10 +1,21 @@
 #!/bin/sh
 
 ENABLED=yes
-PROCS=incrond
+
+DESC="inotify cron daemon"
+PROCS="incrond"
+PROG="/opt/sbin/$PROCS"
+
+PID_FILE="/opt/var/run/$PROCS.pid"
+
+pre_cmd() {
+  rm -f "PID_FILE"
+  [ -d "/opt/var/spool/incron" ] || \
+  mkdir -pm 0750 /opt/var/spool/incron
+}
+
+PRECMD="pre_cmd"
 ARGS=""
 PREARGS=""
-DESC=$PROCS
-PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 . /opt/etc/init.d/rc.func
