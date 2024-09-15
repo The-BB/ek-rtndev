@@ -64,7 +64,7 @@ define Package/man-db/install
 	$(CP) $(PKG_INSTALL_DIR)/opt/share $(1)/opt
   ifneq ($(CONFIG_USE_MUSL),y)
 	$(INSTALL_DIR) $(1)/opt/etc/ld.so.conf.d
-	$(INSTALL_DATA) ./files/mandb.conf $(1)/opt/etc/ld.so.conf.d
+	$(INSTALL_DATA) ./files/man-db.conf $(1)/opt/etc/ld.so.conf.d
   endif
 endef
 
