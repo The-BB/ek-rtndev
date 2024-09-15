@@ -51,6 +51,8 @@ echo -e "\n#### Welcome to rtorrent easy installation script! \n\
     Please, answer a few question to configure torrent client. \n\
     Default aswers given in [brackets], just hit Enter to accept it.\n"
 
+[ -d "/opt/var/run/rtorrent" ] || mkdir -p /opt/var/run/rtorrent
+
 www_cfg=/opt/etc/lighttpd/conf.d/99-rtorrent-fastcgi-scgi-auth.conf
 rt_cfg=/opt/etc/rtorrent/rtorrent.conf
 
@@ -62,7 +64,7 @@ scgi.server = (
   "/RPC2" =>
     ( "127.0.0.1" =>
      (
-        "socket" => "/opt/var/rpc.socket",
+        "socket" => "/opt/var/run/rtorrent/rpc.socket",
         "check-local" => "disable"
       )
     )
@@ -72,8 +74,8 @@ scgi.server = (
 fastcgi.server = (
   ".php" =>
     ( "localhost" =>
-      ( "socket" => "/tmp/php-fcgi.sock",
-        "bin-path" => "/opt/bin/php-fcgi",
+      ( "socket" => "/opt/var/run/rtorrent/php-fcgi.sock",
+        "bin-path" => "/opt/bin/php8-fcgi",
         "max-procs" => 1,
         "bin-environment" =>
           ( "PHP_FCGI_CHILDREN" => "2",
@@ -126,7 +128,7 @@ protocol.encryption.set = allow_incoming,enable_retry,prefer_plaintext
 dht.mode.set = auto
 dht.port.set = 51412
 protocol.pex.set = yes
-network.scgi.open_local = /opt/var/rpc.socket
+network.scgi.open_local = /opt/var/run/rtorrent/rpc.socket
 encoding.add = utf8
 throttle.max_uploads.set = 8
 throttle.max_uploads.global.set = 32
@@ -145,7 +147,7 @@ echo "throttle.global_up.max_rate.set_kb = $$upload_speed" >> $$rt_cfg
 echo -n "Enter folder name on USB drive where torrent content should be \
     stored [/opt/torrents]: "
 read -r storage_folder
-[ -z "$$storage_folder" ] && storage_folder=/opt/torrents
+[ -z "$$storage_folder" ] && storage_folder=/opt/downloads/rtorrent
 [ -d "$$storage_folder" ] || mkdir -p $$storage_folder
 echo "directory.default.set = $$storage_folder" >> $$rt_cfg
 

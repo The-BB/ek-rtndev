@@ -1,13 +1,19 @@
 #!/bin/sh
 
 ENABLED=yes
-PROCS=rtorrent
-ARGS="-D -n -o import=/opt/etc/rtorrent/rtorrent.conf"
-PREARGS="screen -dmS rtorrent"
-DESC=$PROCS
-PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-if [ -z "`pidof $PROCS`" ]; then
-    rm -f /opt/var/rpc.socket
-fi
+DESC="rtorrent WEB UI"
+PROCS="rtorrent"
+PROG="/opt/bin/$PROCS"
+
+pre_cmd() {
+  rm -f /opt/var/run/"$PROCS"/rpc.socket
+  [ -d "/opt/var/run/$PROCS" ] || \
+  mkdir -pm 0750 /opt/var/run/"$PROCS"
+}
+
+PRECMD="pre_cmd"
+ARGS="-D -n -o import=/opt/etc/$PROCS/$PROCS.conf"
+PREARGS="screen -dmS $PROCS"
+
 . /opt/etc/init.d/rc.func
