@@ -1,10 +1,27 @@
 #!/bin/sh
 
 ENABLED=yes
-PROCS=accel-pppd
-ARGS="-d -c /opt/etc/accel-ppp.conf"
+
+DESC="VPN server"
+PROCS="accel-pppd"
+PROG="/opt/sbin/$PROCS"
+
+PID_FILE="/opt/var/run/$PROCS.pid"
+
+pre_cmd() {
+  rm -f "$PID_FILE"
+  for i in \
+    /opt/var/lib/accel-ppp \
+    /opt/var/log/accel-ppp
+  do
+    [ -d "$i" ] || {
+      mkdir -pm 0750 "$i"
+    }
+  done
+}
+
+PRECMD="pre_cmd"
+ARGS="-d -c /opt/etc/accel-ppp.conf -p $PID_FILE"
 PREARGS=""
-DESC=$PROCS
-PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 . /opt/etc/init.d/rc.func
