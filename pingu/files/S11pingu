@@ -1,10 +1,17 @@
 #!/bin/sh
 
 ENABLED=yes
-PROCS=pingu
-ARGS=""
+
+DESC="Policy routing daemon"
+PROCS="pingu"
+PROG="/opt/sbin/$PROCS"
+
+pre_cmd() {
+  rm -f /opt/var/run/$PROCS.ctl
+}
+
+PRECMD="pre_cmd"
+ARGS="-d"
 PREARGS=""
-DESC=$PROCS
-PATH=/opt/sbin:/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 . /opt/etc/init.d/rc.func
