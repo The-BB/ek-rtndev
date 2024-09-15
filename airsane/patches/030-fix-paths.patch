@@ -1,0 +1,40 @@
+--- a/basic/uuid.cpp
++++ b/basic/uuid.cpp
+@@ -30,7 +30,7 @@ std::string
+ getMachineId()
+ {
+   std::string id;
+-  std::getline(std::ifstream("/etc/machine-id"), id);
++  std::getline(std::ifstream("/opt/etc/machine-id"), id);
+   if (id.empty()) {
+     char buf[1024] = { 0 };
+     if (!::gethostname(buf, sizeof(buf) - 1))
+--- a/server/server.cpp
++++ b/server/server.cpp
+@@ -147,7 +147,7 @@ Server::Server(int argc, char** argv)
+ #ifdef __FreeBSD__
+       "/usr/local/etc/airsane/options.conf",
+ #else
+-      "/etc/airsane/options.conf",
++      "/opt/etc/airsane/options.conf",
+ #endif
+       "location of device options file",
+       optionsfile },
+@@ -155,7 +155,7 @@ Server::Server(int argc, char** argv)
+ #ifdef __FreeBSD__
+       "/usr/local/etc/airsane/ignore.conf",
+ #else
+-      "/etc/airsane/ignore.conf",
++      "/opt/etc/airsane/ignore.conf",
+ #endif
+       "location of device ignore list",
+       ignorelist },
+@@ -163,7 +163,7 @@ Server::Server(int argc, char** argv)
+ #ifdef __FreeBSD__
+       "/usr/local/etc/airsane/access.conf",
+ #else
+-      "/etc/airsane/access.conf",
++      "/opt/etc/airsane/access.conf",
+ #endif
+       "location of access file",
+       accessfile },
