@@ -27,7 +27,7 @@
  
  # db
 -db_file=xupnpd.db
-+db_file=/opt/var/xupnpd2.db
++db_file=/opt/var/lib/xupnpd2/xupnpd2.db
  
  # reset all dlna extras to '*'
  disable_dlna_extras=false

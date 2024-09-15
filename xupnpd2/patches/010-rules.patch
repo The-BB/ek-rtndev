@@ -14,7 +14,7 @@
 -all: version $(SLIBS) $(OBJS)
 -	$(CPP) $(CFLAGS) -I$(LUA) -o xupnpd $(OBJS) $(SLIBS) $(LIBS)
 +all: version $(OBJS)
-+	$(CXX) $(CFLAGS) -o xupnpd $(OBJS) $(LIBS) $(LDFLAGS)
++	$(CXX) $(CXXFLAGS) -o xupnpd $(OBJS) $(LIBS) $(LDFLAGS)
  	$(STRIP) xupnpd
  
 -sqlite3/libsqlite3.a:
@@ -34,8 +34,8 @@
  
  .c.o:
 -	$(CC) -c $(CFLAGS) -I$(LUA) -o $@ $<
-+	$(CC) -c $(CFLAGS) -o $@ $<
++	$(CC) -c $(CXXFLAGS) -o $@ $<
  
  .cpp.o:
 -	$(CPP) -c $(CFLAGS) -I$(LUA) -o $@ $<
-+	$(CXX) -c $(CFLAGS) -o $@ $<
++	$(CXX) -c $(CXXFLAGS) -o $@ $<

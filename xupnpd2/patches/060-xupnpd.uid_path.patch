@@ -5,7 +5,7 @@
  std::string utils::uuid_gen(void)
  {
 -    static const char uuid_dat[]="xupnpd.uid";
-+    static const char uuid_dat[]="/opt/var/xupnpd2.uid";
++    static const char uuid_dat[]="/opt/var/lib/xupnpd2/xupnpd2.uid";
  
      FILE* fp=fopen(uuid_dat,"rb");
  

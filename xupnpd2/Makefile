@@ -46,7 +46,11 @@ define Build/Configure
 	echo 'include build/rules.mk' > $(PKG_BUILD_DIR)/Makefile
 endef
 
-TARGET_CFLAGS += -I$(STAGING_DIR)/opt/include/lua5.3
+ifeq ($(CONFIG_USE_MUSL),y)
+TARGET_CXXFLAGS += -D_LARGEFILE64_SOURCE
+endif
+
+TARGET_CXXFLAGS += -I$(STAGING_DIR)/opt/include/lua5.3
 
 TARGET_LDFLAGS += -ldl -luuid -lsqlite3 -llua5.3 -lssl -lcrypto
 

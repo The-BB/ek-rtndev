@@ -1,0 +1,69 @@
+--- a/lua-5.1.5/luaconf.h
++++ b/lua-5.1.5/luaconf.h
+@@ -94,7 +94,7 @@
+ 	".\\?.dll;"  LUA_CDIR"?.dll;" LUA_CDIR"loadall.dll"
+ 
+ #else
+-#define LUA_ROOT	"/usr/local/"
++#define LUA_ROOT	"/opt/"
+ #define LUA_LDIR	LUA_ROOT "share/lua/5.1/"
+ #define LUA_CDIR	LUA_ROOT "lib/lua/5.1/"
+ #define LUA_PATH_DEFAULT  \
+@@ -647,7 +647,7 @@ union luai_Cast { double l_d; long l_l;
+ #include <unistd.h>
+ #define LUA_TMPNAMBUFSIZE	32
+ #define lua_tmpnam(b,e)	{ \
+-	strcpy(b, "/tmp/lua_XXXXXX"); \
++	strcpy(b, "/opt/tmp/lua_XXXXXX"); \
+ 	e = mkstemp(b); \
+ 	if (e != -1) close(e); \
+ 	e = (e == -1); }
+--- a/lua-5.3.5/loslib.c
++++ b/lua-5.3.5/loslib.c
+@@ -115,7 +115,7 @@ static time_t l_checktime (lua_State *L,
+ #define LUA_TMPNAMBUFSIZE	32
+ 
+ #if !defined(LUA_TMPNAMTEMPLATE)
+-#define LUA_TMPNAMTEMPLATE	"/tmp/lua_XXXXXX"
++#define LUA_TMPNAMTEMPLATE	"/opt/tmp/lua_XXXXXX"
+ #endif
+ 
+ #define lua_tmpnam(b,e) { \
+--- a/lua-5.3.5/luaconf.h
++++ b/lua-5.3.5/luaconf.h
+@@ -200,7 +200,7 @@
+ 
+ #else			/* }{ */
+ 
+-#define LUA_ROOT	"/usr/local/"
++#define LUA_ROOT	"/opt/"
+ #define LUA_LDIR	LUA_ROOT "share/lua/" LUA_VDIR "/"
+ #define LUA_CDIR	LUA_ROOT "lib/lua/" LUA_VDIR "/"
+ #define LUA_PATH_DEFAULT  \
+--- a/sqlite3/sqlite3.c
++++ b/sqlite3/sqlite3.c
+@@ -32061,6 +32061,7 @@ static const char *unixTempFileDir(void)
+      0,
+      0,
+      0,
++     "/opt/tmp",
+      "/var/tmp",
+      "/usr/tmp",
+      "/tmp",
+@@ -33083,7 +33084,7 @@ static int proxyGetLockPath(const char *
+     len = strlcat(lPath, "sqliteplocks", maxLen);    
+   }
+ # else
+-  len = strlcpy(lPath, "/tmp/", maxLen);
++  len = strlcpy(lPath, "/opt/tmp/", maxLen);
+ # endif
+ #endif
+ 
+@@ -38782,6 +38783,7 @@ static int winGetTempname(sqlite3_vfs *p
+        0, /* getenv("TMP") */
+        0, /* getenv("TEMP") */
+        0, /* getenv("USERPROFILE") */
++       "/opt/tmp",
+        "/var/tmp",
+        "/usr/tmp",
+        "/tmp",
