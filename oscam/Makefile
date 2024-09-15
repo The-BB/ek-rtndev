@@ -57,7 +57,6 @@ define Package/oscam/install
 	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/share/doc/oscam/example/* $(1)/opt/etc/oscam
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/S59oscam $(1)/opt/etc/init.d
-	$(INSTALL_DIR) $(1)/opt/var/log/oscam/cw
 endef
 
 $(eval $(call BuildPackage,oscam))

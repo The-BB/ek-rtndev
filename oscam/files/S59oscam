@@ -1,10 +1,18 @@
 #!/bin/sh
 
 ENABLED=yes
-PROCS=oscam
+
+DESC="Open Source Conditional Access Module service"
+PROCS="oscam"
+PROG="/opt/bin/$PROCS"
+
+pre_cmd() {
+  [ -d "/opt/var/log/$PROCS/cw" ] || \
+  mkdir -pm 0750 /opt/var/log/"$PROCS"/cw
+}
+
+PRECMD="pre_cmd"
 ARGS="-b"
 PREARGS=""
-DESC=$PROCS
-PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 . /opt/etc/init.d/rc.func

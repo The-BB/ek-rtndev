@@ -115,6 +115,7 @@
 -			"/var/etc/",
 -			"/var/oscam/",
 -			"/config/oscam/",
++			"/opt/etc/oscam/",
 +			"/opt/etc/tuxbox/config/",
 +			"/opt/etc/tuxbox/config/oscam/",
 +			"/opt/var/tuxbox/config/",
@@ -123,7 +124,6 @@
 +			"/opt/var/etc/oscam/",
 +			"/opt/var/etc/",
 +			"/opt/var/oscam/",
-+			"/opt/etc/oscam/",
  			NULL
  		};
  
