@@ -1,10 +1,12 @@
 #!/bin/sh
 
 ENABLED=yes
-PROCS=ympd
+
+DESC="MPD Web GUI"
+PROCS="ympd"
+PROG="/opt/bin/$PROCS"
+
 ARGS="-w 8800 -h localhost -p 6600"
 PREARGS=""
-DESC=$PROCS
-PATH=/opt/sbin:/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 . /opt/etc/init.d/rc.func
