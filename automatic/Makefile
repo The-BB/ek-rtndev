@@ -37,9 +37,11 @@ define Package/automatic/description
  expression patterns at certain intervals.
 endef
 
+GIT_HEAD:=$(call version_abbrev,$(PKG_SOURCE_VERSION))
+
 define Build/Prepare
 	$(call Build/Prepare/Default)
-	$(SED) 's|`git rev-parse --short HEAD`|$(PKG_REV)|g' \
+	$(SED) 's|`git rev-parse --short HEAD`|$(GIT_HEAD)|g' \
 	    $(PKG_BUILD_DIR)/src/Makefile.am
 endef
 
