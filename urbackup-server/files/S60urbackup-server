@@ -1,10 +1,31 @@
 #!/bin/sh
 
 ENABLED=yes
-PROCS=urbackupsrv
-ARGS="run --daemon"
+
+DESC="UrBackup Server"
+PROCS="urbackupsrv"
+PROG="/opt/bin/$PROCS"
+
+PID_FILE="/opt/var/run/urbackup.pid"
+
+pre_cmd() {
+  rm -f "$PID_FILE"
+  . /opt/lib/functions.sh
+  user_exists urbackup || user_add urbackup 5555
+  group_exists urbackup || group_add urbackup 5555
+  for i in \
+    /opt/var/lib/urbackup \
+    /opt/var/log/urbackup
+  do
+    [ -d "$i" ] || {
+      mkdir -pm 0750 "$i"
+      chgrp urbackup "$i"
+    }
+  done
+}
+
+PRECMD="pre_cmd"
+ARGS="run -c /opt/etc/urbackup/urbackup.cfg -d -w $PID_FFILE"
 PREARGS=""
-DESC=$PROCS
-PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 . /opt/etc/init.d/rc.func

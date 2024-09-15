@@ -44,7 +44,6 @@ TARGET_LDFLAGS += $(if $(CONFIG_GCC_LIBSSP),-lssp)
 define Package/urbackup-server/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin
-	$(INSTALL_DIR) $(1)/opt/var/urbackup
 	$(INSTALL_DIR) $(1)/opt/share/urbackup
 	$(CP) $(PKG_INSTALL_DIR)/opt/share/urbackup/* $(1)/opt/share/urbackup
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
