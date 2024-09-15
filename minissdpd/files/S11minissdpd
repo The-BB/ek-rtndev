@@ -1,12 +1,15 @@
 #!/bin/sh
 
-. /opt/etc/config/minissdpd.conf
-
 ENABLED=yes
-PROCS=minissdpd
+
+DESC="SSDP daemon"
+PROCS="minissdpd"
+PROG="/opt/sbin/$PROCS"
+
+{ [ -f "/opt/etc/config/$PROCS.conf" ] && . /opt/etc/config/$PROCS.conf ; } || \
+{ printf "\033[1;31m %s \033[0m\n" "Abort: conf file not found." && exit 1 ; }
+
 ARGS="-i $INTERFACE"
 PREARGS=""
-DESC=$PROCS
-PATH=/opt/sbin:/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 . /opt/etc/init.d/rc.func
