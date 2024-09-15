@@ -1,10 +1,12 @@
 #!/bin/sh
 
 ENABLED=yes
-PROCS=pimd
-ARGS="-N -c /opt/etc/pimd.conf"
+
+DESC="PIM-SM/SSM multicast routing daemon"
+PROCS="pimd"
+PROG="/opt/sbin/$PROCS"
+
+ARGS="-N -c /opt/etc/$PROCS.conf"
 PREARGS=""
-DESC=$PROCS
-PATH=/opt/sbin:/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 . /opt/etc/init.d/rc.func
