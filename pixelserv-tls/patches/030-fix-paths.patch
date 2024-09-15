@@ -1,0 +1,11 @@
+--- a/certs.h
++++ b/certs.h
+@@ -7,7 +7,7 @@
+ 
+ #define PIXEL_SSL_SESS_CACHE_SIZE 128*20
+ #define PIXEL_SSL_SESS_TIMEOUT 3600 /* seconds */
+-#define PIXEL_CERT_PIPE "/tmp/pixelcerts"
++#define PIXEL_CERT_PIPE "/opt/tmp/pixelcerts"
+ #define PIXEL_TLS_EARLYDATA_SIZE 16384
+ #ifndef DEFAULT_PEM_PATH
+ #define DEFAULT_PEM_PATH "/opt/var/cache/pixelserv"

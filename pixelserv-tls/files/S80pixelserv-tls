@@ -1,10 +1,18 @@
 #!/bin/sh
 
 ENABLED=yes
-PROCS=pixelserv-tls
+
+DESC="Pixel webserver"
+PROCS="pixelserv-tls"
+PROG="/opt/bin/$PROCS"
+
+pre_cmd() {
+  [ -d "/opt/var/cache/pixelserv" ] || \
+  mkdir -pm 0750 /opt/var/cache/pixelserv
+}
+
+PRECMD="pre_cmd"
 ARGS=""
 PREARGS=""
-DESC=$PROCS
-PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 . /opt/etc/init.d/rc.func

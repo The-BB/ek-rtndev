@@ -40,7 +40,6 @@ define Package/pixelserv-tls/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pixelserv-tls $(1)/opt/bin
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/S80pixelserv-tls $(1)/opt/etc/init.d
-	$(INSTALL_DIR) $(1)/opt/var/cache/pixelserv
 endef
 
 define Package/pixelserv-tls/postinst
