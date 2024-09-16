@@ -23,7 +23,7 @@ define Package/shake
 	SECTION:=utils
 	CATEGORY:=Utilities
 	SUBMENU:=Filesystem
-	DEPENDS:=+libattr
+	DEPENDS:=+libattr @!USE_MUSL
 	TITLE:=defragmentation utility
 	URL:=http://vleu.net/shake/
 	MAINTAINER:=Entware team, https://entware.net
