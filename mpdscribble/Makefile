@@ -3,12 +3,13 @@
 # Copyright (C) 2011-2024 Entware
 
 # The newer version requires g++10
+# XXX boost bumped
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mpdscribble
 PKG_VERSION:=0.24
-PKG_RELEASE:=4
+PKG_RELEASE:=5
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=a0ae861f2349c676eebedfbcebfae0b61090b6fb
