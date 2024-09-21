@@ -2,11 +2,13 @@
 #
 # Copyright (C) 2011-2024 Entware
 
+# XXX boost bumped
+
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cryfs
 PKG_VERSION:=0.11.4
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_VERSION)
