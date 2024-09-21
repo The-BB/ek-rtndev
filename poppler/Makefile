@@ -5,12 +5,13 @@
 
 # Makefile taken from http://github.com/FranciscoBorges/openwrt-printing-packages
 # 21.12.0+ requires GCC 9.4.0
+# XXX boost bumped
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=poppler
 PKG_VERSION:=21.08.0
-PKG_RELEASE:=5
+PKG_RELEASE:=6
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://poppler.freedesktop.org
