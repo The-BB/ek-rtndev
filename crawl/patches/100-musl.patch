@@ -1,0 +1,38 @@
+crash.cc:47:10: fatal error: execinfo.h: No such file or directory
+   47 | #include <execinfo.h>
+      |          ^~~~~~~~~~~~
+compilation terminated.
+
+---
+
+--- a/crawl-ref/source/crash.cc
++++ b/crawl-ref/source/crash.cc
+@@ -32,7 +32,8 @@
+     defined(TARGET_OS_NETBSD) || \
+     defined(TARGET_OS_OPENBSD) || \
+     defined(TARGET_COMPILER_CYGWIN) || \
+-    defined(__ANDROID__)
++    defined(__ANDROID__) || \
++    !defined(__GLIBC__)
+         #undef BACKTRACE_SUPPORTED
+ #endif
+ #endif
+@@ -43,7 +44,8 @@
+ 
+ #if !defined(TARGET_OS_MACOSX) && \
+     !defined(TARGET_OS_WINDOWS) && \
+-    !defined(TARGET_COMPILER_CYGWIN)
++    !defined(TARGET_COMPILER_CYGWIN) && \
++    defined(__GLIBC__)
+ #include <execinfo.h>
+ #endif
+ 
+@@ -297,7 +299,7 @@ string crash_signal_info()
+ 
+ }
+ 
+-#if defined(BACKTRACE_SUPPORTED)
++#if defined(BACKTRACE_SUPPORTED) && defined(__GLIBC__)
+ void write_stack_trace(FILE* file)
+ {
+     void* frames[50];
