@@ -1,0 +1,21 @@
+# arm64 (aarch64)
+
+ict-main.cpp:22:10: fatal error: argp.h: No such file or directory
+   22 | #include <argp.h>
+      |          ^~~~~~~~
+compilation terminated.
+
+---
+
+--- a/ict-main.cpp
++++ b/ict-main.cpp
+@@ -19,7 +19,9 @@
+  */
+ 
+ 
++#ifdef __GLIBC__
+ #include <argp.h>
++#endif
+ #include <pwd.h>
+ #include <string>
+ #include <unistd.h>
