@@ -2,11 +2,13 @@
 #
 # Copyright (C) 2020-2021 Entware
 
+# XXX boost bumped
+
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=trojan
 PKG_VERSION:=1.16.0
-PKG_RELEASE:=5
+PKG_RELEASE:=6
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=8606b7110fe79f8ab02d60c897f87ffb0a9b23f0
