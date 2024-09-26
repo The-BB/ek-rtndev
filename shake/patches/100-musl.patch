@@ -1,0 +1,122 @@
+.../executive.c:35:10: fatal error: error.h: No such file or directory
+   35 | #include <error.h>              // error()
+      |          ^~~~~~~~~
+compilation terminated.
+...
+.../judge.c:32:10: fatal error: error.h: No such file or directory
+   32 | #include <error.h>              // error()
+      |          ^~~~~~~~~
+compilation terminated.
+...
+.../linux.c:28:10: fatal error: error.h: No such file or directory
+   28 | #include <error.h>              // error()
+      |          ^~~~~~~~~
+compilation terminated.
+...
+.../main.c:67:10: fatal error: error.h: No such file or directory
+   67 | #include <error.h>
+      |          ^~~~~~~~~
+compilation terminated.
+...
+.../signals.c:24:10: fatal error: error.h: No such file or directory
+   24 | #include <error.h>              // error()
+      |          ^~~~~~~~~
+compilation terminated.
+...
+.../unattr.c:27:10: fatal error: error.h: No such file or directory
+   27 | #include <error.h>
+      |          ^~~~~~~~~
+compilation terminated.
+
+---
+
+--- a/executive.c
++++ b/executive.c
+@@ -32,7 +32,12 @@
+ #include <sys/stat.h>           // stat()
+ #include <unistd.h>             // stat()
+ #include <sys/ioctl.h>          // ioctl()
++#ifdef __GLIBC__
+ #include <error.h>              // error()
++#else /* musl */
++#include <err.h>
++#define error(status, errno, ...) err(status, __VA_ARGS__)
++#endif /* musl */
+ #include <sys/types.h>          // opendir()
+ #include <dirent.h>             // opendir()
+ #include <sys/time.h>           // futimes()
+--- a/judge.c
++++ b/judge.c
+@@ -29,7 +29,12 @@
+ #include <sys/stat.h>           // stat(), umask()
+ #include <unistd.h>             // stat()
+ #include <stdio.h>              // printf(), tmpfile()
++#ifdef __GLIBC__
+ #include <error.h>              // error()
++#else /* musl */
++#include <err.h>
++#define error(status, errno, ...) err(status, __VA_ARGS__)
++#endif /* musl */
+ #include <limits.h>             // SSIZE_MAX
+ #include "executive.h"          // fcopy()
+ #include "judge.h"
+--- a/linux.c
++++ b/linux.c
+@@ -25,7 +25,12 @@
+ #include <time.h>               // time, time_t
+ #include <assert.h>             // assert
+ #include <errno.h>              // errno
++#ifdef __GLIBC__
+ #include <error.h>              // error()
++#else /* musl */
++#include <err.h>
++#define error(status, errno, ...) err(status, __VA_ARGS__)
++#endif /* musl */
+ #include <fcntl.h>              // fcntl()
+ #include <signal.h>             // sigaction()
+ #include <unistd.h>             // fcntl()
+--- a/main.c
++++ b/main.c
+@@ -64,7 +64,12 @@
+ #include <stdlib.h>
+ #include <assert.h>
+ #include <errno.h>
++#ifdef __GLIBC__
+ #include <error.h>
++#else /* musl */
++#include <err.h>
++#define error(status, errno, ...) err(status, __VA_ARGS__)
++#endif /* musl */
+ #include <string.h>
+ 
+ #include <unistd.h>		// unlink()
+--- a/signals.c
++++ b/signals.c
+@@ -21,7 +21,12 @@
+ #include "signals.h"
+ #include <assert.h>		// assert()
+ #include <errno.h>		// errno
++#ifdef __GLIBC__
+ #include <error.h>		// error()
++#else /* musl */
++#include <err.h>
++#define error(status, errno, ...) err(status, __VA_ARGS__)
++#endif /* musl */
+ #include <signal.h>		// sigaction, sigprocmask, sigsetops
+ #include <unistd.h>		// unlink()
+ #include <stdbool.h>
+--- a/unattr.c
++++ b/unattr.c
+@@ -22,7 +22,12 @@
+ #include <stdlib.h>
+ #include <assert.h>
+ #include <errno.h>
++#ifdef __GLIBC__
+ #include <error.h>
++#else /* musl */
++#include <err.h>
++#define error(status, errno, ...) err(status, __VA_ARGS__)
++#endif /* musl */
+ #include <string.h>
+ #include <attr/attributes.h>	// flistxattr
+ #include <sys/types.h>		// open()

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
@@ -9,10 +9,10 @@ PKG_VERSION:=1.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_DATE:=2017-07-02
-PKG_SOURCE_VERSION:=33dd09dfd77dba8e73da194d2ea4c1e0d9c90ace
+PKG_SOURCE_DATE:=2022-03-13
+PKG_SOURCE_VERSION:=8d7fe0596a2dc9b38aabd7640ffc29254ddd92fd
 PKG_SOURCE_URL:=https://github.com/unbrice/shake.git
-PKG_MIRROR_HASH:=8a9137c02ea87c3a96691a2ebae11835b4945338b45a4546b7664e4f4f2f16e3
+PKG_MIRROR_HASH:=538a9344bbc8e4494573896bfcbed235a3834a994b54d8967a2c353cc088aadc
 
 PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
 
@@ -23,7 +23,7 @@ define Package/shake
 	SECTION:=utils
 	CATEGORY:=Utilities
 	SUBMENU:=Filesystem
-	DEPENDS:=+libattr @!USE_MUSL
+	DEPENDS:=+libattr
 	TITLE:=defragmentation utility
 	URL:=http://vleu.net/shake/
 	MAINTAINER:=Entware team, https://entware.net
