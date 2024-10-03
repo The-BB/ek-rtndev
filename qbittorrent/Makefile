@@ -7,17 +7,18 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qbittorrent
-PKG_VERSION:=4.6.5
+PKG_VERSION:=5.0.0
 PKG_RELEASE=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=5e81347933adec219dab27a503f8dc9c4a1c522d
-PKG_SOURCE_URL:=https://github.com/qbittorrent/qbittorrent.git
-PKG_MIRROR_HASH:=65e023699b43147ed604e600649a48d07a030b5ce8a3a87f344d4f71c2495566
+PKG_SOURCE_VERSION:=release-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/qbittorrent/qbittorrent
+PKG_MIRROR_HASH:=7dc29e345f9cf551b06191f145b72a29b9efb45e6edd30f0e942eaad78e1da27
 
 PKG_LICENSE:=GPL-2.0-or-later
 PKG_LICENSE_FILES:=COPYING
 
+PKG_BUILD_DEPENDS:=qt6tools/host qt6base
 PKG_BUILD_FLAGS:=no-mips16
 
 include $(INCLUDE_DIR)/package.mk
@@ -28,7 +29,7 @@ define Package/qbittorrent
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=BitTorrent
-	DEPENDS:=+libtorrent-rasterbar +qt5-network +qt5-sql +qt5-xml $(ICONV_DEPENDS) $(INTL_DEPENDS)
+	DEPENDS:=+libtorrent-rasterbar $(ICONV_DEPENDS) $(INTL_DEPENDS)
 	TITLE:=bittorrent client programmed in C++ / Qt
 	URL:=https://www.qbittorrent.org/
 	PROVIDES:=qBittorrent
@@ -47,6 +48,7 @@ TARGET_LDFLAGS += -latomic -lpthread
 
 CMAKE_OPTIONS += \
 	-DGUI=OFF \
+	-DDBUS=OFF \
 	-DSTACKTRACE=OFF
 
 define Package/qbittorrent/install
