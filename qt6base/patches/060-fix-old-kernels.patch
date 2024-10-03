@@ -1,0 +1,23 @@
+--- a/src/corelib/io/qstorageinfo_linux.cpp
++++ b/src/corelib/io/qstorageinfo_linux.cpp
+@@ -29,6 +29,11 @@
+ #  define ST_RDONLY             0x0001  /* mount read-only */
+ #endif
+ 
++// STATX_MNT_ID since Linux 5.8
++#ifndef LINUX_VERSION_CODE
++#include <linux/version.h>
++#endif
++
+ #if defined(Q_OS_ANDROID)
+ // statx() is disabled on Android because quite a few systems
+ // come with sandboxes that kill applications that make system calls outside a
+@@ -103,7 +108,7 @@ static inline quint64 mountIdForPath(int
+ {
+     if (fd < 0)
+         return 0;
+-#if defined(STATX_BASIC_STATS) && defined(STATX_MNT_ID)
++#if defined(STATX_BASIC_STATS) && defined(STATX_MNT_ID) && LINUX_VERSION_CODE >= KERNEL_VERSION(5,8,0)
+     // STATX_MNT_ID was added in kernel v5.8
+     struct statx st;
+     int r = statx(fd, "", AT_EMPTY_PATH | AT_NO_AUTOMOUNT, STATX_MNT_ID, &st);

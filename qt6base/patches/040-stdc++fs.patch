@@ -1,0 +1,11 @@
+--- a/src/corelib/configure.cmake
++++ b/src/corelib/configure.cmake
+@@ -140,6 +140,8 @@ int pipes[2];
+ # cxx17_filesystem
+ qt_config_compile_test(cxx17_filesystem
+     LABEL "C++17 <filesystem>"
++    LIBRARIES
++	stdc++fs
+     CODE
+ "#include <filesystem>
+ 

@@ -1,0 +1,11 @@
+--- a/src/corelib/configure.cmake
++++ b/src/corelib/configure.cmake
+@@ -49,6 +49,8 @@ qt_find_package(Slog2 PROVIDED_TARGETS S
+ # atomicfptr
+ qt_config_compile_test(atomicfptr
+     LABEL "working std::atomic for function pointers"
++    LIBRARIES
++        atomic
+     CODE
+ "#include <atomic>
+ typedef void (*fptr)(int);
