@@ -54,6 +54,7 @@ CMAKE_HOST_OPTIONS += \
 	-DCMAKE_SKIP_RPATH=FALSE \
 	-DFEATURE_clang=OFF \
 	-DFEATURE_clangcpp=OFF \
+	-DFEATURE_linguist=ON \
 	-DFEATURE_qtattributionsscanner=OFF \
 	-DFEATURE_qtplugininfo=OFF \
 	-DQt6_DIR="$(HOST_BUILD_DIR)/../Qt6"
