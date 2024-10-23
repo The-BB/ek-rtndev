@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ctags
 PKG_VERSION:=6.1.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=7ad90a853a5aee974c757217c87a3b468855c2b1
@@ -26,6 +26,7 @@ define Package/ctags
 	TITLE:=Universal Ctags
 	URL:=https://ctags.io
 	MAINTAINER:=Entware team, https://entware.net
+	ALTERNATIVES:=200:/opt/bin/etags:/opt/bin/ctags
 endef
 
 define Package/ctags/description
@@ -51,7 +52,6 @@ CONFIGURE_VARS += \
 define Package/ctags/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/{c,read}tags $(1)/opt/bin
-	$(LN) ctags $(1)/opt/bin/etags
 endef
 
 $(eval $(call BuildPackage,ctags))
