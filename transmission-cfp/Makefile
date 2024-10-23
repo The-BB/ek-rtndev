@@ -11,7 +11,9 @@ PKG_RELEASE:=1
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=8106a8571e54385351de0a92d15b3257abc12f72
 PKG_SOURCE_URL:=https://github.com/cfpp2p/transmission
-PKG_MIRROR_HASH:=13e7cef201457ba8a628a019a12b2a379b745d7af75de0b827b6eb495b3479ea
+PKG_MIRROR_HASH:=b55e52cbc917307a2ff66f2b71bfa67a1540b6976956930fd266619f1e22604d
+
+PKG_VERSION:=$(subst plus,_,$(subst -,_,$(PKG_VERSION)))
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -30,19 +32,19 @@ endef
 define Package/transmission-cfp-daemon
 	$(call Package/transmission-cfp/Default)
 	TITLE+= (daemon)
-	DEPENDS:=+libcurl +libevent2 +zlib +USE_UCLIBC:libpthread +USE_UCLIBC:librt
+	DEPENDS:=+libcurl +libevent2 +zlib
 endef
 
 define Package/transmission-cfp-cli
 	$(call Package/transmission-cfp/Default)
 	TITLE+= (cli)
-	DEPENDS:=+libcurl +libevent2 +zlib +USE_UCLIBC:libpthread +USE_UCLIBC:librt
+	DEPENDS:=+libcurl +libevent2 +zlib
 endef
 
 define Package/transmission-cfp-remote
 	$(call Package/transmission-cfp/Default)
 	TITLE+= (remote control utility)
-	DEPENDS:=+libcurl +libevent2 +zlib +USE_UCLIBC:libpthread +USE_UCLIBC:librt
+	DEPENDS:=+libcurl +libevent2 +zlib
 endef
 
 define Package/transmission-cfp-web
