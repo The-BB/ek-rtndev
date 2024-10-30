@@ -1,0 +1,15 @@
+ln: failed to create symbolic link 'etags': File exists
+
+---
+
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -272,7 +272,7 @@ optscript_SOURCES = $(OPTSCRIPT_SRCS)
+ if INSTALL_ETAGS
+ install-exec-hook:
+ 	cd $(DESTDIR)$(bindir) && \
+-		$(LN_S) ctags$(EXEEXT) etags$(EXEEXT)
++		ln -sf ctags$(EXEEXT) etags$(EXEEXT)
+ 
+ uninstall-hook:
+ 	rm $(DESTDIR)$(bindir)/etags$(EXEEXT)
