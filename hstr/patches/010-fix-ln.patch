@@ -1,0 +1,14 @@
+ln: failed to create hard link '.../ipkg-install/opt/bin/hh': File exists
+
+---
+
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -35,6 +35,6 @@ hstr_SOURCES = 						\
+ 
+ # create hstr > hh hard link on installation
+ install-exec-hook:
+-	ln $(DESTDIR)$(bindir)/hstr$(EXEEXT) $(DESTDIR)$(bindir)/hh$(EXEEXT)
++	ln -f $(DESTDIR)$(bindir)/hstr$(EXEEXT) $(DESTDIR)$(bindir)/hh$(EXEEXT)
+ 
+ hstr_LDADD = $(NCURSES_LIBS)
