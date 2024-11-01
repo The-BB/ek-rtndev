@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=superstartrek
-PKG_VERSION:=0.0.21_2019
+PKG_VERSION:=0.0.21.2019
 PKG_RELEASE:=1
 
 PKG_SOURCE:=sstsrc.zip
