@@ -1,6 +1,6 @@
 --- a/src/app/CMakeLists.txt
 +++ b/src/app/CMakeLists.txt
-@@ -60,7 +60,7 @@ target_sources(qbt_app PRIVATE
+@@ -62,7 +62,7 @@ target_sources(qbt_app PRIVATE
  )
  
  target_link_libraries(qbt_app PRIVATE
