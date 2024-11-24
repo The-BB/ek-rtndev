@@ -1,6 +1,6 @@
 --- a/src/network/ssl/qsslsocket.cpp
 +++ b/src/network/ssl/qsslsocket.cpp
-@@ -2954,6 +2954,7 @@ QList<QByteArray> QSslSocketPrivate::uni
+@@ -2960,6 +2960,7 @@ QList<QByteArray> QSslSocketPrivate::uni
          return QByteArray::fromRawData(std::begin(cstr), std::size(cstr) - 1);
      };
      static const QByteArray dirs[] = {

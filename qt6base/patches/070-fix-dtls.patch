@@ -1,0 +1,43 @@
+.../src/plugins/tls/openssl/qdtls_openssl.cpp:665:9:
+ error: 'q_SSL_set_psk_server_callback' was not declared in this scope; did you mean 'q_SSL_set_psk_use_session_callback'?
+  665 |         q_SSL_set_psk_server_callback(newConnection.data(), dtlscallbacks::q_PSK_server_callback);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |         q_SSL_set_psk_use_session_callback
+.../src/plugins/tls/openssl/qdtls_openssl.cpp:667:9:
+ error: 'q_SSL_set_psk_client_callback' was not declared in this scope; did you mean 'q_SSL_set_info_callback'?
+  667 |         q_SSL_set_psk_client_callback(newConnection.data(), dtlscallbacks::q_PSK_client_callback);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |         q_SSL_set_info_callback
+
+---
+
+--- a/src/plugins/tls/openssl/qdtls_openssl.cpp
++++ b/src/plugins/tls/openssl/qdtls_openssl.cpp
+@@ -230,6 +230,7 @@ extern "C" int q_X509DtlsCallback(int ok
+     return 1;
+ }
+ 
++#if OPENSSL_VERSION_NUMBER >= 0x10001000L && !defined(OPENSSL_NO_PSK)
+ extern "C" unsigned q_PSK_client_callback(SSL *ssl, const char *hint, char *identity,
+                                           unsigned max_identity_len, unsigned char *psk,
+                                           unsigned max_psk_len)
+@@ -254,6 +255,7 @@ extern "C" unsigned q_PSK_server_callbac
+     Q_ASSERT(dtls->dtlsPrivate);
+     return dtls->dtlsPrivate->pskServerCallback(identity, psk, max_psk_len);
+ }
++#endif
+ 
+ } // namespace dtlscallbacks
+ 
+@@ -662,9 +664,11 @@ bool DtlsState::initCtxAndConnection(QDt
+     if (dtlsBase->mode == QSslSocket::SslServerMode) {
+         if (dtlsBase->dtlsConfiguration.dtlsCookieVerificationEnabled())
+             q_SSL_set_options(newConnection.data(), SSL_OP_COOKIE_EXCHANGE);
++#if OPENSSL_VERSION_NUMBER >= 0x10001000L && !defined(OPENSSL_NO_PSK)
+         q_SSL_set_psk_server_callback(newConnection.data(), dtlscallbacks::q_PSK_server_callback);
+     } else {
+         q_SSL_set_psk_client_callback(newConnection.data(), dtlscallbacks::q_PSK_client_callback);
++#endif
+     }
+ 
+     tlsContext.swap(newContext);

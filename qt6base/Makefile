@@ -5,13 +5,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qtbase
-PKG_VERSION:=6.7.2
+PKG_VERSION:=6.8.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=v$(PKG_VERSION)
-PKG_SOURCE_URL:=https://code.qt.io/qt/qtbase
-PKG_MIRROR_HASH:=c9f58d3e47d4e0d1138327ae8150b5eb49045494a04bc637f97f8161686508fc
+PKG_SOURCE_URL:=https://github.com/qt/qtbase
+PKG_MIRROR_HASH:=52ec768c181896353af74bfac6ff8a777a17d3a765cc705ef981900cab3dcbff
 
 PKG_LICENSE:= \
 	GPL-2.0-or-later GPL-3.0-only GFDL-1.3-only LGPL-3.0-only \
@@ -77,6 +77,11 @@ HOSTCXX=$(HOSTCXX_NOCACHE)
 endif
 
 QT6_COMMON_OPTIONS:= \
+	-DBUILD_SHARED_LIBS=OFF \
+	\
+	-DCMAKE_SKIP_RPATH=TRUE \
+	-DCMAKE_SKIP_INSTALL_RPATH=ON \
+	\
 	-DQT_FEATURE_androiddeployqt=OFF \
 	-DQT_FEATURE_avx2=OFF \
 	-DQT_FEATURE_avx512bw=OFF \
@@ -134,35 +139,38 @@ QT6_COMMON_OPTIONS:= \
 	-DQT_FEATURE_widgets=OFF \
 	-DQT_FEATURE_xcb=OFF \
 	-DQT_FEATURE_zstd=OFF \
+	\
 	-DINPUT_intelcet=no \
 	-DINPUT_opengl=no \
-	-DQT_USE_BUNDLED_BundledHarfbuzz=OFF
+	\
+	-DQT_USE_BUNDLED_BundledHarfbuzz=OFF \
+	\
+	-DQT_FEATURE_shared=OFF \
+	-DQT_FEATURE_static=ON
 
 # XXX qt-tools wants network
 CMAKE_HOST_OPTIONS += \
-	-DBUILD_SHARED_LIBS=ON \
 	-DCMAKE_INSTALL_PREFIX=../Qt6 \
-	-DCMAKE_SKIP_RPATH=FALSE \
 	-DQT_FEATURE_network=ON \
 	-DQT_FEATURE_sql=OFF \
 	-DQT_FEATURE_xml=ON \
 	$(QT6_COMMON_OPTIONS)
 
 CMAKE_OPTIONS += \
-	-DBUILD_SHARED_LIBS=OFF \
-	-DCMAKE_CXXFLAGS="-static" \
-	-DCMAKE_LDFLAGS="-static" \
 	-DCMAKE_SYSROOT=$(STAGING_DIR) \
 	-DCMAKE_TOOLCHAIN_FILE=$(PKG_BUILD_DIR)/toolchain.cmake \
 	\
 	-DQT_FEATURE_gssapi=OFF \
 	-DQT_HOST_PATH=$(HOST_BUILD_DIR)/../Qt6 \
 	-DQT_QMAKE_TARGET_MKSPEC=devices/linux-entware-g++ \
+	-DQT_FEATURE_dtls=ON \
 	-DQT_FEATURE_network=ON \
 	-DQT_FEATURE_openssl=ON \
+	-DQT_FEATURE_openssl_hash=OFF \
+	-DQT_FEATURE_openssl_runtime=ON \
 	-DQT_FEATURE_openssl_linked=ON \
-	-DQT_FEATURE_opensslv11=OFF \
 	-DQT_FEATURE_sql=ON \
+	-DQT_FEATURE_ssl=ON \
 	-DQT_FEATURE_xml=ON \
 	\
 	-DQT_FEATURE_getentropy=OFF \
@@ -182,8 +190,7 @@ CMAKE_OPTIONS += \
 
 TARGET_CFLAGS += -pthread
 TARGET_CXXFLAGS += -pthread
-TARGET_LDFLAGS += $(if $(ICONV_FULL),-liconv) $(if $(INTL_FULL),-lintl)
-TARGET_LDFLAGS += -lssl -lcrypto -latomic -lrt -lpthread -ldl
+TARGET_LDFLAGS:=
 
 define FixPreConfigure
 	$(SED) 's,^QMAKE_CC\s*=.*,QMAKE_CC = $(HOSTCC_NOCACHE),; \

@@ -4,7 +4,7 @@
  #  define ST_RDONLY             0x0001  /* mount read-only */
  #endif
  
-+// STATX_MNT_ID since Linux 5.8
++/* STATX_MNT_ID since Linux 5.8 */
 +#ifndef LINUX_VERSION_CODE
 +#include <linux/version.h>
 +#endif
@@ -21,3 +21,74 @@
      // STATX_MNT_ID was added in kernel v5.8
      struct statx st;
      int r = statx(fd, "", AT_EMPTY_PATH | AT_NO_AUTOMOUNT, STATX_MNT_ID, &st);
+--- a/src/network/configure.cmake
++++ b/src/network/configure.cmake
+@@ -67,6 +67,11 @@ qt_config_compile_test(linux_netlink
+ #include <linux/rtnetlink.h>
+ #include <sys/socket.h>
+ 
++/* IFA_F_MANAGETEMPADDR since Linux 3.14 */
++#ifndef LINUX_VERSION_CODE
++#include <linux/version.h>
++#endif
++
+ int main(void)
+ {
+     /* BEGIN TEST: */
+@@ -78,7 +83,11 @@ ci.ifa_prefered = ci.ifa_valid = 0;
+ (void)RTM_NEWLINK; (void)RTM_NEWADDR;
+ (void)IFLA_ADDRESS; (void)IFLA_IFNAME;
+ (void)IFA_ADDRESS; (void)IFA_LABEL; (void)IFA_CACHEINFO;
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,14,0)
+ (void)(IFA_F_SECONDARY | IFA_F_DEPRECATED | IFA_F_PERMANENT | IFA_F_MANAGETEMPADDR);
++#else
++(void)(IFA_F_SECONDARY | IFA_F_DEPRECATED | IFA_F_PERMANENT);
++#endif /* IFA_F_MANAGETEMPADDR since Linux 3.14 */
+     /* END TEST: */
+     return 0;
+ }
+--- a/src/network/kernel/qnetworkinterface_linux.cpp
++++ b/src/network/kernel/qnetworkinterface_linux.cpp
+@@ -21,11 +21,18 @@
+ #include <linux/wireless.h>
+ #include <sys/socket.h>
+ 
++/* ARPHRD_6LOWPAN IFA_FLAGS since Linux 3.14 */
++#ifndef LINUX_VERSION_CODE
++#include <linux/version.h>
++#endif
++
+ /* in case these aren't defined in linux/if_arp.h (added since 2.6.28)  */
+ #define ARPHRD_PHONET       820     /* v2.6.29: PhoNet media type */
+ #define ARPHRD_PHONET_PIPE  821     /* v2.6.29: PhoNet pipe header */
+ #define ARPHRD_IEEE802154   804     /* v2.6.31 */
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,14,0)
+ #define ARPHRD_6LOWPAN      825     /* v3.14: IPv6 over LoWPAN */
++#endif /* ARPHRD_6LOWPAN since Linux 3.14 */
+ 
+ QT_BEGIN_NAMESPACE
+ 
+@@ -72,8 +79,10 @@ static QNetworkInterface::InterfaceType
+     case ARPHRD_PHONET_PIPE:
+         return QNetworkInterface::Phonet;
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,14,0)
+     case ARPHRD_6LOWPAN:
+         return QNetworkInterface::SixLoWPAN;
++#endif /* ARPHRD_6LOWPAN since Linux 3.14 */
+ 
+     case ARPHRD_TUNNEL:
+     case ARPHRD_TUNNEL6:
+@@ -358,10 +367,12 @@ static void getAddresses(int sock, char
+                 }
+                 break;
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,14,0)
+             case IFA_FLAGS:
+                 Q_ASSERT(payloadLen == 4);
+                 flags = qFromUnaligned<quint32>(payloadPtr);
+                 break;
++#endif /* IFA_FLAGS since Linux 3.14 */
+             }
+         }
+ 
