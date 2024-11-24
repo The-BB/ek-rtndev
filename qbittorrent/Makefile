@@ -7,18 +7,18 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qbittorrent
-PKG_VERSION:=5.0.1
+PKG_VERSION:=5.0.2
 PKG_RELEASE=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=release-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/qbittorrent/qbittorrent
-PKG_MIRROR_HASH:=addbc9fed12c6195ded0d43b7cd61622be263c62ef6221b6ad17876aada63b47
+PKG_MIRROR_HASH:=ecee775d1f439ef705a05830b23732c463c6de1b602d3738fc66a0b8de3d0eee
 
 PKG_LICENSE:=GPL-2.0-or-later
 PKG_LICENSE_FILES:=COPYING
 
-PKG_BUILD_DEPENDS:=qt6tools/host qt6base
+PKG_BUILD_DEPENDS:=qt6base qt6tools/host
 PKG_BUILD_FLAGS:=no-mips16
 
 include $(INCLUDE_DIR)/package.mk
