@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=iotop
 PKG_VERSION:=0.6
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=1bfb3bc70febb1ffb95146b6dcd65257228099a3
@@ -39,6 +39,13 @@ define Package/iotop/install
 	$(INSTALL_DIR) $(1)$(PYTHON3_PKG_DIR)
 	$(CP) $(PKG_INSTALL_DIR)$(PYTHON3_PKG_DIR)/* $(1)$(PYTHON3_PKG_DIR)
 	$(call Python3/FixShebang,$(1)/opt/sbin/iotop)
+endef
+
+define Package/iotop/postrm
+#!/bin/sh
+
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)-$(PKG_VERSION).dist-info
 endef
 
 $(eval $(call Py3Package,iotop))
