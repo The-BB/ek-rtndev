@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=asciinema
 PKG_VERSION:=2.4.0
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PYPI_NAME:=asciinema
 PKG_HASH:=828e04c36ba622a7b8f8f912c8f0c1329538b6c7ed1c0d1b131bbbfe3a221707
@@ -33,6 +33,13 @@ endef
 
 define Package/asciinema/conffiles
 /opt/etc/asciinema/config
+endef
+
+define Package/asciinema/postrm
+#!/bin/sh
+
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)-$(PKG_VERSION).dist-info
 endef
 
 $(eval $(call Py3Package,asciinema))
