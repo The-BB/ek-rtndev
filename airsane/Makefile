@@ -5,13 +5,16 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=airsane
-PKG_VERSION:=0.4.1
+PKG_VERSION:=0.4.3
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=776acdc8dce6c6834bded03e2741765ac4b9853a
-PKG_SOURCE_URL:=https://github.com/SimulPiscator/AirSane.git
-PKG_MIRROR_HASH:=f7b0e91b475b41ffd6cd41ff791c635c1251d54e7ac282e55f150a7b6b53718d
+PKG_SOURCE_VERSION:=v$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/SimulPiscator/AirSane
+PKG_MIRROR_HASH:=c9a9d222a42f0d133c98fd65e9a75bb4aee1971c1978bba2cd078fbcde521f1c
+
+PKG_LICENSE:=GPL-3.0-only
+PKG_LICENSE_FILES:=LICENSE
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
