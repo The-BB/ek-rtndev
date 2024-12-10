@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=characteristic
 PKG_VERSION:=14.3.0
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PYPI_NAME:=$(PKG_NAME)
 PKG_HASH:=ded68d4e424115ed44e5c83c2a901a0b6157a959079d7591d92106ffd3ada380
@@ -36,6 +36,12 @@ define Package/python3-characteristic/description
  characteristic is an MIT-licensed Python package with class decorators that
  ease the chores of implementing the most common attribute-related object
  protocols.
+endef
+
+define Package/python3-characteristic/postrm
+#!/bin/sh
+
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)-$(PKG_VERSION).dist-info
 endef
 
 $(eval $(call Py3Package,python3-characteristic))
