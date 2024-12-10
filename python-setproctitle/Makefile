@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=setproctitle
 PKG_VERSION:=1.3.3
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PYPI_NAME:=setproctitle
 PKG_HASH:=c913e151e7ea01567837ff037a23ca8740192880198b7fbb90b16d181607caae
@@ -27,6 +27,13 @@ endef
 
 define Package/python3-setproctitle/description
  A Python module to customize the process title.
+endef
+
+define Package/python3-setproctitle/postrm
+#!/bin/sh
+
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)-$(PKG_VERSION).dist-info
 endef
 
 $(eval $(call Py3Package,python3-setproctitle))
