@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-regex
 PKG_VERSION:=2024.5.15
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PYPI_NAME:=regex
 PKG_HASH:=d3ee02d9e5f482cc8309134a91eeaacbdd2261ba111b0fef3748eeb4913e6a2c
@@ -28,6 +28,13 @@ endef
 define Package/python3-regex/description
  This new regex implementation is intended eventually to replace Python’s
  current re module implementation.
+endef
+
+define Package/python3-regex/postrm
+#!/bin/sh
+
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)-$(PKG_VERSION).dist-info
 endef
 
 $(eval $(call Py3Package,python3-regex))
