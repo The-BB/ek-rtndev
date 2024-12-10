@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-cups
 PKG_VERSION:=2.0.4
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PYPI_NAME:=pycups
 PKG_HASH:=843e385c1dbf694996ca84ef02a7f30c28376035588f5fbeacd6bae005cf7c8d
@@ -28,6 +28,12 @@ endef
 define Package/python3-cups/description
  This is a Python bindings for the CUPS API, known as pycups. It was written
  for use with system-config-printer, but can be put to other uses as well.
+endef
+
+define Package/python3-cups/postrm
+#!/bin/sh
+
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)-$(PKG_VERSION).dist-info
 endef
 
 $(eval $(call Py3Package,python3-cups))
