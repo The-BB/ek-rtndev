@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rencode
 PKG_VERSION:=1.0.6
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PYPI_NAME:=rencode
 PKG_HASH:=2586435c4ea7d45f74e26765ad33d75309de7cf47c4d762e8efabd39905c0718
@@ -30,6 +30,13 @@ endef
 
 define Package/python3-rencode/description
  The rencode module is similar to bencode from the BitTorrent project.
+endef
+
+define Package/python3-rencode/postrm
+#!/bin/sh
+
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)-$(PKG_VERSION).dist-info
 endef
 
 $(eval $(call Py3Package,python3-rencode))
