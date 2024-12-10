@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python3-uvloop
 PKG_VERSION:=0.19.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PYPI_NAME:=uvloop
 PKG_HASH:=0246f4fd1bf2bf702e06b0d45ee91677ee5c31242f39aab4ea6fe0c51aedd0fd
@@ -40,6 +40,13 @@ PYTHON3_PKG_BUILD_CONFIG_SETTINGS += \
 	--build-option=--inplace \
 	--build-option=--cython-always \
 	--build-option=--use-system-libuv
+
+define Package/python3-uvloop/postrm
+#!/bin/sh
+
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)-$(PKG_VERSION).dist-info
+endef
 
 $(eval $(call Py3Package,python3-uvloop))
 $(eval $(call BuildPackage,python3-uvloop))
