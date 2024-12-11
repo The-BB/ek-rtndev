@@ -29,7 +29,7 @@
  USE_LINENOISE = 1
 --- a/src/main.mk
 +++ b/src/main.mk
-@@ -2131,52 +2131,8 @@ $(SRCDIR_extsrc)/pikchr.js: $(SRCDIR_ext
+@@ -2132,52 +2132,8 @@ $(SRCDIR_extsrc)/pikchr.js: $(SRCDIR_ext
  wasm: $(SRCDIR_extsrc)/pikchr.js
  
  #

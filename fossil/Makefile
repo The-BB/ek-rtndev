@@ -5,14 +5,18 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=fossil
-PKG_VERSION:=2.24
-PKG_RELEASE:=2
+PKG_VERSION:=2.25
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-src-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://www.fossil-scm.org/home/tarball/8be0372c1051043761320c8ea8669c3cf320c406e5fe18ad36b7be5f844ca73b
-PKG_HASH:=e6f5a559369bf16baf539e69e6d0cea5a6410efa9a6e7f160c7a4932080413be
+PKG_SOURCE_URL:=https://www.fossil-scm.org/home/tarball/8f798279d5f7c3288099915f2ea88c57b6d6039f3f05eac5e237897af33376dc
+PKG_HASH:=611cfa50d08899eb993a5f475f988b4512366cded82688c906cf913e5191b525
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-src-$(PKG_VERSION)
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=BSD-2-Clause
+PKG_LICENSE_FILES:=COPYRIGHT-BSD2.txt
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -20,10 +24,9 @@ define Package/fossil
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=Version Control Systems
+	TITLE:=a unique SCM (Software Configuration Management) system
+	URL:=https://fossil-scm.org
 	DEPENDS:=+libopenssl +libsqlite3 +tcl
-	TITLE:=software CMS
-	URL:=https://www.fossil-scm.org
-	MAINTAINER:=Entware team, https://entware.net
 endef
 
 define Package/fossil/description
