@@ -1,19 +1,23 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2020-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2020-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=isync
-PKG_VERSION:=1.4.4
+PKG_VERSION:=1.5.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/$(PKG_NAME)/$(PKG_VERSION)
-PKG_HASH:=7c3273894f22e98330a330051e9d942fd9ffbc02b91952c2f1896a5c37e700ff
+PKG_HASH:=a0c81e109387bf279da161453103399e77946afecf5c51f9413c5e773557f78d
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-2.0-or-later
+PKG_LICENSE_FILES:= \
+	COPYING \
+	LICENSES/GPL-2.0-or-later.txt \
+	LICENSES/LicenseRef-isync-GPL-exception.txt
 
 PKG_INSTALL:=1
 
@@ -22,17 +26,16 @@ include $(INCLUDE_DIR)/package.mk
 define Package/isync
 	SECTION:=mail
 	CATEGORY:=Mail
-	DEPENDS:=+openssl-util +libsasl2 +libdb47
-	TITLE:=mailbox synchronizer
-	URL:=http://isync.sourceforge.net/
-	MAINTAINER:=Entware team, https://entware.net
+	TITLE:=mailbox synchronization program
+	URL:=https://isync.sourceforge.io/
+	DEPENDS:=+libdb47 +libsasl2 +openssl-util
 endef
 
 define Package/isync/description
- isync is a command line application which synchronizes mailboxes; currently
- Maildir and IMAP4 mailboxes are supported. New messages, message deletions and
- flag changes can be propagated both ways. isync is suitable for use in
- IMAP-disconnected mode.
+ isync is a command line application which synchronizes mailboxes;
+ currently Maildir and IMAP4 mailboxes are supported. New messages, message
+ deletions and flag changes can be propagated both ways. isync is suitable
+ for use in IMAP-disconnected mode.
 endef
 
 define Package/isync/install
