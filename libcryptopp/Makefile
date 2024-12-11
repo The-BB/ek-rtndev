@@ -5,13 +5,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cryptopp
-PKG_VERSION:=8.8.0
+PKG_VERSION:=8.9.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(call toupper,$(PKG_NAME))_$(subst .,_,$(PKG_VERSION))
-PKG_SOURCE_URL:=https://github.com/weidai11/cryptopp.git
-PKG_MIRROR_HASH:=fb2f1916ed6b37a4035d7b06092ea0461606a8ac63d1b2721cbdf487478ae621
+PKG_SOURCE_URL:=https://github.com/weidai11/cryptopp
+PKG_MIRROR_HASH:=73d322fb7218c47e0aa4f0011232c9fb67d5b2504696ca9659706e46c42117b1
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=BSL-1.0
+PKG_LICENSE_FILES:=License.txt
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_LIBCRYPTOPP_TESTSUITE
@@ -23,9 +27,9 @@ include $(INCLUDE_DIR)/package.mk
 define Package/libcryptopp
 	SECTION:=libs
 	CATEGORY:=Libraries
-	DEPENDS:=+libstdcpp
 	TITLE:=C++ class library of cryptographic schemes
-	URL:=https://www.cryptopp.com/
+	URL:=https://cryptopp.com/
+	DEPENDS:=+libstdcpp
 endef
 
 define Package/libcryptopp/description
