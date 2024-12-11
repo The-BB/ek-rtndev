@@ -13,6 +13,6 @@ is not the case in Debian.
  			if (GetFileLength(path) <= 0)
  				sprintf(path, "/usr/share/mbrola/voices/%s", mbrola_voice);
 +#endif
- 		}
- 	}
- 	close_MBR();
+ 
+ 			// Show error message
+ 			if (GetFileLength(path) <= 0) {
