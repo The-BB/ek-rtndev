@@ -1,22 +1,23 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2009-2018 OpenWrt.org
-# Copyright (C) 2018-2022 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2018-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cgit
-PKG_VERSION:=1.2.3
-PKG_RELEASE:=3
+PKG_REAL_VERSION:=1.2.3
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=5258c297ba6fb604ae1415fbc19a3fe42457e49e
+PKG_SOURCE_DATE:=2024-08-02
+PKG_SOURCE_VERSION:=09d24d7cd0b7e85633f2f43808b12871bb209d69
 PKG_SOURCE_URL:=https://git.zx2c4.com/cgit
-PKG_MIRROR_HASH:=085c4c4b6f3669a65f54169d11b50e02068b80d9b3992722f7732d0e5f6217e2
+PKG_MIRROR_HASH:=f08cf654ab31d8cc3ed1a55ba85fa306b51d496d81a5282b59cfff5d57425257
 
+PKG_VERSION:=$(PKG_REAL_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+
+PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=GPL-2.0-or-later
 PKG_LICENSE_FILES:=COPYING
 
@@ -31,9 +32,10 @@ define Package/cgit
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=Version Control Systems
-	DEPENDS:=+libcharset @HAS_LUAJIT_ARCH +luajit +libopenssl +libpcre2 +zlib $(ICONV_DEPENDS) $(INTL_DEPENDS)
 	URL:=https://git.zx2c4.com/cgit/
-	MAINTAINER:=Troels Gram [https://github.com/tgram75]
+	DEPENDS:= \
+		+libcharset +libopenssl +libpcre2 +luajit +zlib \
+		@HAS_LUAJIT_ARCH $(ICONV_DEPENDS) $(INTL_DEPENDS)
 endef
 
 define Package/cgit/description
