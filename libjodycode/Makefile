@@ -5,13 +5,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libjodycode
-PKG_VERSION:=3.1
+PKG_VERSION:=3.1.1
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=e44699edc8915f65635d2fa1c9dcfac38b1784c7
-PKG_SOURCE_URL:=https://codeberg.org/jbruchon/libjodycode.git
-PKG_MIRROR_HASH:=7bce927e85787e63e73e4279cc9936a3b1f0e5f6da2b8ebea3ef4418142a4c3a
+PKG_SOURCE_VERSION:=v$(PKG_VERSION)
+PKG_SOURCE_URL:=https://codeberg.org/jbruchon/libjodycode
+PKG_MIRROR_HASH:=daa2ecb82269244b2932c12987b2aaa0517bf54ac2951d5ea4a55161f55fe9b1
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=MIT
+PKG_LICENSE_FILES:=LICENSE.txt
 
 PKG_INSTALL:=1
 
@@ -21,8 +25,7 @@ define Package/libjodycode
 	SECTION:=libs
 	CATEGORY:=Libraries
 	TITLE:=Jody Bruchon library
-	URL:=https://www.jodybruchon.com/software
-	MAINTAINER:=Entware team, https://entware.net
+	URL:=https://www.jodybruchon.com/software/
 	BUILDONLY:=1
 endef
 
