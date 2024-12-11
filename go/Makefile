@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=go
-PKG_VERSION:=1.23.3
+PKG_VERSION:=1.23.4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=go$(PKG_VERSION).src.tar.gz
@@ -13,7 +13,11 @@ PKG_SOURCE_URL:=\
 		https://dl.google.com/go/ \
                 https://mirrors.ustc.edu.cn/golang/ \
                 https://mirrors.nju.edu.cn/golang/
-PKG_HASH:=8d6a77332487557c6afa2421131b50f83db4ae3c579c3bc72e670ee1f6968599
+PKG_HASH:=ad345ac421e90814293a9699cca19dd5238251c3f687980bbcae28495b263531
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=BSD-3-Clause
+PKG_LICENSE_FILES:=LICENSE
 
 PKG_BUILD_PARALLEL:=1
 
@@ -27,7 +31,6 @@ define Package/go/Default
 	CATEGORY:=Languages
 	TITLE:=The Go Programming Language
 	URL:=https://golang.org/
-	MAINTAINER:=Entware team, https://entware.net
 	ALTERNATIVES:= \
 		100:/opt/sbin/go:/opt/bin/go/bin/go \
 		100:/opt/sbin/gofmt:/opt/bin/go/bin/gofmt
