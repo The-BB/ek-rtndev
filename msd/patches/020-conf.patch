@@ -1,26 +1,6 @@
---- a/conf/msd.conf
-+++ b/conf/msd.conf
-@@ -26,7 +26,7 @@ available.
- 
- <msd>
- 	<log>
--		<file>/root/msd/msd.log</file>
-+		<file>/opt/var/log/msd.log</file>
- 	</log>
- 
- 
 --- a/conf/msd_minimal.conf
 +++ b/conf/msd_minimal.conf
-@@ -26,7 +26,7 @@ available.
- 
- <msd>
- 	<log>
--		<file>/root/msd/msd.log</file>
-+		<file>/opt/var/log/msd.log</file>
- 	</log>
- 
- 
-@@ -131,8 +131,8 @@ available.
+@@ -126,8 +126,8 @@ available.
  
  
  	<channelList>

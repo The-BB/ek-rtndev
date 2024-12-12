@@ -1,6 +1,6 @@
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -26,7 +26,7 @@ option(ENABLE_FULL_DEBUG	"Build with all
+@@ -23,7 +23,7 @@ set(PACKAGE_TARNAME		"${PACKAGE_NAME}-${
  
  # Now CMAKE_INSTALL_PREFIX is a base prefix for everything.
  if (NOT CONFDIR)
@@ -9,7 +9,7 @@
  endif()
  
  if (NOT RUNDIR)
-@@ -234,9 +234,9 @@ add_custom_target(dist ${CMAKE_CURRENT_S
+@@ -251,9 +251,9 @@ add_custom_target(dist ${CMAKE_CURRENT_S
  ##################### INSTALLATION #####################################
  
  # Configs

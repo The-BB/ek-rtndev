@@ -1,20 +1,21 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2017-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2017-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=msd
-PKG_VERSION:=3.01.0
+PKG_VERSION:=3.2.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=e82bea960fc9f3a52c698721dc01c8fede468bd5
-PKG_SOURCE_URL:=https://github.com/rozhuk-im/msd.git
-PKG_MIRROR_HASH:=6ff00afaa8b37f2147e8ce73529df49a69cafa41fcd13ae8f670e36082de4f17
+PKG_SOURCE_VERSION:=2975b18a02cad4887d2032d0944bc2179fb0a560
+PKG_SOURCE_URL:=https://github.com/rozhuk-im/msd
+PKG_MIRROR_HASH:=499d488fdaaa2abbd9e78a022a65c98e74c9d24767a6ed8e85685d3c1982be61
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=BSD-2-Clause
+PKG_LICENSE_FILES:=LICENSE
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -22,13 +23,14 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/msd
 	SECTION:=multimedia
 	CATEGORY:=Multimedia
-	TITLE:=Multi Stream daemon
+	SUBMENU:=Streaming
+	TITLE:=program for IP TV streaming on the network via HTTP
 	URL:=http://www.netlab.linkpc.net/wiki/en:software:msd:index
 endef
 
 define Package/msd/description
- Multi stream daemon. Program for organizing IP TV
- streaming on the network via HTTP.
+ Multi stream daemon. Program for organizing IP TV streaming on the
+ network via HTTP.
 endef
 
 define Package/msd/conffiles
