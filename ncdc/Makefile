@@ -5,12 +5,16 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ncdc
-PKG_VERSION:=1.24
+PKG_VERSION:=1.24.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://dev.yorhel.nl/download
-PKG_HASH:=233510d5355fc72fdad3578ebc8ab35d1da95b21d2774990f3a1356b7112da1e
+PKG_SOURCE_URL:=https://dev.yorhel.nl/download
+PKG_HASH:=2a8ab9ad7d43f018fc73ba8babd689dfa44aba8cec53b88e4770185cb97778f7
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=MIT
+PKG_LICENSE_FILES:=COPYING
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -22,10 +26,9 @@ define Package/ncdc
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=P2P
-	TITLE:=ncdc is a modern and lightweight DC client
-	DEPENDS:=+libncursesw +bzip2 +libgnutls +libsqlite3 +glib2 $(ICONV_DEPENDS)
-	URL:=http://dev.yorhel.nl/ncdc
-	MAINTAINER:=Entware team, https://entware.net
+	TITLE:=NCurses Direct Connect client
+	URL:=https://dev.yorhel.nl/ncdc
+	DEPENDS:=+bzip2 +glib2 +libgnutls +libncursesw +libsqlite3 $(ICONV_DEPENDS)
 endef
 
 define Package/ncdc/description
