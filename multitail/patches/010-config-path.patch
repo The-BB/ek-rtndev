@@ -1,19 +1,11 @@
---- a/Makefile
-+++ b/Makefile
-@@ -9,14 +9,14 @@ DEBUG:=#XXX -g -D_DEBUG ###-pg -Wpedanti
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -139,7 +139,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
+         message(FATAL_ERROR "/usr/local/include/gnu/regex.h missing, did you install libgnuregex?")
+     endif()
+ else ()
+-    add_definitions(-DCONFIG_FILE=\"/etc/multitail.conf\")
++    add_definitions(-DCONFIG_FILE=\"/opt/etc/multitail.conf\")
+ endif()
  
- UTF8_SUPPORT:=yes
- DESTDIR=
--PREFIX=/usr/local
-+PREFIX=/opt
- BINDIR=$(PREFIX)/bin
- SHAREDIR=$(PREFIX)/share
- MANDIR=$(SHAREDIR)/man
- MAN1DIR=$(MANDIR)/man1
- DOCDIR=$(SHAREDIR)/doc/multitail-$(VERSION)
- 
--SYSCONFDIR=/etc
-+SYSCONFDIR=/opt/etc
- CONFIG_FILE=$(SYSCONFDIR)/multitail.conf
- CONFIG_DIR=$(SYSCONFDIR)/multitail
- 
+ # Set ``CURSES_NEED_NCURSES`` to ``TRUE`` before the

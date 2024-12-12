@@ -1,0 +1,20 @@
+--- a/config.c
++++ b/config.c
+@@ -1246,7 +1246,7 @@ void load_configfile_wrapper(char *confi
+ {
+ 	/* load configurationfile (if any) */
+ 	if (load_global_config) {
+-		DIR *dir = opendir("/etc/multitail/cfg.d");
++		DIR *dir = opendir("/opt/etc/multitail/cfg.d");
+ 		int path_max = find_path_max();
+ 		char *path = mymalloc(path_max + 1);
+ 
+@@ -1257,7 +1257,7 @@ void load_configfile_wrapper(char *confi
+ 			if (!de)
+ 				break;
+ 
+-			snprintf(path, path_max, "/etc/multitail/cfg.d/%s", de->d_name);
++			snprintf(path, path_max, "/opt/etc/multitail/cfg.d/%s", de->d_name);
+ 
+ 			do_load_config(-1, NULL, path);
+ 		}
