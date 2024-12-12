@@ -2,20 +2,23 @@
 #
 # Copyright (C) 2011-2024 Entware
 
-# Abandoned in 2016
-
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ltrace
-PKG_VERSION:=0.7.9
-PKG_RELEASE:=3
+PKG_REAL_VERSION:=0.7.91
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=82c66409c7a93ca6ad2e4563ef030dfb7e6df4d4
-PKG_SOURCE_URL:=https://github.com/dkogan/ltrace.git
-PKG_MIRROR_HASH:=4927e88d902a8ef22955411c5bb8f03fe8e71a5222460e8160e23c22612fc00d
+PKG_SOURCE_DATE:=2023-07-05
+PKG_SOURCE_VERSION:=8eabf684ba6b11ae7a1a843aca3c0657c6329d73
+PKG_SOURCE_URL:=https://gitlab.com/cespedes/ltrace
+PKG_MIRROR_HASH:=afbd764a2474d3bee6f1a2ef2aa5bcda4b28d21e663f6a33ed65519ecac24db9
 
-PKG_LICENSE:=GPL-2.0-only
+PKG_VERSION:=$(PKG_REAL_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-2.0-or-later
+PKG_LICENSE_FILES:=COPYING
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -30,15 +33,15 @@ include $(INCLUDE_DIR)/nls.mk
 define Package/ltrace
   SECTION:=devel
   CATEGORY:=Development
-  TITLE:=tracks runtime library calls in dynamically linked programs
+  TITLE:=debugging program
   URL:=https://ltrace.org/
   DEPENDS:=+libelf +libstdcpp +LTRACE_ELFUTILS:libdw +LTRACE_LIBUNWIND:libunwind
 endef
 
 define Package/ltrace/description
- ltrace intercepts and records dynamic library calls which are called
-by an executed process and the signals received by that process. It 
-can also intercept and print the system calls executed by the program.
+ ltrace intercepts and records dynamic library calls which are
+ called by an executed process and the signals received by that process. It
+ can also intercept and print the system calls executed by the program.
 endef
 
 define Package/ltrace/config
