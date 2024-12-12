@@ -1,20 +1,21 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2023 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libmtp
-PKG_VERSION:=1.1.21
+PKG_VERSION:=1.1.22
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=3b417127bf92c660053dea7d106021dc805d0f73
-PKG_SOURCE_URL:=https://github.com/libmtp/libmtp.git
-PKG_MIRROR_HASH:=b627ebe8bcc06d4788e9b41fb123cc26aef980d3ced0e7e334911bdefab5f8c7
+PKG_SOURCE_VERSION:=v$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/libmtp/libmtp
+PKG_MIRROR_HASH:=80a9e54597ce734bc447fb177d0d5c89fcb4f3a80c2d489242ea791966fbfaa3
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=LGPL-2.1-only
+PKG_LICENSE_FILES:=COPYING
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -24,36 +25,34 @@ include $(INCLUDE_DIR)/nls.mk
 
 define Package/libmtp/Default
 	SUBMENU:=Filesystem
-	URL:=$(PKG_SOURCE_URL)
-	MAINTAINER:=Entware team, https://entware.net
+	URL:=https://libmtp.sourceforge.net/
 endef
 
 define Package/libmtp
 	$(call Package/libmtp/Default)
 	SECTION:=libs
 	CATEGORY:=Libraries
-	DEPENDS:=+libgcrypt +libusb-1.0 $(ICONV_DEPENDS)
 	TITLE:=a library to access MTP devices
+	DEPENDS:=+libgcrypt +libusb-1.0 $(ICONV_DEPENDS)
 endef
 
 define Package/libmtp-utils
 	$(call Package/libmtp/Default)
 	SECTION:=utils
 	CATEGORY:=Utilities
-	DEPENDS:=+libmtp
 	TITLE:=libmtp utilities
+	DEPENDS:=+libmtp
 endef
 
 define Package/libmtp/description
- libmtp implements an MTP initiator, which means it initiate
- MTP sessions with devices. The devices responding are known
- as MTP responders. libmtp runs on something with a USB host
- controller interface, using libusb to access the host controller.
+ libmtp implements an MTP initiator, which means it initiate MTP
+ sessions with devices. The devices responding are known as MTP responders.
+ libmtp runs on something with a USB host controller interface, using libusb
+ to access the host controller.
 endef
 
 define Package/libmtp-utils/description
- nfs-ls, nfs-cat, nfs-cp console usersapce utilities for accessing NFS shares
- over a network.
+ Media Transfer Protocol (MTP) library tools.
 endef
 
 CONFIGURE_ARGS += \
@@ -63,9 +62,9 @@ CONFIGURE_ARGS += \
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
-	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include
+	$(CP) $(PKG_INSTALL_DIR)/opt/include/libmtp.h $(1)/opt/include
 	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libmtp.so* $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libmtp.{a,so*} $(1)/opt/lib
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libmtp.pc $(1)/opt/lib/pkgconfig
 endef
 

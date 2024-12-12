@@ -11,25 +11,25 @@ Last-Update: 2020-09-30
 
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -11,6 +11,7 @@ EXTRA_DIST=libmtp.pc libmtp.sh COPYING R
+@@ -11,6 +11,7 @@ DISTCHECK_CONFIGURE_FLAGS = --with-udev-
+ # This stuff only makes sense on Linux so only
+ # build and ship it on Linux.
  if USE_LINUX
- udevrulesdir=@UDEV@/rules.d
- hwdbdir=@UDEV@/hwdb.d
 +if ENABLE_CONFIGFILES
- udevrules_DATA=@UDEV_RULES@
- hwdb_DATA=69-libmtp.hwdb
- noinst_DATA=libmtp.usermap libmtp.fdi
-@@ -26,6 +27,7 @@ libmtp.fdi: util/mtp-hotplug
+ MTP_HOTPLUG = util/mtp-hotplug
  
- $(hwdb_DATA): util/mtp-hotplug
- 	util/mtp-hotplug -w > $(hwdb_DATA)
+ udevrules_DATA=@UDEV_RULES@
+@@ -43,6 +44,7 @@ libmtp.usermap: $(MTP_HOTPLUG)
+ noinst_DATA = libmtp.fdi libmtp.usermap
+ GENERATED += libmtp.fdi libmtp.usermap
+ endif
 +endif
  
- CLEANFILES = libmtp.usermap @UDEV_RULES@ libmtp.fdi libmtp.hwdb
- endif
+ no_DIST = $(GENERATED)
+ CLEANFILES = $(GENERATED)
 --- a/configure.ac
 +++ b/configure.ac
-@@ -14,6 +14,12 @@ AC_LIBTOOL_WIN32_DLL
+@@ -15,6 +15,12 @@ AC_LIBTOOL_WIN32_DLL
  AC_PROG_LIBTOOL
  AM_ICONV
  
