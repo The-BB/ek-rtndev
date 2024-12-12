@@ -1,0 +1,39 @@
+--- a/libfuse/Makefile
++++ b/libfuse/Makefile
+@@ -22,12 +22,12 @@ LTO_FLAGS :=
+ endif
+ 
+ DESTDIR       =
+-PREFIX        = /usr/local
++PREFIX        = /opt
+ EXEC_PREFIX   = $(PREFIX)
+ DATAROOTDIR   = $(PREFIX)/share
+ DATADIR       = $(DATAROOTDIR)
+ BINDIR        = $(EXEC_PREFIX)/bin
+-SBINDIR       = /sbin
++SBINDIR       = $(EXEC_PREFIX)/sbin
+ MANDIR        = $(DATAROOTDIR)/man
+ MAN1DIR       = $(MANDIR)/man1
+ 
+@@ -136,8 +136,8 @@ strip:
+ install-utils: mergerfs-fusermount mount.mergerfs strip
+ 	install -D build/mergerfs-fusermount "$(INSTALLBINDIR)/mergerfs-fusermount"
+ 	install -D build/mount.mergerfs "$(INSTALLSBINDIR)/mount.mergerfs"
+-	chown root "$(INSTALLBINDIR)/mergerfs-fusermount"
+-	chmod u+s "$(INSTALLBINDIR)/mergerfs-fusermount"
++#	chown root "$(INSTALLBINDIR)/mergerfs-fusermount"
++#	chmod u+s "$(INSTALLBINDIR)/mergerfs-fusermount"
+ 
+ install: $(INSTALLUTILS)
+ 
+--- a/Makefile
++++ b/Makefile
+@@ -98,7 +98,7 @@ LDFLAGS := \
+ 
+ # https://www.gnu.org/prep/standards/html_node/Directory-Variables.html
+ DESTDIR       =
+-PREFIX        = /usr/local
++PREFIX        = /opt
+ EXEC_PREFIX   = $(PREFIX)
+ DATAROOTDIR   = $(PREFIX)/share
+ DATADIR       = $(DATAROOTDIR)
