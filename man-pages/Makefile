@@ -1,27 +1,25 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2017-2024 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=man-pages
-PKG_VERSION:=6.9
-PKG_RELEASE:=2
+PKG_VERSION:=6.9.1
+PKG_RELEASE:=1
 
-PKG_SOURCE_URL:=https://www.kernel.org/pub/linux/docs/man-pages
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_HASH:=9508887dccbb7e77e42532a0bb7af18400769c78a5b9d13b2f982e579e0e2752
+PKG_SOURCE_URL:=https://www.kernel.org/pub/linux/docs/man-pages
+PKG_HASH:=3ae3f8ad97487d2c1b14258231d97d03b4e569b915377f6dd4f6be7141c57ee0
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/man-pages
 	SECTION:=utils
 	CATEGORY:=Utilities
-	TITLE:=unix manual pages
+	TITLE:=Linux man-pages
 	DEPENDS:=+man-db
+	URL:=http://www.kernel.org/pub/linux/docs/man-pages
 	MAINTAINER:=Entware team, https://entware.net
 endef
 
