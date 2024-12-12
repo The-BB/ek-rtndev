@@ -5,14 +5,16 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=man-db
-PKG_VERSION:=2.12.1
-PKG_RELEASE:=2
+PKG_VERSION:=2.13.0
+PKG_RELEASE:=1
 
-PKG_SOURCE_URL:=@SAVANNAH/man-db
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_HASH:=ddee249daeb78cf92bab794ccd069cc8b575992265ea20e239e887156e880265
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://gitlab.com/man-db/man-db/-/archive/$(PKG_VERSION)
+PKG_HASH:=adb430f71afd46ab5a5743d25cf966a3af9742bf40af072f90918a991dfae8b8
 
-PKG_LICENSE:=GPL-2.0-or-later
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-3.0-or-later
+PKG_LICENSE_FILES:=COPYING
 
 PKG_INSTALL:=1
 
@@ -22,21 +24,22 @@ include $(INCLUDE_DIR)/nls.mk
 define Package/man-db
 	SECTION:=utils
 	CATEGORY:=Utilities
-	TITLE:=unix manual page reader
-	DEPENDS:=+libgdbm +libpipeline +zlib +groff +less $(ICONV_DEPENDS) $(INTL_DEPENDS)
-	MAINTAINER:=Entware team, https://entware.net
+	TITLE:=Tools for reading manual pages
+	URL:=https://man-db.gitlab.io/man-db/
+	DEPENDS:= \
+		+groff +less +libgdbm +libpipeline +libunistring +zlib \
+		$(ICONV_DEPENDS) $(INTL_DEPENDS)
 endef
 
 define Package/man-db/description
- This package provides the man command, the primary way of examining the help
- files (manual pages).
+ This package provides the man command, the primary way of examining
+ the help files (manual pages).
 endef
 
 CONFIGURE_ARGS += \
 	--mandir=/opt/share/man \
 	--disable-setuid \
 	--with-device=latin1 \
-	--enable-mb-groff \
 	--with-pager=less \
 	--disable-cache-owner \
 	--disable-manual \
@@ -49,10 +52,15 @@ define Package/man-db/conffiles
 /opt/etc/man_db.conf
 endef
 
+define Build/Prepare
+	$(Build/Prepare/Default)
+	$(if $(QUILT),,(cd $(PKG_BUILD_DIR) && ./bootstrap))
+endef
+
 define Package/man-db/install
 	$(INSTALL_DIR) $(1)/opt/{bin,etc,lib/man-db,sbin,share,var/cache/man}
 	$(INSTALL_BIN) \
-	    $(PKG_INSTALL_DIR)/opt/bin/{catman,lexgrog,man,mandb,manpath,whatis} \
+	    $(PKG_INSTALL_DIR)/opt/bin/{catman,lexgrog,man{,db,path,-recode},whatis} \
 	    $(1)/opt/bin
 	ln -sf whatis $(1)/opt/bin/apropos
 	$(INSTALL_CONF) ./files/man_db.conf $(1)/opt/etc
