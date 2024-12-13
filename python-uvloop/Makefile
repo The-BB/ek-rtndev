@@ -4,13 +4,14 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=python3-uvloop
-PKG_VERSION:=0.19.0
-PKG_RELEASE:=2
+PKG_NAME:=uvloop
+PKG_VERSION:=0.21.0
+PKG_RELEASE:=1
 
-PYPI_NAME:=uvloop
-PKG_HASH:=0246f4fd1bf2bf702e06b0d45ee91677ee5c31242f39aab4ea6fe0c51aedd0fd
+PYPI_NAME:=$(PKG_NAME)
+PKG_HASH:=3bf12b0fda68447806a7ad847bfa591613177275d35b6724b1ee573faa3704e3
 
+PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
 
@@ -24,10 +25,11 @@ define Package/python3-uvloop
 	SECTION:=lang
 	CATEGORY:=Languages
 	SUBMENU:=Python
-	DEPENDS:=+libuv +python3-asyncio +python3-logging +python3-openssl +python3-unittest
-	TITLE:=drop-in replacement of the built-in asyncio event loop
+	TITLE:=fast implementation of asyncio event loop on top of libuv
 	URL:=http://github.com/MagicStack/uvloop
-	MAINTAINER:=Entware team, https://entware.net
+	DEPENDS:= \
+		+libuv +python3-asyncio +python3-logging +python3-openssl \
+		+python3-unittest
 endef
 
 define Package/python3-uvloop/description
