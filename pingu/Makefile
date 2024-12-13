@@ -1,19 +1,21 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2011-2024 Entware
-#
-# Abandoned in 2018
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pingu
-PKG_VERSION:=1.5
+PKG_VERSION:=1.5.1
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=8c9b53cf3ecd1ae33291a1a5640b7b60e85f2601
-PKG_SOURCE_URL:=https://github.com/ncopa/pingu.git
-PKG_MIRROR_HASH:=8220c5abc5e5c43b16ae176913ebe6ec4bfc15befadc84844b5f697f1b89c524
+PKG_SOURCE_VERSION:=v$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/ncopa/pingu
+PKG_MIRROR_HASH:=564770cfc630584ce81900a7ce942331bb3dda3150a9d12347413c6adb2ddba3
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=
+PKG_LICENSE_FILES:=
 
 PKG_INSTALL:=1
 
@@ -22,17 +24,16 @@ include $(INCLUDE_DIR)/package.mk
 define Package/pingu
 	SECTION:=net
 	CATEGORY:=Network
-	DEPENDS:=+libev
 	TITLE:=policy routing daemon with failover
 	URL:=$(PKG_SOURCE_URL)
-	MAINTAINER:=Entware team, https://entware.net
+	DEPENDS:=+libev
 endef
 
 define Package/pingu/description
  Pingu is a daemon that takes care of policy routing and fail-over
  in multi ISP setups. Support for DHCP, PPP, ISP failover, Load-balancing
- (nexthop), optional route rule based on fwmark, run script when ISP
- goes up/down.
+ (nexthop), optional route rule based on fwmark, run script when ISP goes
+ up/down.
 endef
 
 CONFIGURE_ARGS:= \
