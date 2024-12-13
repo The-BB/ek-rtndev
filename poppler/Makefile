@@ -1,21 +1,24 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2013 Francisco Borges
-# Copyright (C) 2011-2023 Entware
+# Copyright (C) 2011-2024 Entware
 
 # Makefile taken from http://github.com/FranciscoBorges/openwrt-printing-packages
 # 21.12.0+ requires GCC 9.4.0
-# XXX boost bumped
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=poppler
-PKG_VERSION:=21.08.0
-PKG_RELEASE:=6
+PKG_VERSION:=24.12.0
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://poppler.freedesktop.org
-PKG_HASH:=e9cf5dc5964bce4bb0264d1c4f8122706c910588b421cfc30abc97d6b23e602d
+PKG_HASH:=1cf374c3146f3f685d9257701bf0c2866c61d6c202c14d1f5c01a1f3a089028a
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-2.0-or-later
+PKG_LICENSE_FILES:=COPYING COPYING3
 
 PKG_BUILD_DEPENDS:=boost
 
@@ -25,22 +28,25 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 include $(INCLUDE_DIR)/cmake.mk
 
+define Package/poppler/Default
+	TITLE:=PDF rendering
+	URL:=https://poppler.freedesktop.org/
+endef
+
 define Package/libpoppler
+	$(call Package/poppler/Default)
 	SECTION:=libs
 	CATEGORY:=Libraries
-	DEPENDS:=+fontconfig +lcms +libpng +libtiff +libstdcpp $(ICONV_DEPENDS)
-	TITLE:=Poppler PDF rendering library
-	URL:=https://poppler.freedesktop.org/
-	MAINTAINER:=Entware team, https://entware.net
+	TITLE+= library
+	DEPENDS:=+fontconfig +lcms +libpng +libstdcpp +libtiff $(ICONV_DEPENDS)
 endef
 
 define Package/poppler-utils
+	$(call Package/poppler/Default)
 	SECTION:=utils
 	CATEGORY:=Utilities
+	TITLE+= command line utils
 	DEPENDS:=+libpoppler
-	TITLE:=Poppler PDF rendering utilities
-	URL:=https://poppler.freedesktop.org/
-	MAINTAINER:=Entware team, https://entware.net
 endef
 
 define Package/libpoppler/description
@@ -48,21 +54,27 @@ define Package/libpoppler/description
 endef
 
 define Package/poppler-utils/description
- Poppler is a PDF rendering utilities based on the xpdf-3.0.
+ Poppler is a PDF rendering command line utils.
 endef
 
-TARGET_CFLAGS += -pthread
+TARGET_CXXFLAGS += -pthread
 TARGET_LDFLAGS += -lpthread
 
 CMAKE_OPTIONS += \
+	-DBUILD_CPP_TESTS=OFF \
+	-DBUILD_GTK_TESTS=OFF \
+	-DBUILD_MANUAL_TESTS=OFF \
+	-DBUILD_QT5_TESTS=OFF \
+	-DBUILD_QT6_TESTS=OFF \
+	-DENABLE_GPGME=OFF \
+	-DENABLE_GOBJECT_INTROSPECTION=OFF \
 	-DENABLE_LIBCURL=OFF \
 	-DENABLE_LIBOPENJPEG=unmaintained \
+	-DENABLE_NSS3=OFF \
 	-DENABLE_QT5=OFF \
+	-DENABLE_QT6=OFF \
 	-DENABLE_UNSTABLE_API_ABI_HEADERS=ON \
-	-DENABLE_XPDF_HEADERS=ON \
-	-DICONV_INCLUDE_DIR=$(ICONV_PREFIX)/include \
-	-DICONV_SECOND_ARGUMENT_IS_CONST=0 \
-	-DWITH_NSS3=OFF
+	-DENABLE_XPDF_HEADERS=ON
 
 define Package/libpoppler/install
 	$(INSTALL_DIR) $(1)/opt/lib
