@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pwnat
-PKG_VERSION:=0.3.1
+PKG_REAL_VERSION:=0.3.1
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
@@ -14,7 +14,11 @@ PKG_SOURCE_VERSION:=c2d3bf4b41fed65ea930ecb345eabe8453310eea
 PKG_SOURCE_URL:=https://github.com/samyk/pwnat
 PKG_MIRROR_HASH:=2d57cc63d85c7d9789a79dc14955f6b09b265b4c2562d0c500492cb1cd93352d
 
-PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+PKG_VERSION:=$(PKG_REAL_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-3.0-only
+PKG_LICENSE_FILES:=COPYING-pingtunnel
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -24,7 +28,6 @@ define Package/pwnat
 	SUBMENU:=Firewall
 	TITLE:=NAT traversal tool
 	URL:=https://samy.pl/pwnat/
-	MAINTAINER:=Entware team, https://entware.net
 endef
 
 define Package/pwnat/description
@@ -35,7 +38,7 @@ endef
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
-	mkdir $(PKG_BUILD_DIR)/obj
+	$(INSTALL_DIR) $(PKG_BUILD_DIR)/obj
 endef
 
 define Package/pwnat/install
