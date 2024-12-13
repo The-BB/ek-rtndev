@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ntopng
-PKG_VERSION:=6.0
+PKG_VERSION:=6.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/ntop/ntopng/tar.gz/refs/tags/$(PKG_VERSION)?
-PKG_HASH:=937e3dea081f68cb8d85e0a925f5277f6a358d65ba45e90e215f0fc36d2401ac
+PKG_HASH:=de6ef8d468be3272bce27719ab06d5b7eed6e4a33872528f64c930a81000ccd1
 
 PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=GPL-3.0-or-later
