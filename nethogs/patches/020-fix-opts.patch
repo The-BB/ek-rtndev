@@ -1,0 +1,18 @@
+if MESON_ARGS += -Denable-libnethogs=disabled
+
+.../meson.build:44:19: ERROR: Unknown variable "libnethogs".
+
+---
+
+--- a/meson.build
++++ b/meson.build
+@@ -40,7 +40,9 @@ subdir('src')
+ #############################
+ pkgconfig = import('pkgconfig')
+ pkgconfig_install_dir = join_paths(get_option('libdir'), 'pkgconfig')
++if get_option('enable-libnethogs').enabled()
+ pkgconfig.generate(libnethogs,
+                    requires: ['libpcap'],
+                    version: version
+                    )
++endif

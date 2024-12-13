@@ -1,0 +1,18 @@
+Run-time dependency ncurses++ found: NO (tried pkgconfig and cmake)
+
+.../src/meson.build:27:17: ERROR: Dependency "ncurses++" not found, tried pkgconfig and cmake
+---
+
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -24,8 +24,8 @@ if get_option('enable-nethogs-app').enab
+     ])
+   ]
+ 
+-  cursespp_dep = dependency('ncurses++', required: true)
+-  curses_dep = dependency('ncurses', required: true)
++  cursespp_dep = dependency('ncurses++w', required: true)
++  curses_dep = dependency('ncursesw', required: true)
+ 
+   executable('nethogs',
+     [app_sources + sources],
