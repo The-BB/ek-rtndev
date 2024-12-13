@@ -2,29 +2,33 @@
 #
 # Copyright (C) 2011-2024 Entware
 
+# switch to using ps3netsrv_*.zip archive (3.5 MB vs 100+ MB)
+
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ps3netsrv
-PKG_VERSION:=1.47.46
+PKG_REAL_VERSION:=1.47.47h
+PKG_VERSION:=20240709
 PKG_RELEASE:=1
 
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=72425f86504d6aac3f5d11da41c5e2d4ed77317b
-PKG_SOURCE_URL:=https://github.com/aldostools/webMAN-MOD.git
-PKG_MIRROR_HASH:=a8e099a9ee36eb87678b69ee5233757deea92983da334876baf6a5f3cd21a4cc
+PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).zip
+PKG_SOURCE_URL:=https://github.com/aldostools/webMAN-MOD/releases/download/$(PKG_REAL_VERSION)
+PKG_HASH:=b3da1d4ce4bf4a5404d76d56f12beca97d5dc213686d906f66517f627a062d3d
+
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(basename $(PKG_SOURCE))
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-3.0-only
+PKG_LICENSE_FILES:=LICENSE.TXT
 
 include $(INCLUDE_DIR)/package.mk
-
-MAKE_PATH:=_Projects_/$(PKG_NAME)
-MAKE_FLAGS+=-f Makefile.linux
 
 define Package/ps3netsrv/Default
 	SECTION:=net
 	CATEGORY:=Network
-	DEPENDS:=+libstdcpp
 	TITLE:=C++ implementation of the ps3netsrv server
-	URL:=$(PKG_SOURCE_URL)
-	MAINTAINER:=Entware team, https://entware.net
+	URL:=https://aldostools.github.io/webMAN-MOD/
+	DEPENDS:=+libstdcpp
 endef
 
 define Package/ps3netsrv
@@ -40,9 +44,15 @@ $(call Package/ps3netsrv/Default)
 	DEPENDS+=+libmbedtls
 endef
 
-define Package/ps3netsrv/description/Default
- C++ implementation of the ps3netsrv server.
+define Package/ps3netsrv/description
+ ps3netsrv is a server application used to stream content from a
+ remote server to the PS3.
 endef
+
+Package/ps3netsrv-mbedtls/description=$(Package/ps3netsrv/description)
+
+MAKE_PATH:=$(PKG_NAME)
+MAKE_FLAGS+=-f Makefile.linux
 
 ifeq ($(BUILD_VARIANT),nossl)
 	TARGET_CFLAGS += -DNOSSL
