@@ -7,16 +7,20 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=telegram-cli
-PKG_VERSION:=1.3.1
+PKG_REAL_VERSION:=1.3.1
 PKG_RELEASE:=3
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2016-03-23
 PKG_SOURCE_VERSION:=6547c0b21b977b327b3c5e8142963f4bc246187a
-PKG_SOURCE_URL:=https://github.com/vysheng/tg.git
+PKG_SOURCE_URL:=https://github.com/vysheng/tg
 PKG_MIRROR_HASH:=4f632a38fce08b981253358eb5fab565e02b647bbda3b715924b23cee74cefd2
 
-PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+PKG_VERSION:=$(PKG_REAL_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-2.0-only
+PKG_LICENSE_FILES:=LICENSE
 
 PKG_REMOVE_FILES:=ax_lua.m4
 PKG_FIXUP:=autoreconf
@@ -30,11 +34,11 @@ define Package/telegram-cli
 	SUBMENU:=Instant Messaging
 	SECTION:=net
 	CATEGORY:=Network
-	DEPENDS:=+libconfig +libopenssl +libreadline +libevent2 +jansson \
-	    +libpthread +libncursesw +liblua
 	TITLE:=CLI for Telegram
 	URL:=$(PKG_SOURCE_URL)
-	MAINTAINER:=Entware team, https://entware.net
+	DEPENDS:= \
+		+jansson +libconfig +libevent2 +liblua +libncursesw \
+		+libopenssl +libreadline
 endef
 
 define Package/telegram-cli/description
