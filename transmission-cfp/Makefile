@@ -5,15 +5,19 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=transmission-cfp
-PKG_VERSION:=2.77plus14734-19
+PKG_REAL_VERSION:=2.77plus14734-19
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=8106a8571e54385351de0a92d15b3257abc12f72
+PKG_SOURCE_VERSION:=$(PKG_REAL_VERSION)
 PKG_SOURCE_URL:=https://github.com/cfpp2p/transmission
 PKG_MIRROR_HASH:=60fbed786d95e4ed37b5cb2bc0d580d2eb14e76c6ebb6a9a57d14c7912665baa
 
-PKG_VERSION:=$(subst plus,.,$(subst -,.,$(PKG_VERSION)))
+PKG_VERSION:=$(subst plus,.,$(subst -,.,$(PKG_REAL_VERSION)))
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-2.0-only MIT
+PKG_LICENSE_FILES:=COPYING
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -26,25 +30,22 @@ define Package/transmission-cfp/Default
 	CATEGORY:=Network
 	TITLE:=BitTorrent client
 	URL:=https://github.com/cfpp2p/transmission
-	MAINTAINER:=Entware team, https://entware.net
+	DEPENDS:=+libcurl +libevent2 +zlib
 endef
 
 define Package/transmission-cfp-daemon
 	$(call Package/transmission-cfp/Default)
 	TITLE+= (daemon)
-	DEPENDS:=+libcurl +libevent2 +zlib
 endef
 
 define Package/transmission-cfp-cli
 	$(call Package/transmission-cfp/Default)
 	TITLE+= (cli)
-	DEPENDS:=+libcurl +libevent2 +zlib
 endef
 
 define Package/transmission-cfp-remote
 	$(call Package/transmission-cfp/Default)
 	TITLE+= (remote control utility)
-	DEPENDS:=+libcurl +libevent2 +zlib
 endef
 
 define Package/transmission-cfp-web
@@ -55,9 +56,8 @@ endef
 
 define Package/transmission-cfp-daemon/description
  Transmission is a simple BitTorrent client.
- It features a very simple, intuitive interface
- on top on an efficient, cross-platform back-end.
- This package contains the daemon itself.
+ It features a very simple, intuitive interface on top on an efficient,
+ cross-platform back-end. This package contains the daemon itself.
 endef
 
 define Package/transmission-cfp-cli/description
