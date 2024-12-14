@@ -7,25 +7,28 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=zork
-PKG_VERSION:=1.0
+PKG_REAL_VERSION:=1.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2018-01-31
 PKG_SOURCE_VERSION:=95cd009d235ea921b1c1f70e1a2f6b9e335aa37c
-PKG_SOURCE_URL:=https://github.com/brhamon/zork.git
+PKG_SOURCE_URL:=https://github.com/brhamon/zork
 PKG_MIRROR_HASH:=7cdbebfce2641eca9f11f64c2c8b24a6b1b1edb2678a85a09d70f897c93d417a
 
-PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+PKG_VERSION:=$(PKG_REAL_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=
+PKG_LICENSE_FILES:=
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/zork
 	SECTION:=games
 	CATEGORY:=Games
-	TITLE:=Zork (also named as Dungeon) is a text adventure game
+	TITLE:=text adventure game (also named as Dungeon)
 	URL:=http://richelbilderbeek.nl/GameZork.htm
-	MAINTAINER:=Entware team, https://entware.net
 endef
 
 define Package/zork/description
