@@ -5,35 +5,35 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xupnpd2
-PKG_VERSION:=2.0
+PKG_REAL_VERSION:=2.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2023-12-15
 PKG_SOURCE_VERSION:=9dc123d7e034b338ef5824c390d1b4ae8b2cf639
-PKG_SOURCE_URL:=https://github.com/clark15b/xupnpd2.git
+PKG_SOURCE_URL:=https://github.com/clark15b/xupnpd2
 PKG_MIRROR_HASH:=bb6524c547ce6751fcb5ce476be396f25e35fd7c18c7c1dd987d0a94c588baca
 
-PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+PKG_VERSION:=$(PKG_REAL_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-2.0-only
+PKG_LICENSE_FILES:=LICENSE
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/xupnpd2
 	SECTION:=multimedia
 	CATEGORY:=Multimedia
-	DEPENDS:=+libsqlite3 +liblua5.3 +libuuid +libstdcpp +libopenssl
-	TITLE:=eXtensible UPnP agent
+	TITLE:=eXtensible UPnP agent v.2
 	URL:=https://github.com/clark15b/xupnpd2
-	MAINTAINER:=Entware team, https://entware.net
+	DEPENDS:=+liblua5.3 +libopenssl +libsqlite3 +libstdcpp +libuuid
 endef
 
 define Package/xupnpd2/description
- This program is a light DLNA Media Server which provides ContentDirectory:1
- service for sharing IPTV unicast streams over local area network (with udpxy
- for multicast to HTTP unicast conversion). The program shares UTF8-encoded M3U
- playlists with links over local area network as content of the directory.
- You can watch HDTV broadcasts (multicast or unicast) and listen Internet
- Radio in IP network without transcoding and PC.
+ Xupnpd2 is a complete cross-platform media server with the
+ ability to broadcast IPTV and OTT into local network, as well as video,
+ photos and music from the home archive to any a DLNA-compatible device.
 endef
 
 
