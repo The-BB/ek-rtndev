@@ -5,11 +5,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=setproctitle
-PKG_VERSION:=1.3.3
-PKG_RELEASE:=2
+PKG_VERSION:=1.3.4
+PKG_RELEASE:=1
 
 PYPI_NAME:=setproctitle
-PKG_HASH:=c913e151e7ea01567837ff037a23ca8740192880198b7fbb90b16d181607caae
+PKG_HASH:=3b40d32a3e1f04e94231ed6dfee0da9e43b4f9c6b5450d53e6dd7754c34e0c50
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=BSD-3-Clause
+PKG_LICENSE_FILES:=COPYRIGHT
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
@@ -19,10 +23,9 @@ define Package/python3-setproctitle
 	SECTION:=lang
 	CATEGORY:=Languages
 	SUBMENU:=Python
-	DEPENDS:=+python3
 	TITLE:=A Python module to customize the process title
 	URL:=https://github.com/dvarrazzo/py-setproctitle
-	MAINTAINER:=Entware team, https://entware.net
+	DEPENDS:=+python3-logging
 endef
 
 define Package/python3-setproctitle/description
