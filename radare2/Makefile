@@ -5,14 +5,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=radare2
-PKG_VERSION:=5.9.2
-PKG_RELEASE:=2
-
+PKG_VERSION:=5.9.8
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=aea5c93a8f5a6ed360ea21d6a4e36f00accb8b7d
-PKG_SOURCE_URL:=https://github.com/radareorg/radare2.git
-PKG_MIRROR_HASH:=12d71d2122c2da7f04b6c08d886a67b8c35420a6408f877def6716380cb8203b
+PKG_SOURCE_VERSION:=$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/radareorg/radare2
+PKG_MIRROR_HASH:=7484ac97a82afbd97a833196f197fbf84dc04ae2388887db744eaa59c2e37eac
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-3.0-only LGPL-3.0-only
+PKG_LICENSE_FILES:=COPYING COPYING.LESSER
 
 PKG_BUILD_DEPENDS:=python3/host
 
@@ -22,10 +25,9 @@ include $(INCLUDE_DIR)/meson.mk
 define Package/radare2
 	SECTION:=devel
 	CATEGORY:=Development
-	DEPENDS:=+libuv
 	TITLE:=reverse engineering framework
 	URL:=https://www.radare.org/
-	MAINTAINER:=Entware team, https://entware.net
+	DEPENDS:=+libuv
 endef
 
 define Package/radare2/description
