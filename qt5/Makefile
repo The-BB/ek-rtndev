@@ -9,13 +9,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qt5
-PKG_VERSION:=5.15.14
+PKG_VERSION:=5.15.16
 PKG_RELEASE:=1
 
+PKG_VERSION_MAJOR:=$(word 1,$(subst ., ,$(PKG_VERSION))).$(word 2,$(subst ., ,$(PKG_VERSION)))
+
 PKG_SOURCE:=qt-everywhere-opensource-src-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=https://ftp.fau.de/qtproject/archive/qt/5.15/$(PKG_VERSION)/single \
-	http://download.qt-project.org/archive/qt/5.15/$(PKG_VERSION)/single
-PKG_HASH:=fdd3a4f197d2c800ee0085c721f4bef60951cbda9e9c46e525d1412f74264ed7
+PKG_SOURCE_URL:=https://ftp.fau.de/qtproject/archive/qt/$(PKG_VERSION_MAJOR)/$(PKG_VERSION)/single \
+		http://download.qt-project.org/archive/qt/$(PKG_VERSION_MAJOR)/$(PKG_VERSION)/single
+PKG_HASH:=efa99827027782974356aceff8a52bd3d2a8a93a54dd0db4cca41b5e35f1041c
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/qt-everywhere-src-$(PKG_VERSION)
 
@@ -24,16 +26,6 @@ PKG_BUILD_FLAGS:=no-mips16
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
-
-ifndef CONFIG_USE_GLIBC
-# not using sstrip here as this screw up the .so's somehow
-STRIP:=/bin/true
-RSTRIP:= \
-	NM="$(TOOLCHAIN_DIR)/bin/$(TARGET_CROSS)nm" \
-	STRIP="$(STRIP)" \
-	STRIP_KMOD="$(STRIP)" \
-	$(SCRIPT_DIR)/rstrip.sh
-endif
 
 define Package/qt5/Default
 	SECTION:=libs
