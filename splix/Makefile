@@ -1,21 +1,25 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+
 # Abandoned in 2013
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=splix
-PKG_VERSION:=2.0.0
-PKG_RELEASE:=2
+PKG_REAL_VERSION:=2.0.0
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=svn
 PKG_SOURCE_VERSION:=315
 PKG_SOURCE_URL:=https://svn.code.sf.net/p/splix/code/splix
-PKG_MIRROR_HASH:=aaf4c18e4f44d641c4a13c8944e8339299848c47303234cb01f49e0585aa118a
+PKG_MIRROR_HASH:=70cb02ff69b58ca948ccda8d8721f3ed5e9b4b3ec756b52e2bd064961489b736
+
+PKG_VERSION:=$(PKG_REAL_VERSION)_svn~$(PKG_SOURCE_VERSION)
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-2.0-only
+PKG_LICENSE_FILES:=COPYING
 
 PKG_INSTALL:=1
 
@@ -25,10 +29,9 @@ define Package/splix
 	SECTION:=utils
 	CATEGORY:=Utilities
 	SUBMENU:=Printing
-	DEPENDS:=+cups +libjbig
 	TITLE:=Samsung CUPS drivers
 	URL:=http://splix.ap2c.org/
-	MAINTAINER:=Entware team, https://entware.net
+	DEPENDS:=+cups +libjbig
 endef
 
 define Package/splix/description
