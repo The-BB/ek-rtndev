@@ -5,11 +5,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-regex
-PKG_VERSION:=2024.5.15
-PKG_RELEASE:=2
+PKG_VERSION:=2024.11.6
+PKG_RELEASE:=1
 
 PYPI_NAME:=regex
-PKG_HASH:=d3ee02d9e5f482cc8309134a91eeaacbdd2261ba111b0fef3748eeb4913e6a2c
+PKG_HASH:=7ab159b063c52a0333c884e4679f8d7a85112ee3078fe3d9004b2dd875585519
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=Apache-2.0
+PKG_LICENSE_FILES:=LICENSE.txt
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
@@ -19,15 +23,14 @@ define Package/python3-regex
 	SECTION:=lang
 	CATEGORY:=Languages
 	SUBMENU:=Python
-	TITLE:=python-regexp
-	URL:=https://bitbucket.org/mrabarnett/mrab-regex
-	MAINTAINER:=Entware team, https://entware.net
-	DEPENDS:=+python3-light +python3-codecs +python3-urllib
+	TITLE:=alternative regular expression module, to replace re
+	URL:=https://github.com/mrabarnett/mrab-regex
+	DEPENDS:=+python3-codecs +python3-urllib
 endef
 
 define Package/python3-regex/description
- This new regex implementation is intended eventually to replace Python’s
- current re module implementation.
+ This regex implementation is backwards-compatible with the standard
+ 're' module, but offers additional functionality.
 endef
 
 define Package/python3-regex/postrm
