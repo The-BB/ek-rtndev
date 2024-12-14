@@ -5,13 +5,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=s3fs-fuse
-PKG_VERSION:=1.94
+PKG_VERSION:=1.95
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=70a30d6e26a5dfd07a00cf79ce1196079e5ab11a
-PKG_SOURCE_URL:=https://github.com/s3fs-fuse/s3fs-fuse.git
-PKG_MIRROR_HASH:=fdcd3dac246a745518ed28225a792bef28c2ac070631cf4cc9446a94ebe78493
+PKG_SOURCE_VERSION:=v$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/s3fs-fuse/s3fs-fuse
+PKG_MIRROR_HASH:=51cebdd5ae89f3cce70e861da1e38354c2bb511253a1010f4f1ed487728f2dff
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-2.0-only
+PKG_LICENSE_FILES:=COPYING
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -20,13 +24,12 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 
 define Package/s3fs-fuse
-	SECTION:=utils
-	CATEGORY:=Utilities
+	SECTION:=net
+	CATEGORY:=Network
 	SUBMENU:=Filesystem
-	DEPENDS:=+libfuse +libcurl +libxml2 +libstdcpp
 	TITLE:=FUSE filesystem for Amazon S3
 	URL:=https://github.com/s3fs-fuse/s3fs-fuse
-	MAINTAINER:=Entware team, https://entware.net
+	DEPENDS:=+libcurl +libfuse +libstdcpp +libxml2
 endef
 
 define Package/s3fs-fuse/description
