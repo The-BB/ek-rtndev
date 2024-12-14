@@ -5,13 +5,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rutorrent
-PKG_VERSION:=4.3.5
+PKG_VERSION:=4.3.10
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=9bf6e15c4864a71ff9e9ca5ea689fd001931279b
-PKG_SOURCE_URL:=https://github.com/Novik/ruTorrent.git
-PKG_MIRROR_HASH:=b0e4649eb5ce0537650f2774fe29d64b253c7ada56df4e4fe7e94c4ee3ee6d8a
+PKG_SOURCE_VERSION:=v$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/Novik/ruTorrent
+PKG_MIRROR_HASH:=a4237f371c4ed531f3e05b3ee0cc87be413ea25a8b3a066fc5e6017f26100446
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-3.0-or-later
+PKG_LICENSE_FILES:=LICENSE.md
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -78,15 +82,13 @@ define Package/rutorrent/Default
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=BitTorrent
-	DEPENDS:=+rtorrent-rpc +coreutils-stat +coreutils-id +gzip +curl
 	TITLE:=Yet another web front-end for rTorrent
 	URL:=$(PKG_SOURCE_URL)
-	MAINTAINER:=Entware team, https://entware.net
+	DEPENDS:=+coreutils-id +coreutils-stat +curl +gzip +rtorrent-rpc
 endef
 
 define Package/rutorrent
 	$(call Package/rutorrent/Default)
-	TITLE:=Yet another web front-end for rTorrent
 	MENU:=1
 endef
 
