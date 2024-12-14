@@ -1,40 +1,46 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
+# Copyright (C) 2011-2024 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rtmpdump
-PKG_VERSION:=2.4
+PKG_REAL_VERSION:=2.6
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_DATE:=2021-02-19
-PKG_SOURCE_VERSION:=f1b83c10d8beb43fcc70a6e88cf4325499f25857
-PKG_SOURCE_URL:=https://git.ffmpeg.org/rtmpdump.git
-PKG_MIRROR_HASH:=18d001a03861b4d80300ab5a68484e2bca67bd84a0e58749418a5e87553e316d
+PKG_SOURCE_DATE:=2024-03-01
+PKG_SOURCE_VERSION:=6f6bb1353fc84f4cc37138baa99f586750028a01
+PKG_SOURCE_URL:=https://git.ffmpeg.org/rtmpdump
+PKG_MIRROR_HASH:=2ee2a3f494a77fc1ab6bd7d27e2fada01f8aa7833bd8ecaa173b53e972fb0eeb
 
-PKG_VERSION:=$(PKG_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+PKG_VERSION:=$(PKG_REAL_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-2.0-only
+PKG_LICENSE_FILES:=COPYING
 
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/rtmpdump/Default
-	SECTION:=net
-	CATEGORY:=Network
-	DEPENDS:=+libgnutls +zlib
 	TITLE:=a toolkit for RTMP streams
 	URL:=https://rtmpdump.mplayerhq.hu/
-	MAINTAINER:=Entware team, https://entware.net
 endef
 
 define Package/librtmp
 	$(call Package/rtmpdump/Default)
+	SECTION:=libs
+	CATEGORY:=Libraries
+	TITLE+= (library)
+	DEPENDS:=+libgnutls +zlib
 endef
 
 define Package/rtmpdump
 	$(call Package/rtmpdump/Default)
+	SECTION:=net
+	CATEGORY:=Network
 	DEPENDS:=+librtmp
 endef
 
@@ -51,11 +57,12 @@ MAKE_VARS += \
 	XLDFLAGS="$(TARGET_LDFLAGS)"
 
 MAKE_FLAGS += \
+	VERSION=v$(PKG_VERSION) \
 	prefix="/opt"
 
 define Package/librtmp/install
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/librtmp.so.1 $(1)/opt/lib
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/librtmp.so* $(1)/opt/lib
 endef
 
 define Package/rtmpdump/install
@@ -66,11 +73,14 @@ define Package/rtmpdump/install
 endef
 
 define Build/InstallDev
+	$(INSTALL_DIR) $(1)/opt/include
+	$(CP) $(PKG_INSTALL_DIR)/opt/include/librtmp $(1)/opt/include
 	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librtmp.* $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librtmp.{a,so*} $(1)/opt/lib
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/librtmp.pc $(1)/opt/lib/pkgconfig
-	$(INSTALL_DIR) $(1)/opt/include/librtmp
-	$(CP) $(PKG_INSTALL_DIR)/opt/include/librtmp/*.h $(1)/opt/include/librtmp
+	# fix
+	$(SED) 's,^libdir=.*,libdir=$$$${exec_prefix}/lib,' \
+		$(1)/opt/lib/pkgconfig/librtmp.pc
 endef
 
 $(eval $(call BuildPackage,librtmp))
