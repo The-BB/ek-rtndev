@@ -42,6 +42,7 @@ define Package/nfusr/description
 endef
 
 TARGET_CPPFLAGS += -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE
+TARGET_CXXFLAGS += -fpermissive
 
 define Package/nfusr/install
 	$(INSTALL_DIR) $(1)/opt/bin
