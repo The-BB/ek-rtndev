@@ -5,13 +5,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libnfs
-PKG_VERSION:=6.0.2
+PKG_VERSION:=5.0.3
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/sahlberg/libnfs
-PKG_MIRROR_HASH:=ed5329398e5d3661157a226609bd1b839360f9dee3bfc503ff867fc1baaffcab
+PKG_MIRROR_HASH:=fefc07c59b38bf7283cc23cf4590948ff0e5f966dd636e2cc7f221c1b82dde1a
 
 PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=LGPL-2.1-only
@@ -51,9 +51,6 @@ define Package/libnfs-utils/description
  nfs-cat, nfs-cp, nfs-ls console usersapce utilities for accessing
  NFS shares over a network.
 endef
-
-CONFIGURE_ARGS += \
-	--without-libkrb5
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
