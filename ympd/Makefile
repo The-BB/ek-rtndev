@@ -30,7 +30,7 @@ define Package/ympd
 	CATEGORY:=Sound
 	TITLE:=MPD Web GUI
 	URL:=http://www.ympd.org/
-	DEPENDS:=+libmariadb +libopenssl
+	DEPENDS:=+libmpdclient +libopenssl
 endef
 
 define Package/ympd/description
