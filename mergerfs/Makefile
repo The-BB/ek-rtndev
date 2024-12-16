@@ -27,7 +27,7 @@ define Package/mergerfs
 	SUBMENU:=Filesystem
 	TITLE:=a featureful union filesystem
 	URL:=$(PKG_SOURCE_URL)
-	DEPENDS:=+libstdcpp
+	DEPENDS:=+(mips||mipsel):libatomic +libstdcpp
 endef
 
 define Package/mergerfs/description
@@ -37,6 +37,10 @@ define Package/mergerfs/description
 endef
 
 PKG_FILE_MODES:=/opt/bin/mergerfs-fusermount:root:root:4755
+
+ifeq ($(or $(CONFIG_mips),$(CONFIG_mipsel)),y)
+TARGET_LDFLAGS+=-latomic
+endif
 
 Build/Configure:=:
 
