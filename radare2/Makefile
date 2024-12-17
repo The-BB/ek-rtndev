@@ -27,12 +27,16 @@ define Package/radare2
 	CATEGORY:=Development
 	TITLE:=reverse engineering framework
 	URL:=https://www.radare.org/
-	DEPENDS:=+libuv
+	DEPENDS:=+(mips||mipsel):libatomic +libuv
 endef
 
 define Package/radare2/description
  UNIX-like reverse engineering framework and command-line toolset.
 endef
+
+ifeq ($(or $(CONFIG_mips),$(CONFIG_mipsel)),y)
+TARGET_LDFLAGS+=-latomic
+endif
 
 define Package/radare2/install
 	$(INSTALL_DIR) $(1)/opt/lib
