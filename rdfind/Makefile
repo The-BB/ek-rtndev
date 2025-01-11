@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=b0f580b8cdc096ea6d006a6bf586f491a47b1801
-PKG_SOURCE_URL:=https://github.com/pauldreik/rdfind.git
+PKG_SOURCE_URL:=https://github.com/pauldreik/rdfind
 PKG_MIRROR_HASH:=fee4e08911732c6edd8c5c874afd711945ee4a06c95b45ec4a73c7e835b7190a
 
 PKG_FIXUP:=autoreconf
