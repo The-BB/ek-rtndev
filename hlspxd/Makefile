@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hlspxd
 PKG_VERSION:=2016.12
-PKG_RELEASE:=5
+PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -28,8 +28,12 @@ define Package/hlspxd/description
 endef
 
 define Build/Compile
-	$(TARGET_CXX) $(TARGET_CFLAGS) $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS) -fsigned-char -o $(PKG_BUILD_DIR)/hlspxd \
-		$(PKG_BUILD_DIR)/hlspxd.cpp $(PKG_BUILD_DIR)/platform.cpp $(PKG_BUILD_DIR)/utils.cpp $(PKG_BUILD_DIR)/videoviewer.cpp
+	$(TARGET_CXX) $(TARGET_CFLAGS) $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS) \
+	-fsigned-char -o $(PKG_BUILD_DIR)/hlspxd \
+		$(PKG_BUILD_DIR)/hlspxd.cpp \
+		$(PKG_BUILD_DIR)/platform.cpp \
+		$(PKG_BUILD_DIR)/utils.cpp \
+		$(PKG_BUILD_DIR)/videoviewer.cpp
 endef
 
 define Package/hlspxd/install
