@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=5c3be6803856f25b11d1d704bac56e733b4fc997
-PKG_SOURCE_URL:=https://github.com/acoustid/chromaprint.git
+PKG_SOURCE_URL:=https://github.com/acoustid/chromaprint
 PKG_MIRROR_HASH:=c8dc9d7e5cf9f1b089b2a00c5368c16ead1e3a8123f23973f61843ed32bc9cf6
 
 include $(INCLUDE_DIR)/package.mk
@@ -39,7 +39,7 @@ CMAKE_OPTIONS += \
 	-DBUILD_TOOLS=ON \
 	-DBUILD_TESTS=OFF
 
-TARGET_CFLAGS += -fpermissive
+TARGET_CXXFLAGS += -fpermissive
 
 define Build/InstallDev
 	true
