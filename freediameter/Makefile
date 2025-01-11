@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=8ac823b77653a03da82232470b376c2b281b0973
-PKG_SOURCE_URL:=https://github.com/freeDiameter/freeDiameter.git
+PKG_SOURCE_URL:=https://github.com/freeDiameter/freeDiameter
 PKG_MIRROR_HASH:=5cac14aff0dd632402b14b286ccfa875a7d56accd3741171bb4b8519b97b60c8
 
 # FIXME ninja: error: manifest 'build.ninja' still dirty after 100 tries
