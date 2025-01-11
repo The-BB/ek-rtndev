@@ -13,7 +13,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=7e0513beb9226e8189a8bf96e201fd0efa7afbac
-PKG_SOURCE_URL:=https://github.com/kvic-z/pixelserv-tls.git
+PKG_SOURCE_URL:=https://github.com/kvic-z/pixelserv-tls
 PKG_MIRROR_HASH:=69712c2f3a3796749706900a5b31b3908227709ae63646ad23fd043bdc409a80
 
 PKG_FIXUP:=autoreconf
