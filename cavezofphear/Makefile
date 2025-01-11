@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=fa0b1b1cb87b7de8beee6b1e658da90e6bd52d31
-PKG_SOURCE_URL:=https://github.com/AMDmi3/cavezofphear.git
+PKG_SOURCE_URL:=https://github.com/AMDmi3/cavezofphear
 PKG_MIRROR_HASH:=651a3d129ea73fc3661002ccb1d1d5fd4d7fbd9fd44d2c2948fb80437cb8ac7a
 
 include $(INCLUDE_DIR)/package.mk
