@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=365e379483ea180bcfa272d89a2524da55b1d600
-PKG_SOURCE_URL:=https://github.com/svend/cuetools.git
+PKG_SOURCE_URL:=https://github.com/svend/cuetools
 PKG_MIRROR_HASH:=2d346cd995b8d3a58d6e05d8cfa3839f79df1ce7a035fbe662f35af7064075e1
 
 PKG_FIXUP:=autoreconf
