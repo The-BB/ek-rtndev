@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=41c2320eb31ef1c95fcd45a0feb0303f606fc711
-PKG_SOURCE_URL:=https://github.com/theZiz/aha.git
+PKG_SOURCE_URL:=https://github.com/theZiz/aha
 PKG_MIRROR_HASH:=26e3a8473dbfdce3fc8b8b6aac4971e0a10df51879df0346d972a782324a49ef
 
 include $(INCLUDE_DIR)/package.mk
