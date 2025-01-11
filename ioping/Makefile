@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=d52efa35e1d6d02495434e9447ee04c21b2e1010
-PKG_SOURCE_URL:=https://github.com/koct9i/ioping.git
+PKG_SOURCE_URL:=https://github.com/koct9i/ioping
 PKG_MIRROR_HASH:=6dceafa52e8f449485a0f17ac88284d627306a70887f2b0df1e93b255373ebaa
 
 include $(INCLUDE_DIR)/package.mk
