@@ -10,7 +10,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=70b6bf2ad96b0824ae6e2c2cea4c59d2a156d2c1
-PKG_SOURCE_URL:=https://github.com/drk1wi/portspoof.git
+PKG_SOURCE_URL:=https://github.com/drk1wi/portspoof
 PKG_MIRROR_HASH:=f37aeb1f4ebf72bdf1b9141137d00e843d722fec0066f488771eb344974c8a08
 
 PKG_INSTALL:=1
