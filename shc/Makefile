@@ -14,7 +14,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=7e5b6be461fb29a2e9ada116b00eadcc4d5b9b1b
-PKG_SOURCE_URL:=https://github.com/neurobin/shc.git
+PKG_SOURCE_URL:=https://github.com/neurobin/shc
 PKG_MIRROR_HASH:=d16dd441e35b1ab629fc68feafc5124da72864a3576757de5daa0f4c0b730839
 
 PKG_FIXUP:=autoreconf
