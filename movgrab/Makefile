@@ -12,7 +12,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=353e9770d64082b18a15bce683b627ace2bfd81b
-PKG_SOURCE_URL:=https://github.com/ColumPaget/Movgrab.git
+PKG_SOURCE_URL:=https://github.com/ColumPaget/Movgrab
 PKG_MIRROR_HASH:=2122ab366ff10001eca3b915425eaaf8ec31b21b71604c46ed00f7abdff52cb1
 
 include $(INCLUDE_DIR)/package.mk
