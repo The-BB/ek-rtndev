@@ -14,7 +14,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=235dd1e519c95a9736a2dc0303c64fec358076e1
-PKG_SOURCE_URL:=https://github.com/hampus/nonroot.git
+PKG_SOURCE_URL:=https://github.com/hampus/nonroot
 PKG_MIRROR_HASH:=b403dd19a3c9654b84de4880abe90084c01d42b707a7c2413bc6cb2970a730ca
 
 PKG_FIXUP:=autoreconf
