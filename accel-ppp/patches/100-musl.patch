@@ -24,7 +24,7 @@
  #include <pcre.h>
 --- a/accel-pppd/ctrl/l2tp/l2tp.c
 +++ b/accel-pppd/ctrl/l2tp/l2tp.c
-@@ -845,12 +845,20 @@ out_err:
+@@ -848,12 +848,20 @@ out_err:
  	return -1;
  }
  
@@ -84,8 +84,8 @@
  	LIBRARY DESTINATION lib${LIB_SUFFIX}/accel-ppp
 --- a/accel-pppd/session.c
 +++ b/accel-pppd/session.c
-@@ -26,6 +26,10 @@
- #include "mempool.h"
+@@ -27,6 +27,10 @@
+ #include "config.h"
  #include "memdebug.h"
  
 +#ifndef __GLIBC__

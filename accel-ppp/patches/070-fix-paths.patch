@@ -11,7 +11,7 @@
  static LIST_HEAD(history);
 --- a/accel-pppd/logs/log_file.c
 +++ b/accel-pppd/logs/log_file.c
-@@ -529,7 +529,7 @@ static void ev_ctrl_started(struct ap_se
+@@ -531,7 +531,7 @@ static void ev_ctrl_started(struct ap_se
  
  		lpd->tmp = temp_seq++;
  		strcpy(fname, conf_per_session_dir);
@@ -20,7 +20,7 @@
  		sprintf(fname + strlen(fname), "%lu", lpd->tmp);
  
  		if (log_file_open(&lpd->lf, fname)) {
-@@ -579,7 +579,7 @@ static void ev_ctrl_finished(struct ap_s
+@@ -581,7 +581,7 @@ static void ev_ctrl_finished(struct ap_s
  			fname = _malloc(PATH_MAX);
  			if (fname) {
  				strcpy(fname, conf_per_session_dir);
@@ -29,7 +29,7 @@
  				sprintf(fname + strlen(fname), "%lu", lpd->tmp);
  				if (unlink(fname))
  					log_emerg("log_file: unlink '%s': %s\n", fname, strerror(errno));
-@@ -614,7 +614,7 @@ static void ev_ses_starting(struct ap_se
+@@ -616,7 +616,7 @@ static void ev_ses_starting(struct ap_se
  	}
  
  	strcpy(fname1, conf_per_session_dir);
@@ -40,7 +40,7 @@
  	strcpy(fname2, conf_per_session_dir);
 --- a/accel-pppd/net.c
 +++ b/accel-pppd/net.c
-@@ -377,7 +377,7 @@ static void __init init()
+@@ -447,7 +447,7 @@ static void __init init()
  	if (opt)
  		conf_netns_run_dir = opt;
  	else
@@ -51,7 +51,7 @@
  }
 --- a/accel-pppd/session.c
 +++ b/accel-pppd/session.c
-@@ -523,7 +523,7 @@ static void load_config(void)
+@@ -533,7 +533,7 @@ static void load_config(void)
  
  	conf_seq_file = conf_get_opt("common", "seq-file");
  	if (!conf_seq_file)
@@ -62,7 +62,7 @@
  	if (opt)
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -88,7 +88,7 @@ if (NOT BUILD_DRIVER_ONLY)
+@@ -85,7 +85,7 @@ if (NOT BUILD_DRIVER_ONLY)
  	add_subdirectory(crypto)
  	add_subdirectory(accel-cmd)
  

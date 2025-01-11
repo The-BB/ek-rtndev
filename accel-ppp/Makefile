@@ -1,17 +1,17 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2024 Entware
+# Copyright (C) 2011-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=accel-ppp
-PKG_VERSION:=1.12.0
-PKG_RELEASE:=2
+PKG_VERSION:=1.13.0
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=6ce96d9d6eb3fa036d73aaf535784caddc7f3552
-PKG_SOURCE_URL:=https://github.com/xebd/accel-ppp
-PKG_MIRROR_HASH:=63eb3a5c63f102a227a4f6532950c2c0c766d31a8963afb213865829ffbeded2
+PKG_SOURCE_VERSION:=$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/accel-ppp/accel-ppp
+PKG_MIRROR_HASH:=f1e41a8bbc789777237727984c083eaa4a14a6d3db478e92816865ef05f16dfe
 
 CMAKE_BINARY_SUBDIR:=openwrt-build
 
