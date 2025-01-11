@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=2cc476178198774ad6bea89be0b9e4ed2d4bf4c5
-PKG_SOURCE_URL:=https://github.com/jpmens/jo.git
+PKG_SOURCE_URL:=https://github.com/jpmens/jo
 PKG_MIRROR_HASH:=c22d1dcccaba1d9f8f01f866009a150846a7d398b2c0926f465cad2caff6504a
 
 PKG_FIXUP:=autoreconf
