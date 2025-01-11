@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=7fc3730f67888106ade57a66d3da10a9f825d199
-PKG_SOURCE_URL:=https://github.com/vgough/encfs.git
+PKG_SOURCE_URL:=https://github.com/vgough/encfs
 PKG_MIRROR_HASH:=3bcd422c96dd289c339c529e438854559df9d21a45b16f030ed33b987e0ba98e
 
 include $(INCLUDE_DIR)/package.mk
