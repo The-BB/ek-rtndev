@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=725f91747e4e996e7bbb190410b0e9c4fc594cc9
-PKG_SOURCE_URL:=https://github.com/cgdb/cgdb.git
+PKG_SOURCE_URL:=https://github.com/cgdb/cgdb
 PKG_MIRROR_HASH:=d65edc6fce97a1faf59827ff22ba9a231f44ed5753f957ca4e58c5c21740bdcd
 
 PKG_FIXUP:=autoreconf
