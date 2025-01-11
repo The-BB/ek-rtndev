@@ -1,17 +1,17 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2024 Entware
+# Copyright (C) 2011-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=unionfs-fuse
-PKG_VERSION:=3.5
+PKG_VERSION:=3.6
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=021c2c6dd2d74ab2ecdfccc39caf39e19ea17b06
-PKG_SOURCE_URL:=https://github.com/rpodgorny/unionfs-fuse.git
-PKG_MIRROR_HASH:=b29065fd5a9b3cc957cb4b8d9d12a35c0cc000b85e91c91611d93b89fb89cbd4
+PKG_SOURCE_VERSION:=4a8f0f29494da6b0485b8ea537a9e5e3b612be66
+PKG_SOURCE_URL:=https://github.com/rpodgorny/unionfs-fuse
+PKG_MIRROR_HASH:=9200ed2cdb51622abbe4d53b8fe1a1e9458d97b6bee8ba0ee44cd3ecb4be7c17
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
