@@ -12,7 +12,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=b40600d9ee0aa6025f33f2644207e069315ca64c
-PKG_SOURCE_URL:=https://github.com/bruceg/daemontools-encore.git
+PKG_SOURCE_URL:=https://github.com/bruceg/daemontools-encore
 PKG_MIRROR_HASH:=fe58cf45587a8e3c4f72eb2f91f60c364128be1cb74d14b23a2b7ff2ddc978cf
 
 PKG_INSTALL:=1
