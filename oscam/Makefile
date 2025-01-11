@@ -1,23 +1,17 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2024 Entware
-#
-# Streamboard/OScam Repository has been migrated to GitLab
-# https://svn.streamboard.tv/oscam/tags/1.20@11745
+# Copyright (C) 2011-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=oscam
-PKG_REAL_VERSION:=1.20
-PKG_REVISION:=11860
+PKG_VERSION:=2.25.01
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REVISION)
+PKG_SOURCE_VERSION:=cf18f133645c7dced864d15ecfa74d108c2bf1ed
 PKG_SOURCE_URL:=https://git.streamboard.tv/common/oscam
-PKG_MIRROR_HASH:=b6dc8cbd5b8f6f5356c82c4ab5ea3c5ae986068735294f1674025c1c327c30e1
-
-PKG_VERSION:=$(PKG_REAL_VERSION)_git~$(PKG_REVISION)
+PKG_MIRROR_HASH:=f043ea8d4e2e3fd9b60d950f17c3d57ae1e2fade563cf4af94bfd78477078179
 
 PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=GPL-3.0-or-later
