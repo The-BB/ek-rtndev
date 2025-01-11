@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=23117fe9e0266396e4791cdae84d979928aed135
-PKG_SOURCE_URL:=https://github.com/pdewacht/brlaser.git
+PKG_SOURCE_URL:=https://github.com/pdewacht/brlaser
 PKG_MIRROR_HASH:=92002ab26fe5776e16d3780060166ece722d67a43b5183020af0e35443a4bc47
 
 include $(INCLUDE_DIR)/package.mk
