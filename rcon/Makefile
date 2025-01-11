@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=14d4e76a9f3659b0f4403d1e0d2f81c0c4995ca2
-PKG_SOURCE_URL:=https://github.com/n0la/rcon.git
+PKG_SOURCE_URL:=https://github.com/n0la/rcon
 PKG_MIRROR_HASH:=37a9b19d2bbd223a9a1d80108f1f88651a504c77102548af390cadb7824ecf23
 
 include $(INCLUDE_DIR)/package.mk
