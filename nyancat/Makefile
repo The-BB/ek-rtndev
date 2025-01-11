@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=19f7dcac57bee416f714035947b41df3a76c73a4
-PKG_SOURCE_URL:=https://github.com/klange/nyancat.git
+PKG_SOURCE_URL:=https://github.com/klange/nyancat
 PKG_MIRROR_HASH:=8d53fdef3fff91b413a133fe17b036124b0878ae8d73f76b834e5c3b793a88bd
 
 include $(INCLUDE_DIR)/package.mk
