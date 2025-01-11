@@ -1,9 +1,10 @@
 #
-# Copyright (C) 2011-2021 Entware
+# Copyright (C) 2011-2025 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Abandoned in 2020
 
 include $(TOPDIR)/rules.mk
 
@@ -13,7 +14,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=78c306538065de9b14f48cfc2024f50f843d3b29
-PKG_SOURCE_URL:=https://github.com/cybernoid/archivemount.git
+PKG_SOURCE_URL:=https://github.com/cybernoid/archivemount
 PKG_MIRROR_HASH:=f83fc069d7157d7d7693a15285972912c5d06515fff67d3053a28ead40e78358
 
 PKG_FIXUP:=autoreconf
