@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=99c24238981b7b1084313aca8f5c493bb46f302c
-PKG_SOURCE_URL:=https://github.com/NixOS/patchelf.git
+PKG_SOURCE_URL:=https://github.com/NixOS/patchelf
 PKG_MIRROR_HASH:=6d71ffe1ad53942557de2a05cb4d1931124cef5b6bedba5fcffd691dafe7f758
 
 PKG_FIXUP:=autoreconf
