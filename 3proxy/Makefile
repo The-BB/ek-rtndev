@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=346880eb2e73836385e5f7648f738efcece580ac
-PKG_SOURCE_URL:=https://github.com/z3APA3A/3proxy.git
+PKG_SOURCE_URL:=https://github.com/z3APA3A/3proxy
 PKG_MIRROR_HASH:=2dab73b73dcfbd6e0aa55393a2e72bb1552b49c88e4da00ea43f92445ba1bfd5
 
 include $(INCLUDE_DIR)/package.mk
