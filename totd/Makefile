@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=c5df5768b32e3c55d72a1aba9959c970cd50885d
-PKG_SOURCE_URL:=https://github.com/fwdillema/totd.git
+PKG_SOURCE_URL:=https://github.com/fwdillema/totd
 PKG_MIRROR_HASH:=97f0f6073a13e7fd6935ea4777f2c59b1668863bb23ddca5f1f207af0daa0f22
 
 include $(INCLUDE_DIR)/package.mk
