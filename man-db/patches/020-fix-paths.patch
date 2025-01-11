@@ -23,7 +23,7 @@
  	const char *canonical_charset = get_canonical_charset_name (charset);
  	char *saved_locale;
 -	const char supported_path[] = "/usr/share/i18n/SUPPORTED";
-+	const char supported_path[] = "/opt/share/i18n/SUPPORTED";
++	const char supported_path[] = "/opt/usr/share/i18n/SUPPORTED:/opt/usr/share/i18n/SUPPORTED";
  	FILE *supported = NULL;
  	char *line = NULL;
  	size_t n = 0;
