@@ -70,7 +70,7 @@ define Package/suricata/postinst
 #!/bin/sh
 
 echo 'Current Suricata ruleset can be found at'
-echo 'https://rules.emergingthreats.net/open/suricata-4.0/emerging.rules.tar.gz'
+echo 'https://rules.emergingthreats.net/open/old/suricata-4.0/emerging.rules.tar.gz'
 endef
 
 $(eval $(call BuildPackage,suricata))
