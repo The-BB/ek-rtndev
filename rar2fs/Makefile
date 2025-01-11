@@ -10,7 +10,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=799ca3be1a2d9dcee416a650d737fb333fb4be5b
-PKG_SOURCE_URL:=https://github.com/hasse69/rar2fs.git
+PKG_SOURCE_URL:=https://github.com/hasse69/rar2fs
 PKG_MIRROR_HASH:=51092215a336608d84780991118cb576c729d89fc3bb9ee556b2ab27bbb3c418
 
 PKG_FIXUP:=autoreconf
