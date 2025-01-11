@@ -12,7 +12,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=f6e24eb73c9283732c3b5d9cb101a1e2e4fade3e
-PKG_SOURCE_URL:=https://github.com/simonvetter/afpfs-ng.git
+PKG_SOURCE_URL:=https://github.com/simonvetter/afpfs-ng
 PKG_MIRROR_HASH:=7ef32e2fe4567ff6596a180c2bfac626957869f9057b01c07377e7f9f935d12e
 
 PKG_FIXUP:=autoreconf
