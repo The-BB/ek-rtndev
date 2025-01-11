@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2024 Entware
+# Copyright (C) 2011-2025 Entware
 
 # switch to using ps3netsrv_*.zip archive (3.5 MB vs 100+ MB)
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ps3netsrv
-PKG_REAL_VERSION:=1.47.47h
+PKG_REAL_VERSION:=1.47.47
 PKG_VERSION:=20240709
 PKG_RELEASE:=1
 
