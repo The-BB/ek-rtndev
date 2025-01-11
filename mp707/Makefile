@@ -14,7 +14,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=d0874e415be034637041e261cbcf2aed378bf917
-PKG_SOURCE_URL:=https://github.com/bubbafix/openwrt-bm1707.git
+PKG_SOURCE_URL:=https://github.com/bubbafix/openwrt-bm1707
 PKG_MIRROR_HASH:=dc3e3fe16bccac3c93379e2e08a2eb3f9655f7729d3edd47b3aa98f6093e1d06
 
 include $(INCLUDE_DIR)/package.mk
