@@ -10,7 +10,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=d4225458db37eac4232bd86231a976e91d1cd369
-PKG_SOURCE_URL:=https://github.com/darrylb123/usbrelay.git
+PKG_SOURCE_URL:=https://github.com/darrylb123/usbrelay
 PKG_MIRROR_HASH:=a51caf6b386bf7cfa4187214f279524793dab4f472bfecb0f34b6c0d5ecf6b87
 
 PKG_BUILD_DEPENDS:=USE_MUSL:argp-standalone
