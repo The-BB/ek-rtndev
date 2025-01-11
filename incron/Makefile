@@ -12,7 +12,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=02c88fb221987bb906f375b9cf31c614af76e829
-PKG_SOURCE_URL:=https://github.com/ar-/incron.git
+PKG_SOURCE_URL:=https://github.com/ar-/incron
 PKG_MIRROR_HASH:=9102e4d0e6ccd2652aed3bd1bf93d9133cebe09e868fcf3b46fb2a96dd12b870
 
 include $(INCLUDE_DIR)/package.mk
@@ -45,7 +45,7 @@ define Package/incron/install
 	$(INSTALL_DIR) $(1)/opt/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/incrond $(1)/opt/sbin
 	$(INSTALL_DIR) $(1)/opt/etc/incron.d
-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/incron.conf.example  $(1)/opt/etc/incron.conf
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/incron.conf.example $(1)/opt/etc/incron.conf
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/S12incron $(1)/opt/etc/init.d
 endef
