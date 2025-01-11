@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=aa11ca9127c52dbd84879547ce6609b4ba02522a
-PKG_SOURCE_URL:=https://github.com/duncanthrax/scream.git
+PKG_SOURCE_URL:=https://github.com/duncanthrax/scream
 PKG_MIRROR_HASH:=d0c8d5ca30e393329290f9706e9b6f8532b88ad7cdfcb74f1c7197184517afea
 
 CMAKE_SOURCE_SUBDIR:=Receivers/unix
