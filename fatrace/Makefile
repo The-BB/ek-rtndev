@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=43327b194d995df56ab1c447366169cbf3a26c13
-PKG_SOURCE_URL:=https://github.com/martinpitt/fatrace.git
+PKG_SOURCE_URL:=https://github.com/martinpitt/fatrace
 PKG_MIRROR_HASH:=d7404ad591acc7c07674f9545d1141b666a9bd6db422fec0cbb74e5cf5443337
 
 include $(INCLUDE_DIR)/package.mk
