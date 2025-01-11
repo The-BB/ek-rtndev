@@ -7,16 +7,19 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tunsafe
-PKG_VERSION:=1.5_rc2
+PKG_REAL_VERSION:=1.5-rc2
+PKG_VERSION:=$(subst -,_,$(PKG_REAL_VERSION))
 PKG_RELEASE:=1
 
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=85a871c1d226956df7c1308a1e5527556fe35fe1
-PKG_SOURCE_URL:=https://github.com/TunSafe/TunSafe.git
+PKG_SOURCE_URL:=https://github.com/TunSafe/TunSafe
 PKG_MIRROR_HASH:=2e2a7341453783d8c4ba0e13c252c044029567ec5cfa84b981667113a2e90ee7
 
-PKG_BUILD_PARALLEL:=1
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=AGPL-1.0
+PKG_LICENSE_FILES:=LICENSE.AGPL.TXT
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -24,10 +27,9 @@ define Package/tunsafe
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=VPN
-	DEPENDS:=+libstdcpp +(mips||mipsel):libatomic
 	TITLE:=TunSafe
 	URL:=https://www.tunsafe.com/
-	MAINTAINER:=Entware team, https://entware.net
+	DEPENDS:=+libstdcpp +(mips||mipsel):libatomic
 endef
 
 define Package/tunsafe/description
@@ -35,6 +37,10 @@ define Package/tunsafe/description
  TunSafe makes it extremely simple to setup blazingly fast and secure VPN
  tunnels between Windows and Linux. This is a user-mode implementation that
  also supports non-standard obfuscation and TCP mode.
+endef
+
+define Package/tunsafe/conffiles
+/opt/etc/tunsafe/main.conf
 endef
 
 ifeq ($(ARCH),arm)
@@ -57,14 +63,12 @@ TUNSAFE_EXTRA_LDFLAGS+=-latomic
 endif
 
 define Build/Compile
-	cd $(PKG_BUILD_DIR) && $(TARGET_CXX) -I. -DNDEBUG -DWITH_NETWORK_BSD=1 \
-	    $(TUNSAFE_EXTRA_CFLAGS) $(TARGET_CPPFLAGS) -pthread -lrt -std=c++11 \
-	    $(TUNSAFE_EXTRA_LDFLAGS) $(TARGET_LDFLAGS) $(TUNSAFE_EXTRA_FILES) \
-	    tunsafe_amalgam.cpp -o tunsafe;
-endef
-
-define Package/tunsafe/conffiles
-/opt/etc/tunsafe/main.conf
+	( cd $(PKG_BUILD_DIR); \
+		$(TARGET_CXX) -I. -DNDEBUG -DWITH_NETWORK_BSD=1 \
+		$(TUNSAFE_EXTRA_CFLAGS) $(TARGET_CPPFLAGS) -pthread -lrt -std=c++11 \
+		$(TUNSAFE_EXTRA_LDFLAGS) $(TARGET_LDFLAGS) $(TUNSAFE_EXTRA_FILES) \
+		tunsafe_amalgam.cpp -o tunsafe; \
+	)
 endef
 
 define Package/tunsafe/install
