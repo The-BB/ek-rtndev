@@ -13,7 +13,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=048cecd2e77d659c8fefcd2e7dc437c533abeab4
-PKG_SOURCE_URL:=https://github.com/shellinabox/shellinabox.git
+PKG_SOURCE_URL:=https://github.com/shellinabox/shellinabox
 PKG_MIRROR_HASH:=f8d3e591a97fe47a1a9b223feec139a6ceb363ade07b083742cc471a9d75898d
 
 PKG_FIXUP:=autoreconf
