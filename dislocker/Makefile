@@ -13,7 +13,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=6662821483d953bf23464ffd64d100d0b8dc3e4c
-PKG_SOURCE_URL:=https://github.com/Aorimn/dislocker.git
+PKG_SOURCE_URL:=https://github.com/Aorimn/dislocker
 PKG_MIRROR_HASH:=0772c3e0972aab1fe56f2662c0f861c5ed5f483a296cfa8aba286f245b47167b
 
 include $(INCLUDE_DIR)/package.mk
