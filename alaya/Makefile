@@ -10,7 +10,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=00c9d13732ee48d2020bebe14329532c06d2a02d
-PKG_SOURCE_URL:=https://github.com/ColumPaget/Alaya.git
+PKG_SOURCE_URL:=https://github.com/ColumPaget/Alaya
 PKG_MIRROR_HASH:=2431463d47c524c1defd42bf6888b1e1c331ad4b9c4167ffad9882f4fea8e5ab
 
 PKG_FIXUP:=autoreconf
