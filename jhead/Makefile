@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=4d04ac965632e35a65709c7f92a857a749e71811
-PKG_SOURCE_URL:=https://github.com/Matthias-Wandel/jhead.git
+PKG_SOURCE_URL:=https://github.com/Matthias-Wandel/jhead
 PKG_MIRROR_HASH:=43e9a789449fc63b90e4107b484b766c6b45a3dc082d093317ce345285933b23
 
 include $(INCLUDE_DIR)/package.mk
