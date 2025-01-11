@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=9935dbf808cfc30f6e08e85645a70e38f555eba5
-PKG_SOURCE_URL:=https://github.com/Parchive/par2cmdline.git
+PKG_SOURCE_URL:=https://github.com/Parchive/par2cmdline
 PKG_MIRROR_HASH:=d04173574630407186ec312e305e1029348bde6e3e0685a0d4c82372d97d4bbd
 
 PKG_FIXUP:=autoreconf
