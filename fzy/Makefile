@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=f5d41e726cd997ba038815e218c48017228a8f0e
-PKG_SOURCE_URL:=https://github.com/jhawthorn/fzy.git
+PKG_SOURCE_URL:=https://github.com/jhawthorn/fzy
 PKG_MIRROR_HASH:=8cccf212be5683318eda499d1c5b4ee6c5f04238dc144acc45d5b3b6c2fd1d23
 
 include $(INCLUDE_DIR)/package.mk
