@@ -14,7 +14,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=6b91405516e9f919f2df23f7794d00e916fc1871
-PKG_SOURCE_URL:=https://github.com/troglobit/pimd.git
+PKG_SOURCE_URL:=https://github.com/troglobit/pimd
 PKG_MIRROR_HASH:=25da490e6bab47ca6c2766faa0deb43062ca789e93a0b0097ac1eebdf0d48b0e
 
 PKG_FIXUP:=autoreconf
