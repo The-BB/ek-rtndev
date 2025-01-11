@@ -14,7 +14,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=18869a797dab12bf1c917ba3b4782fef484c407c
-PKG_SOURCE_URL:=https://github.com/bmc/daemonize.git
+PKG_SOURCE_URL:=https://github.com/bmc/daemonize
 PKG_MIRROR_HASH:=86aea65f1f12cb3ca3043afc1335cecb5e01f99f3223a09f8cd4b88853c8bd1d
 
 include $(INCLUDE_DIR)/package.mk
