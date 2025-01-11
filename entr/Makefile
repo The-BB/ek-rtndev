@@ -10,7 +10,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=3cd81272a2838fe5628de7f18ca45418792cca20
-PKG_SOURCE_URL:=https://github.com/eradman/entr.git
+PKG_SOURCE_URL:=https://github.com/eradman/entr
 PKG_MIRROR_HASH:=a6763c80ee79995de0762d2dd3b48a57e6e9b53c6d5e4b12affb6910f6639c59
 
 include $(INCLUDE_DIR)/package.mk
