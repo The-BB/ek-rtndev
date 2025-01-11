@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2012 Erinome.net
-# Copyright (C) 2013-2024 Entware
+# Copyright (C) 2013-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
