@@ -10,7 +10,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=b9f21a9cfe9d90afbd87dcff290a8dc8c078409b
-PKG_SOURCE_URL:=https://github.com/miniupnp/miniupnp.git
+PKG_SOURCE_URL:=https://github.com/miniupnp/miniupnp
 PKG_MIRROR_HASH:=6048ec6965d84e2cf996341a04fcb508116e6a23a599d4c23a5b01e75bd65224
 
 include $(INCLUDE_DIR)/package.mk
