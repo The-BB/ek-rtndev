@@ -10,7 +10,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=70d43d42b5bef9057b5387c0d80556ecb9045779
-PKG_SOURCE_URL:=https://github.com/xroche/httrack.git
+PKG_SOURCE_URL:=https://github.com/xroche/httrack
 PKG_MIRROR_HASH:=3cc13b8aefc34392104868bc7c99ee62b8f5c3d40df5df672382cc4600905713
 
 PKG_BUILD_FLAGS:=no-mips16
