@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2024 Entware
+# Copyright (C) 2011-2025 Entware
+
+# The newer version is incompatible with nfusr
 
 include $(TOPDIR)/rules.mk
 
@@ -17,10 +19,8 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=LGPL-2.1-only
 PKG_LICENSE_FILES:=COPYING LICENSE-BSD.txt LICENSE-GPL-3.txt LICENSE-LGPL-2.1.txt
 
-PKG_FIXUP:=autoreconf
-PKG_INSTALL:=1
-
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/libnfs/Default
 	SUBMENU:=Filesystem
@@ -51,6 +51,9 @@ define Package/libnfs-utils/description
  nfs-cat, nfs-cp, nfs-ls console usersapce utilities for accessing
  NFS shares over a network.
 endef
+
+CMAKE_OPTIONS += \
+	-DENABLE_UTILS=ON
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
