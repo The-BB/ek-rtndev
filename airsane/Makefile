@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2024 Entware
+# Copyright (C) 2011-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
@@ -13,6 +13,7 @@ PKG_SOURCE_VERSION:=v$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/SimulPiscator/AirSane
 PKG_MIRROR_HASH:=c9a9d222a42f0d133c98fd65e9a75bb4aee1971c1978bba2cd078fbcde521f1c
 
+PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=GPL-3.0-only
 PKG_LICENSE_FILES:=LICENSE
 
@@ -26,7 +27,6 @@ define Package/airsane
 	DEPENDS:=+libavahi-client +sane-libs
 	TITLE:=AirScan Scanner publisher
 	URL:=$(PKG_SOURCE_URL)
-	MAINTAINER:=Entware team, https://entware.net
 endef
 
 define Package/airsane/description
