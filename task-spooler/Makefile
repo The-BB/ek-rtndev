@@ -12,7 +12,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=052db94bc588e4f4471e37599dfdff77dc44c8bb
-PKG_SOURCE_URL:=https://github.com/justanhduc/task-spooler.git
+PKG_SOURCE_URL:=https://github.com/justanhduc/task-spooler
 PKG_MIRROR_HASH:=d876964402559d1d4d68ec86159a86d94bdb947b008357fe491718353ff979a7
 
 include $(INCLUDE_DIR)/package.mk
