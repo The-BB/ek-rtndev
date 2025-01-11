@@ -10,7 +10,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=a6a79ef064f131ffd03c110acce2d3edb84ffa2e
-PKG_SOURCE_URL:=https://github.com/Exiv2/exiv2.git
+PKG_SOURCE_URL:=https://github.com/Exiv2/exiv2
 PKG_MIRROR_HASH:=994e82a718a4cb8c0ba78c84463d70b1ac904c6bdc8ef5e969a85d84bc2ecaa5
 
 CMAKE_INSTALL:=1
