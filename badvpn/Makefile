@@ -13,7 +13,7 @@ PKG_RELEASE=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=07268f02706e78e282e19641b5d1d41e8e89bf31
-PKG_SOURCE_URL:=https://github.com/ambrop72/badvpn.git
+PKG_SOURCE_URL:=https://github.com/ambrop72/badvpn
 PKG_MIRROR_HASH:=ca982200a9458e5d15dd5f3c9cefc80bd5eca4a76b6858577b6be248339e4f2b
 
 include $(INCLUDE_DIR)/package.mk
