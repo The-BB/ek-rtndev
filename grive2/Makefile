@@ -12,7 +12,7 @@ PKG_RELEASE:=6
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=d03c4a24ceb179d0fdb4c47e3d144d547ffcc8b6
-PKG_SOURCE_URL:=https://github.com/vitalif/grive2.git
+PKG_SOURCE_URL:=https://github.com/vitalif/grive2
 PKG_MIRROR_HASH:=20eaafe0cb4fe0c58ef6ba0bbfd8f7be9f3b4f5de32cdc3d67edbdf43f00d43c
 
 include $(INCLUDE_DIR)/package.mk
