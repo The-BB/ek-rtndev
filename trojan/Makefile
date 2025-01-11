@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2020-2021 Entware
+# Copyright (C) 2020-2024 Entware
 
 # XXX boost bumped
 
@@ -12,7 +12,7 @@ PKG_RELEASE:=6
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=8606b7110fe79f8ab02d60c897f87ffb0a9b23f0
-PKG_SOURCE_URL:=https://github.com/trojan-gfw/trojan.git
+PKG_SOURCE_URL:=https://github.com/trojan-gfw/trojan
 PKG_MIRROR_HASH:=8dc47632a28a87318bc62f97437dc7152135cfc836823c6c0ff218cd8b845ec9
 
 include $(INCLUDE_DIR)/package.mk
