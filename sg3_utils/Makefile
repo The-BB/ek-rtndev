@@ -15,7 +15,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=ed2e1216453184d7888122a32a6c1e58ebc6a2c6
-PKG_SOURCE_URL:=https://github.com/hreinecke/sg3_utils.git
+PKG_SOURCE_URL:=https://github.com/hreinecke/sg3_utils
 PKG_MIRROR_HASH:=f92cad04d7b1ac41eda298819e9b6b4f08398474a6e2ed7d985c88232ea6fe90
 
 PKG_INSTALL:=1
