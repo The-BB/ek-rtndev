@@ -12,7 +12,7 @@ PKG_RELEASE:=4
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=14b0bacacedc9ac7e96fc34cf720800047f6194a
-PKG_SOURCE_URL:=https://github.com/elastocloud/istgt.git
+PKG_SOURCE_URL:=https://github.com/elastocloud/istgt
 PKG_MIRROR_HASH:=e0266bac06198dffe1e0e9e0801b9e99013d26d94097bf9d4adc96344a52ca42
 
 PKG_FIXUP:=autoreconf
