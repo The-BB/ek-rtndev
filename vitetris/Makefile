@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=9bbea4f5ab35d6fb8fe70c14daba19e7f35ab44e
-PKG_SOURCE_URL:=https://github.com/vicgeralds/vitetris.git
+PKG_SOURCE_URL:=https://github.com/vicgeralds/vitetris
 PKG_MIRROR_HASH:=4b1768c31692420f63ac76509b02b5bcc1ed12a4dd5fb85752cf8491c237ebfb
 
 include $(INCLUDE_DIR)/package.mk
