@@ -59,7 +59,7 @@ define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
 	$(CP) $(PKG_INSTALL_DIR)/opt/include/nfsc $(1)/opt/include
 	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnfs.{a,so*} $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnfs.so* $(1)/opt/lib
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libnfs.pc $(1)/opt/lib/pkgconfig
 endef
 
