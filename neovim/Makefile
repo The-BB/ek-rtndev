@@ -15,7 +15,7 @@ PKG_HASH:=39fab47d241da7b9418823cc563c689d522c1c4b2def04036393834f3f1ca94c
 PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=LICENSE.txt
 
-PKG_BUILD_DEPENDS:=lua/host lua-ffi/host
+PKG_BUILD_DEPENDS:=lua/host lua-ffi/host luabitop/host
 PKG_BUILD_DEPENDS+=liblpeg libtermkey libvterm tree-sitter unibilium
 
 include $(INCLUDE_DIR)/package.mk
