@@ -1,29 +1,31 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2024 Entware
+# Copyright (C) 2011-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=espeak-ng
-PKG_VERSION:=1.51.1
+PKG_VERSION:=1.52.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/espeak-ng/espeak-ng
-PKG_MIRROR_HASH:=986dbf4a9030512cc28affb5b08687d80f3f33342fc38fdb90d1335c15058724
+PKG_MIRROR_HASH:=9d5b1baeb92b0f76e31083533ff3d702e3508c48f0867d72436dd8670c0ad123
 
 PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=GPL-3.0-or-later
 PKG_LICENSE_FILES:=COPYING COPYING.APACHE COPYING.BSD2 COPYING.UCD
 
-PKG_FIXUP:=autoreconf
+HOST_PATCH_DIR:=
+
 PKG_INSTALL:=1
 
 PKG_BUILD_DEPENDS:=espeak-ng/host
 
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/espeak-ng/Default
 	TITLE:=a multi-lingual software speech synthesizer
@@ -52,38 +54,26 @@ endef
 
 Package/espeak-ng/description = $(Package/libespeak-ng/description)
 
-HOST_CONFIGURE_ARGS += \
-	--disable-shared \
-	--without-gradle \
-	--without-pcaudiolib \
-	--without-klatt \
-	--without-mbrola \
-	--without-sonic
+CMAKE_HOST_OPTIONS += \
+	-DUSE_KLATT=OFF \
+	-DUSE_LIBPCAUDIO=OFF \
+	-DUSE_LIBSONIC=OFF \
+	-DUSE_MBROLA=OFF
 
-HOST_CONFIGURE_VARS += \
-	HOST_BUILD_DIR="$(HOST_BUILD_DIR)"
+CMAKE_OPTIONS += \
+	-DBUILD_SHARED_LIBS=ON \
+	-DUSE_KLATT=OFF \
+	-DUSE_LIBPCAUDIO=OFF \
+	-DUSE_LIBSONIC=OFF \
+	-DUSE_MBROLA=OFF
 
-CONFIGURE_VARS += \
-	HOST_BUILD_DIR="$(HOST_BUILD_DIR)"
-
-define Host/Prepare
-	$(call Host/Prepare/Default)
-	( cd $(HOST_BUILD_DIR); \
-		touch AUTHORS; \
-		$(LN) CHANGELOG.md NEWS; \
-		$(LN) README.md README; \
-	)
-endef
+TARGET_CXXFLAGS += -pthread
 
 Host/Install:=:
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
-	( cd $(PKG_BUILD_DIR); \
-		touch AUTHORS; \
-		$(LN) CHANGELOG.md NEWS; \
-		$(LN) README.md README; \
-	)
+	$(SED) 's,@HOST_BUILD_DIR@,$(HOST_BUILD_DIR),' $(PKG_BUILD_DIR)/cmake/data.cmake
 endef
 
 define Package/libespeak-ng/install

@@ -2,12 +2,12 @@ Apparently 60ms is too much for some cards.
 
 --- a/src/libespeak-ng/speech.c
 +++ b/src/libespeak-ng/speech.c
-@@ -78,7 +78,7 @@ static void *my_user_data = NULL;
+@@ -80,7 +80,7 @@ static void *my_user_data = NULL;
  static espeak_ng_OUTPUT_MODE my_mode = ENOUTPUT_MODE_SYNCHRONOUS;
  static int out_samplerate = 0;
  static int voice_samplerate = 22050;
--static int min_buffer_length = 60; // minimum buffer length in ms
-+static int min_buffer_length = 49; // minimum buffer length in ms
+-static const int min_buffer_length = 60; // minimum buffer length in ms
++static const int min_buffer_length = 49; // minimum buffer length in ms
  static espeak_ng_STATUS err = ENS_OK;
  
- t_espeak_callback *synth_callback = NULL;
+ static t_espeak_callback *synth_callback = NULL;

@@ -1,0 +1,11 @@
+--- a/cmake/data.cmake
++++ b/cmake/data.cmake
+@@ -61,7 +61,7 @@ file(COPY "${DATA_SRC_DIR}/voices/!v" DE
+ file(COPY "${PHONEME_SRC_DIR}" DESTINATION "${DATA_DIST_ROOT}")
+ 
+ set(ESPEAK_RUN_ENV ${CMAKE_COMMAND} -E env "ESPEAK_DATA_PATH=${DATA_DIST_ROOT}")
+-set(ESPEAK_RUN_CMD ${ESPEAK_RUN_ENV} $ENV{VALGRIND} "$<TARGET_FILE:espeak-ng-bin>")
++set(ESPEAK_RUN_CMD ${ESPEAK_RUN_ENV} $ENV{VALGRIND} "@HOST_BUILD_DIR@/src/espeak-ng")
+ 
+ add_custom_command(
+   OUTPUT "${DATA_DIST_DIR}/intonations"
