@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=go
-PKG_VERSION:=1.23.4
+PKG_VERSION:=1.24.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=go$(PKG_VERSION).src.tar.gz
@@ -13,7 +13,7 @@ PKG_SOURCE_URL:=\
 		https://dl.google.com/go/ \
                 https://mirrors.ustc.edu.cn/golang/ \
                 https://mirrors.nju.edu.cn/golang/
-PKG_HASH:=ad345ac421e90814293a9699cca19dd5238251c3f687980bbcae28495b263531
+PKG_HASH:=9dc77ffadc16d837a1bf32d99c624cb4df0647cee7b119edd9e7b1bcc05f2e00
 
 PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=BSD-3-Clause
@@ -67,10 +67,13 @@ define Build/Compile
 		$(GO_VARS) GO_LDFLAGS="-s -w" PKG_CONFIG=/opt/bin/pkg-config \
 		GOROOT_BOOTSTRAP=$(STAGING_DIR_HOST)/go ./make.bash --no-banner; \
 	)
+# https://github.com/golang/go/commit/2e97c30d8d9f5740a503428c09efae7bedb68efb
+# remove .../src/debug/elf/testdata/libtiffxx.so_ or fix deps (add lib{tiff,stdcpp}
 	if [ -d "$(PKG_BUILD_DIR)/bin/linux_$(GOARCH)" ]; then \
 		rm $(PKG_BUILD_DIR)/bin/go{,fmt}; \
 		mv $(PKG_BUILD_DIR)/bin/linux_$(GOARCH)/* $(PKG_BUILD_DIR)/bin/; \
 		rm -rf $(PKG_BUILD_DIR)/{bin,pkg}/linux_$(GOARCH); \
+		rm -f $(PKG_BUILD_DIR)/src/debug/elf/testdata/libtiffxx.so_; \
 	fi
 	[ "$(BINTYPE)" = "$(GOARCH)" ] || rm -rf $(PKG_BUILD_DIR)/pkg/linux_$(BINTYPE)
 	[ "$(BINTYPE)" = "$(GOARCH)" ] || rm -rf $(PKG_BUILD_DIR)/pkg/tool/linux_$(BINTYPE)
