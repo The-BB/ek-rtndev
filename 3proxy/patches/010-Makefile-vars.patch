@@ -12,8 +12,8 @@
  COUT = -o 
  LN = $(CC)
  DCFLAGS = 
--LDFLAGS = -fPIE -O2 -fno-strict-aliasing -pthread
-+LDFLAGS += -fPIE -fno-strict-aliasing -pthread
+-LDFLAGS = -fPIC -O2 -fno-strict-aliasing -pthread
++LDFLAGS += -fPIC -fno-strict-aliasing -pthread
  DLFLAGS = -shared
  DLSUFFICS = .ld.so
  # -lpthreads may be reuqired on some platforms instead of -pthreads
