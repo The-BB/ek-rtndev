@@ -1,0 +1,24 @@
+--- a/meson.build
++++ b/meson.build
+@@ -47,7 +47,9 @@ pthread_dep = cc.find_library('pthread',
+ libiconv_dep = cc.find_library('iconv', dirs: libsearch_dirs, required: false)
+ libbsd_dep = cc.find_library('bsd', dirs: libsearch_dirs, required: false)
+ 
+-if libbsd_dep.found()
++with_libbsd = get_option('libbsd') and libbsd_dep.found()
++
++if with_libbsd
+     root_dependencies += libbsd_dep
+     cflags += '-DHAVE_LIBBSD'
+ endif
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -1,6 +1,2 @@
+-option(
+-    'enable-fuse',
+-    type: 'boolean',
+-    value: true,
+-    description: 'Enable FUSE support',
+-)
++option('enable-fuse', type: 'boolean', value: true, description: 'Enable FUSE support')
++option('libbsd', type: 'boolean', value: true, description: 'compile with libbsd')

@@ -1,0 +1,166 @@
+From 2cb2c7d32d8f7514238c6f7065698288c0f00d54 Mon Sep 17 00:00:00 2001
+From: Daniel Markstedt <daniel@mindani.net>
+Date: Mon, 10 Feb 2025 19:38:47 +0100
+Subject: [PATCH] use libbsd for BSD extensions to glibc
+
+---
+ INSTALL.md             |  1 +
+ cmdline/cmdline_afp.c  |  4 ++++
+ cmdline/cmdline_main.c |  4 ++++
+ cmdline/meson.build    |  2 +-
+ fuse/client.c          |  4 ++++
+ fuse/meson.build       |  3 ++-
+ lib/meson.build        |  5 +++--
+ lib/uams.c             | 15 ++++++++++-----
+ meson.build            |  7 +++++++
+ 9 files changed, 36 insertions(+), 9 deletions(-)
+
+--- a/INSTALL.md
++++ b/INSTALL.md
+@@ -6,6 +6,7 @@ This project uses the Meson build system
+ First off, make sure `meson` and `ninja` (sometimes packaged as `ninja-build`) are installed.
+ 
+ The mandatory dependency for all platforms is `pthread`.
++On Linux when glibc < 2.38, the `libbsd` library is required.
+ 
+ To build man pages, you need `cmark`. If you want plain text versions of readmes,
+ you need `cmark-gfm` (which can also be used for man pages.)
+--- a/cmdline/cmdline_afp.c
++++ b/cmdline/cmdline_afp.c
+@@ -20,6 +20,10 @@
+ #include <limits.h>
+ #include <ctype.h>
+ 
++#ifdef HAVE_LIBBSD
++#include <bsd/string.h>
++#endif
++
+ #include "libafpclient.h"
+ #include "cmdline_afp.h"
+ #include "cmdline_main.h"
+--- a/cmdline/cmdline_main.c
++++ b/cmdline/cmdline_main.c
+@@ -18,6 +18,10 @@
+ #include <ctype.h>
+ #include <signal.h>
+ 
++#ifdef HAVE_LIBBSD
++#include <bsd/string.h>
++#endif
++
+ #include "afp.h"
+ #include "libafpclient.h"
+ #include "cmdline_afp.h"
+--- a/cmdline/meson.build
++++ b/cmdline/meson.build
+@@ -15,7 +15,7 @@ executable(
+   ],
+   include_directories: incdir,
+   link_with: libafpclient,
+-  dependencies: [readline_dep, ncurses_dep],
++  dependencies: [root_dependencies, readline_dep, ncurses_dep],
+   c_args: cflags,
+   install: true
+ )
+--- a/fuse/client.c
++++ b/fuse/client.c
+@@ -13,6 +13,10 @@
+ #include <string.h>
+ #include <unistd.h>
+ 
++#ifdef HAVE_LIBBSD
++#include <bsd/string.h>
++#endif
++
+ #ifdef HAVE_CONFIG_H
+ #include "config.h"
+ #endif
+--- a/fuse/meson.build
++++ b/fuse/meson.build
+@@ -6,6 +6,7 @@ executable(
+   include_directories: incdir,
+   link_with: libafpclient,
+   c_args: cflags,
++  dependencies: [root_dependencies],
+   install: true,
+ )
+ 
+@@ -17,7 +18,7 @@ executable(
+   include_directories: incdir,
+   link_with: libafpclient,
+   c_args: cflags,
+-  dependencies: [fuse_dep, pthread_dep],
++  dependencies: [root_dependencies, fuse_dep, pthread_dep],
+   install: true,
+ )
+ 
+--- a/lib/meson.build
++++ b/lib/meson.build
+@@ -35,10 +35,11 @@ libafpclient_sources = files(
+   'utils.c',
+ )
+ 
+-libafpclient = library('afpclient',
++libafpclient = library(
++  'afpclient',
+   libafpclient_sources,
+   include_directories: incdir,
+-  dependencies: [libiconv_dep, gcrypt_dep, pthread_dep],
++  dependencies: [root_dependencies, libiconv_dep, gcrypt_dep, pthread_dep],
+   c_args: cflags,
+   install: true,
+ )
+--- a/lib/uams.c
++++ b/lib/uams.c
+@@ -8,6 +8,16 @@
+ 
+ #include <string.h>
+ #include <stdlib.h>
++
++#ifdef HAVE_LIBGCRYPT
++#include <gcrypt.h>
++#include <assert.h>	/* for assert() */
++#endif /* HAVE_LIBGCRYPT */
++
++#ifdef HAVE_LIBBSD
++#include <bsd/string.h>
++#endif
++
+ #include "dsi.h"
+ #include "afp.h"
+ #include "utils.h"
+@@ -16,11 +26,6 @@
+ #include "config.h"
+ #endif
+ 
+-#ifdef HAVE_LIBGCRYPT
+-#include <gcrypt.h>
+-#include <assert.h>	/* for assert() */
+-#endif /* HAVE_LIBGCRYPT */
+-
+ struct afp_uam {
+ 	unsigned int bitmap;
+ 	char name[AFP_UAM_LENGTH];
+--- a/meson.build
++++ b/meson.build
+@@ -18,6 +18,7 @@ libdir = install_prefix / get_option('li
+ mandir = install_prefix / get_option('mandir')
+ datadir = install_prefix / get_option('datadir')
+ 
++root_dependencies = []
+ libsearch_dirs = []
+ include_dirs = []
+ cflags = [
+@@ -44,6 +45,12 @@ ncurses_dep = cc.find_library('ncurses',
+ readline_dep = cc.find_library('readline', dirs: libsearch_dirs, required: false)
+ pthread_dep = cc.find_library('pthread', dirs: libsearch_dirs, required: true)
+ libiconv_dep = cc.find_library('iconv', dirs: libsearch_dirs, required: false)
++libbsd_dep = cc.find_library('bsd', dirs: libsearch_dirs, required: false)
++
++if libbsd_dep.found()
++    root_dependencies += libbsd_dep
++    cflags += '-DHAVE_LIBBSD'
++endif
+ 
+ gcrypt_dep = dependency('libgcrypt', version: '>=1.2.3', required: false)
+ libgmp_dep = dependency('gmp', required: false)

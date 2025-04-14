@@ -1,33 +1,35 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2024 Entware
+# Copyright (C) 2011-2025 Entware
 
-# Abandoned in 2015, archieved
+# XXX switch to fork
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=afpfs-ng
-PKG_VERSION:=0.8.2
-PKG_RELEASE:=2
+PKG_VERSION:=0.9.0
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=f6e24eb73c9283732c3b5d9cb101a1e2e4fade3e
-PKG_SOURCE_URL:=https://github.com/simonvetter/afpfs-ng
-PKG_MIRROR_HASH:=7ef32e2fe4567ff6596a180c2bfac626957869f9057b01c07377e7f9f935d12e
+PKG_SOURCE_VERSION:=$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/rdmark/afpfs-ng
+PKG_MIRROR_HASH:=1c31075c3efc0c0b6d2c599cc7c255b3b97e208b27ad7f1beadbfbfbd98d9971
 
-PKG_FIXUP:=autoreconf
-PKG_INSTALL:=1
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-2.0-only
+PKG_LICENSE_FILES:=COPYING
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/meson.mk
+include $(INCLUDE_DIR)/nls.mk
 
 define Package/afpfs-ng
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=Filesystem
-	DEPENDS:=+libfuse +libgcrypt +libgmp +libreadline
 	TITLE:=a client for Apple Filing Protocol
 	URL:=https://github.com/simonvetter/afpfs-ng
-	MAINTAINER:=Entware team, https://entware.net
+	DEPENDS:=+libfuse +libgcrypt +libreadline +USE_GLIBC:libbsd $(ICONV_DEPENDS)
 endef
 
 define Package/afpfs-ng/description
@@ -36,17 +38,16 @@ define Package/afpfs-ng/description
  AFP over TCP.
 endef
 
-define Build/Configure
-	touch $(PKG_BUILD_DIR)/README
-	touch $(PKG_BUILD_DIR)/lib/identify.c
-	$(call Build/Configure/Default)
-endef
+MESON_ARGS += -Dlibbsd=$(if $(CONFIG_USE_MUSL),false,true)
 
 define Package/afpfs-ng/install
-	$(INSTALL_DIR) $(1)/opt
-	$(CP) $(PKG_INSTALL_DIR)/opt/bin $(1)/opt
+	$(INSTALL_DIR) $(1)/opt/bin
+	$(INSTALL_BIN) \
+		$(PKG_INSTALL_DIR)/opt/bin/{afp{cmd,fsd,getstatus},mount_afpfs} \
+			$(1)/opt/bin
+	$(LN) mount_afpfs $(1)/opt/bin/afp_client
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libafpclient.so* $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libafpclient.so $(1)/opt/lib
 endef
 
 $(eval $(call BuildPackage,afpfs-ng))

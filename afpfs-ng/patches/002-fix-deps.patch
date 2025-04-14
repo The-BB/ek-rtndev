@@ -1,0 +1,11 @@
+--- a/meson.build
++++ b/meson.build
+@@ -53,7 +53,7 @@ if libbsd_dep.found()
+ endif
+ 
+ gcrypt_dep = dependency('libgcrypt', version: '>=1.2.3', required: false)
+-libgmp_dep = dependency('gmp', required: false)
++libgmp_dep = cc.find_library('gmp', dirs: libsearch_dirs, required: false)
+ fuse_dep = cc.find_library('fuse', dirs: libsearch_dirs, required: false)
+ 
+ cmark = find_program('cmark', required: false)
