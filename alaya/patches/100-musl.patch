@@ -6,11 +6,20 @@ Log.c:452:31: note: each undeclared identifier is reported only once for each fu
 Log.c:460:31: error: 'LOCK_UN' undeclared (first use in this function)
   460 |         STREAMLock(LogFile->S,LOCK_UN);
       |                               ^~~~~~~
+...
+In file included from Process.c:29:
+.../include/sys/prctl.h:88:8: error: redefinition of 'struct prctl_mm_map'
+   88 | struct prctl_mm_map {
+      |        ^~~~~~~~~~~~
+In file included from Process.c:27:
+.../include/linux/prctl.h:133:8: note: originally defined here
+  133 | struct prctl_mm_map {
+      |        ^~~~~~~~~~~~
 
 ---
 
---- a/libUseful/Log.c
-+++ b/libUseful/Log.c
+--- a/libUseful-bundled/Log.c
++++ b/libUseful-bundled/Log.c
 @@ -2,6 +2,9 @@
  #include "Time.h"
  #include "FileSystem.h"
@@ -21,18 +30,31 @@ Log.c:460:31: error: 'LOCK_UN' undeclared (first use in this function)
  
  
  //When logs are used by 'child processes', it's only the 'parent' process that should be
---- a/libUseful/OAuth.c
-+++ b/libUseful/OAuth.c
-@@ -4,6 +4,9 @@
- #include "DataParser.h"
- #include "Encodings.h"
- #include "Hash.h"
+--- a/libUseful-bundled/OAuth.c
++++ b/libUseful-bundled/OAuth.c
+@@ -7,6 +7,9 @@
+ #include "Users.h"
+ #include "Entropy.h"
+ #include "URL.h"
 +#ifndef __GLIBC__
 +#include <sys/file.h> /* musl LOCK_** */
 +#endif
  
- 
  static ListNode *OAuthTypes=NULL;
+ static ListNode *OAuthKeyChain=NULL;
+--- a/libUseful-bundled/Process.c
++++ b/libUseful-bundled/Process.c
+@@ -23,7 +23,9 @@
+ #include <sys/file.h>
+ 
+ #ifdef HAVE_PRCTL
+-#include <linux/prctl.h>  /* Definition of PR_* constants */
++# ifdef __GLIBC__
++#  include <linux/prctl.h>  /* Definition of PR_* constants */
++# endif
+ #include <sys/prctl.h>
+ #endif
+ 
 --- a/upload.c
 +++ b/upload.c
 @@ -1,6 +1,9 @@

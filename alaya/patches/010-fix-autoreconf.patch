@@ -1,0 +1,11 @@
+--- a/libUseful-bundled/configure.ac
++++ b/libUseful-bundled/configure.ac
+@@ -7,7 +7,7 @@ AC_PROG_EGREP
+ AC_SYS_LARGEFILE
+ 
+ m4_ifdef([AC_PROG_AR], [AC_PROG_AR])
+-m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
++#m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
+ if test "$AR" = ""
+ then
+ AR=ar

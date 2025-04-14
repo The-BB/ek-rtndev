@@ -21,7 +21,7 @@
      fprintf(stdout,"	-h:		'ChHome mode', switch to users home dir and chroot.\n");
      fprintf(stdout,"	-i:		Set interface listen on, allows running separate servers on the same port on different interfaces/network cards.\n");
 @@ -813,14 +813,14 @@ void InitSettings()
-     Settings.MaxLogSize=999999;
+     Settings.MaxLogSize=9999999;
      Settings.MaxLogRotate=5;
      Settings.LogPath=CopyStr(Settings.LogPath,"SYSLOG");
 -    Settings.PidFilePath=CopyStr(Settings.PidFilePath,"/var/run/alaya.pid");

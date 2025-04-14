@@ -1,17 +1,21 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2024 Entware
+# Copyright (C) 2011-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=alaya
-PKG_VERSION:=4.5
+PKG_VERSION:=4.6
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=00c9d13732ee48d2020bebe14329532c06d2a02d
+PKG_SOURCE_VERSION:=v$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/ColumPaget/Alaya
-PKG_MIRROR_HASH:=2431463d47c524c1defd42bf6888b1e1c331ad4b9c4167ffad9882f4fea8e5ab
+PKG_MIRROR_HASH:=97a4f2446a4346c338b3298db5bb989ac1ef2db1f820dfc4636419f737503930
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-3.0-only
+PKG_LICENSE_FILES:=LICENCE
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -23,9 +27,8 @@ define Package/alaya
 	CATEGORY:=Network
 	SUBMENU:=Web Servers/Proxies
 	TITLE:=A WEBDAV Server
-	URL:=https://sites.google.com/site/columscode/home/Alaya
-	DEPENDS:=+libopenssl +libcap +libpam
-	MAINTAINER:=Entware team, https://entware.net
+	URL:=https://github.com/ColumPaget/Alaya
+	DEPENDS:=+libopenssl +libpam +zlib
 endef
 
 define Package/alaya/description
@@ -39,11 +42,8 @@ CONFIGURE_ARGS += \
 	--enable-ip6 \
 	--enable-pam
 
-TARGET_CFLAGS += \
-	-I$(STAGING_DIR)/opt/include
-
-TARGET_LDFLAGS += \
-	-lssl -lcrypto
+CONFIGURE_VARS += \
+	ac_cv_sys_file_offset_bits=64
 
 define Package/alaya/install
 	$(INSTALL_DIR) $(1)/opt/sbin
