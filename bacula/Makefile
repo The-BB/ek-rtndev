@@ -1,21 +1,21 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (C) 2006-2015 OpenWrt.org
-# Copyright (C) 2015-2024 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
-# UTF8 support added
+# Copyright (C) 2015-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bacula
-PKG_VERSION:=15.0.2
+PKG_VERSION:=15.0.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/bacula
-PKG_HASH:=55515c2a66af9a86b955daea4089378b864d051b2e6e30383bef36e693acea7a
+PKG_HASH:=294afd3d2eb9d5b71c3d0e88fdf19eb513bfdb843b28d35c0552e4ae062827a1
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=BSD-2-Clause
+PKG_LICENSE_FILES:=LICENSE-FOSS
 
 PKG_INSTALL:=1
 
@@ -25,11 +25,10 @@ include $(INCLUDE_DIR)/nls.mk
 define Package/bacula
 	SECTION:=utils
 	CATEGORY:=Utilities
-	DEPENDS:=+libopenssl +libwrap +libstdcpp +libsqlite3 +liblzo +libacl +libcap +gawk +libzstd
-	DEPENDS+=$(INTL_DEPENDS)
 	TITLE:=Open Source Network Backup Solution
-	URL:=http://www.bacula.org/
-	MAINTAINER:=Entware team, https://entware.net
+	URL:=https://www.bacula.org/
+	DEPENDS:=+gawk +libacl +libcap +liblzo +libopenssl +libsqlite3
+	DEPENDS+=+libstdcpp +libwrap +libzstd $(INTL_DEPENDS)
 endef
 
 define Package/bacula/description
@@ -49,24 +48,22 @@ CONFIGURE_VARS += \
 	ac_cv_sys_largefile_LIBS= \
 	ac_cv_sys_largefile_source=yes
 
-
 CONFIGURE_ARGS += \
-	--enable-largefile \
-	--sysconfdir=/opt/etc/bacula/ \
-	--with-scriptdir=/opt/etc/bacula/scripts \
-	--with-archivedir=/opt/bacula/tmp \
-	--with-pid-dir=/opt/var/run \
-	--with-subsys-dir=/opt/var/run/subsys \
-	--enable-smartalloc \
-	--disable-conio --enable-readline \
-	--with-readline=$(STAGING_DIR)/opt/include/readline \
-	--with-openssl=$(STAGING_DIR)/opt/include/openssl \
-	--with-sqlite3=$(STAGING_DIR)/opt/include \
-	--with-tcp-wrappers=$(STAGING_DIR)/opt/include \
-	--without-x \
+	--disable-conio \
 	--disable-static \
-	--includedir=$(STAGING_DIR)/opt/include \
-	--oldincludedir=$(STAGING_DIR)/opt/include
+	--enable-largefile \
+	--enable-readline \
+	--enable-smartalloc \
+	--sysconfdir=/opt/etc/bacula/ \
+	--with-archivedir=/opt/bacula/tmp \
+	--with-openssl=$(STAGING_DIR)/opt \
+	--with-pid-dir=/opt/var/run \
+	--with-readline=$(STAGING_DIR)/opt \
+	--with-scriptdir=/opt/etc/bacula/scripts \
+	--with-sqlite3=$(STAGING_DIR)/opt \
+	--with-subsys-dir=/opt/var/run/subsys \
+	--with-tcp-wrappers=$(STAGING_DIR)/opt \
+	--without-x
 
 define Package/bacula/conffiles
 /opt/etc/bacula/bacula-dir.conf
@@ -74,7 +71,6 @@ define Package/bacula/conffiles
 /opt/etc/bacula/bacula-sd.conf
 /opt/etc/bacula/bconsole.conf
 endef
-
 
 define Package/bacula/install
 	$(INSTALL_DIR) $(1)/opt/sbin
@@ -98,6 +94,10 @@ define Package/bacula/install
 			$(1)/opt/etc/bacula/scripts/bacula_config
 # create_sqlite3_database, grant_sqlite3_privileges, make_sqlite3_tables, update_sqlite3_tables
 	$(SED) 's,$(STAGING_DIR),,g' $(1)/opt/etc/bacula/scripts/*
+	$(SED) 's,^!#.*python,#!/opt/bin/python,' \
+		$(1)/opt/etc/bacula/scripts/key-manager.py \
+		$(1)/opt/sbin/md5tobase64.py
+	$(SED) 's,^!#.*perl,#!/opt/bin/perl,' $(1)/opt/sbin/get_malware_abuse.ch
 endef
 
 $(eval $(call BuildPackage,bacula))
