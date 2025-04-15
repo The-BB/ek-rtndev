@@ -12,7 +12,7 @@ cc1: all warnings being treated as errors
 
 --- a/src/log.h
 +++ b/src/log.h
-@@ -13,7 +13,9 @@
+@@ -14,7 +14,9 @@
  
  #ifndef LOG_H
  #define LOG_H

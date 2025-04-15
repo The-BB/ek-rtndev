@@ -1,0 +1,39 @@
+--- a/src/connection.c
++++ b/src/connection.c
+@@ -1181,7 +1181,11 @@ static int ctx_set_dh(SSL_CTX *ctx)
+ 		return 0;
+ 	}
+ 
++// Since OpenSSL 3.0 [-Werror=deprecated-declarations]
++#pragma GCC diagnostic push
++#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+ 	dh = PEM_read_DHparams(f, NULL, NULL, NULL);
++#pragma GCC diagnostic pop
+ 	fclose(f);
+ 
+ 	if (dh == NULL) {
+@@ -1196,7 +1200,11 @@ static int ctx_set_dh(SSL_CTX *ctx)
+ #pragma GCC diagnostic ignored "-Wtraditional-conversion"
+ 	ret = SSL_CTX_set_tmp_dh(ctx, dh);
+ #pragma GCC diagnostic pop
++// Since OpenSSL 3.0 [-Werror=deprecated-declarations]
++#pragma GCC diagnostic push
++#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+ 	DH_free(dh);
++#pragma GCC diagnostic pop
+ 
+ 	if (ret != 1) {
+ 		mylog(LOG_ERROR, "Unable to set DH parameters: %s",
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -36,9 +36,4 @@ bipmkpw_LDADD = libbip.a libbiplex.a $(O
+ AM_YFLAGS= -d
+ BUILT_SOURCES = conf.c conf.h lex.c
+ 
+-AM_CFLAGS=-Wall -Wextra -Werror \
+-	-O2 \
+-	-D_FORTIFY_SOURCE=2 \
+-	-fstack-protector-strong -fstack-clash-protection \
+-	-Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack -Wl,-z,separate-code \
+-	-Wpedantic -Wformat=2 -Wformat-overflow=2 -Wformat-truncation=2 -Wformat-security -Wnull-dereference -Wstack-protector -Wtrampolines -Walloca -Wvla -Warray-bounds=2 -Wimplicit-fallthrough=3 -Wtraditional-conversion -Wshift-overflow=2 -Wcast-qual -Wstringop-overflow=4 -Wconversion -Warith-conversion -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wformat-signedness -Wshadow -Wstrict-overflow=4 -Wundef -Wstrict-prototypes -Wswitch-default -Wswitch-enum -Wstack-usage=1000000 -Wcast-align=strict
++AM_CFLAGS=-Wall -Wextra -Werror
