@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cmake
-PKG_VERSION:=3.31.3
+PKG_VERSION:=3.31.7
 PKG_RELEASE:=1
 
 PKG_VERSION_MAJOR:=$(subst $(space),.,$(wordlist 1,2,$(subst .,$(space),$(PKG_VERSION))))
@@ -13,7 +13,7 @@ PKG_VERSION_MAJOR:=$(subst $(space),.,$(wordlist 1,2,$(subst .,$(space),$(PKG_VE
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/Kitware/CMake/releases/download/v$(PKG_VERSION)/ \
 		https://cmake.org/files/v$(PKG_VERSION_MAJOR)/
-PKG_HASH:=fac45bc6d410b49b3113ab866074888d6c9e9dc81a141874446eb239ac38cb87
+PKG_HASH:=a6d2eb1ebeb99130dfe63ef5a340c3fdb11431cce3d7ca148524c125924cea68
 
 PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=BSD-3-Clause
