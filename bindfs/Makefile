@@ -1,16 +1,20 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2024 Entware
+# Copyright (C) 2011-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bindfs
-PKG_VERSION:=1.17.7
+PKG_VERSION:=1.18.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://bindfs.org/downloads
-PKG_HASH:=c0b060e94c3a231a1d4aa0bcf266ff189981a4ef38e42fbe23296a7d81719b7a
+PKG_HASH:=46fcf95b871109265e93cd42e5ae282c722716488ad9f0da1e1f98535be37f7a
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-2.0-or-later
+PKG_LICENSE_FILES:=COPYING
 
 PKG_INSTALL:=1
 
@@ -20,21 +24,20 @@ define Package/bindfs
 	SECTION:=utils
 	CATEGORY:=Utilities
 	SUBMENU:=Filesystem
-	DEPENDS:=+fuse3-utils +librt
-	TITLE:=bindfs filesystem
-	URL:=http://bindfs.org
-	MAINTAINER:=Entware team, https://entware.net
+	TITLE:=a FUSE filesystem for mounting
+	URL:=https://bindfs.org
+	DEPENDS:=+fuse3-utils
 endef
 
 define Package/bindfs/description
- bindfs - mount a directory to another location and alter permission bits.
+ bindfs is a FUSE filesystem for mirroring a directory to
+ another directory, similarly to mount --bind. The permissions of the
+ mirrored directory can be altered in various ways.
 endef
-
-TARGET_CFLAGS += -I$(STAGING_DIR)/opt/include/fuse
 
 define Package/bindfs/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/bindfs $(1)/opt/bin
 endef
 
 $(eval $(call BuildPackage,bindfs))
