@@ -1,39 +1,35 @@
+# PDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=fatrace
-PKG_VERSION:=0.17.0
+PKG_VERSION:=0.18.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=43327b194d995df56ab1c447366169cbf3a26c13
+PKG_SOURCE_VERSION:=$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/martinpitt/fatrace
-PKG_MIRROR_HASH:=d7404ad591acc7c07674f9545d1141b666a9bd6db422fec0cbb74e5cf5443337
+PKG_MIRROR_HASH:=1e2430dccc6a8f2aeaad2de3331d347137ce556c6657fe38fd80e18871615f01
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-3.0-only
+PKG_LICENSE_FILES:=COPYING
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/fatrace
 	SECTION:=utils
 	CATEGORY:=Utilities
-	TITLE:=fatrace reports file access events from all running processes
+	TITLE:=report system wide file access events
 	URL:=https://piware.de/2012/02/fatrace-report-system-wide-file-access-events/
-	MAINTAINER:=Entware team, https://entware.net
 endef
 
 define Package/fatrace/description
- Its main purpose is to find processes which keep waking up the disk unnecessarily
- and thus prevent some power saving.
-endef
-
-define Build/Compile
-	$(TARGET_CC) $(TARGET_CFLAGS) -c $(TARGET_CPPFLAGS) -o $(PKG_BUILD_DIR)/$(PKG_NAME).o $(PKG_BUILD_DIR)/$(PKG_NAME).c
-	$(TARGET_CC) $(TARGET_LDFLAGS) -L$(STAGING_DIR)/opt/lib -o $(PKG_BUILD_DIR)/$(PKG_NAME) $(PKG_BUILD_DIR)/$(PKG_NAME).o
+ fatrace reports file access events from all running processes.
+ Its main purpose is to find processes which keep waking up the disk
+ unnecessarily and thus prevent some power saving.
 endef
 
 define Package/fatrace/install
