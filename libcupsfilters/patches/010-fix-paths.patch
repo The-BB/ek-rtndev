@@ -1,0 +1,13 @@
+--- a/cupsfilters/mupdftopwg.c
++++ b/cupsfilters/mupdftopwg.c
+@@ -31,8 +31,8 @@
+ 
+ #define PDF_MAX_CHECK_COMMENT_LINES	20
+ 
+-#define CUPS_IPTEMPFILE "/tmp/ip-XXXXXX"
+-#define CUPS_OPTEMPFILE "/tmp/op-XXXXXX"
++#define CUPS_IPTEMPFILE "/opt/tmp/ip-XXXXXX"
++#define CUPS_OPTEMPFILE "/opt/tmp/op-XXXXXX"
+ 
+ typedef cups_page_header_t mupdf_page_header;
+ 
