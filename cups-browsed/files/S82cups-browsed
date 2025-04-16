@@ -1,0 +1,12 @@
+#!/bin/sh
+
+ENABLED=yes
+
+DESC="CUPS browsing daemon"
+PROCS="cups-browsed"
+PROG="/opt/sbin/$PROCS"
+
+ARGS=""
+PREARGS=""
+
+. /opt/etc/init.d/rc.func

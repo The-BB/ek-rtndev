@@ -1,0 +1,31 @@
+--- a/daemon/cups-browsed.c
++++ b/daemon/cups-browsed.c
+@@ -73,8 +73,8 @@
+ #define CUPS_DBUS_PATH "/org/cups/cupsd/Notifier"
+ #define CUPS_DBUS_INTERFACE "org.cups.cupsd.Notifier"
+ 
+-#define DEFAULT_CACHEDIR "/var/cache/cups"
+-#define DEFAULT_LOGDIR "/var/log/cups"
++#define DEFAULT_CACHEDIR "/opt/var/cache/cups"
++#define DEFAULT_LOGDIR "/opt/var/log/cups"
+ #define LOCAL_DEFAULT_PRINTER_FILE "/cups-browsed-local-default-printer"
+ #define REMOTE_DEFAULT_PRINTER_FILE "/cups-browsed-remote-default-printer"
+ #define SAVE_OPTIONS_FILE "/cups-browsed-options-%s"
+--- a/daemon/cups-browsed.conf.in
++++ b/daemon/cups-browsed.conf.in
+@@ -10,13 +10,13 @@
+ # generated when shutting down, like whether one of these queues was the
+ # default printer, or default option settings of the queues?
+ 
+-# CacheDir /var/cache/cups
++# CacheDir /opt/var/cache/cups
+ 
+ 
+ # Where should cups-browsed create its debug log file (if "DebugLogging file"
+ # is set)?
+ 
+-# LogDir /var/log/cups
++# LogDir /opt/var/log/cups
+ 
+ 
+ # How should debug logging be done? Into the file
