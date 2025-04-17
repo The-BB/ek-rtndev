@@ -11,7 +11,7 @@
  /// Exception class.
 --- a/ict-main.cpp
 +++ b/ict-main.cpp
-@@ -41,7 +41,7 @@
+@@ -40,7 +40,7 @@
  
  
  /// Alternative editor
@@ -20,7 +20,7 @@
  
  /// Default (hard-wired) editor
  #define INCRON_DEFAULT_EDITOR "vim"
-@@ -193,7 +193,7 @@ bool edit_table(const std::string& rUser
+@@ -192,7 +192,7 @@ bool edit_table(const std::string& rUser
    uid_t gid = ppwd->pw_gid;
  
    char s[NAME_MAX];
@@ -79,7 +79,7 @@
 --- a/incron.h
 +++ b/incron.h
 @@ -31,7 +31,7 @@
- #define INCRON_VERSION "0.5.12"
+ #define INCRON_VERSION "0.5.17"
  
  /// Default configuration file
 -#define INCRON_CONFIG "/etc/incron.conf"
@@ -98,7 +98,7 @@
  
  
  PROC_MAP UserTable::s_procMap;
-@@ -597,7 +597,7 @@ void UserTable::RunAsUser(std::string cm
+@@ -613,7 +613,7 @@ void UserTable::RunAsUser(std::string cm
      }
    }
    

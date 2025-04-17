@@ -1,21 +1,42 @@
-# arm64 (aarch64)
-
-ict-main.cpp:22:10: fatal error: argp.h: No such file or directory
-   22 | #include <argp.h>
-      |          ^~~~~~~~
-compilation terminated.
-
+.../include/sys/poll.h:1:2: warning: #warning redirecting incorrect #include <sys/poll.h> to <poll.h> [-Wcpp]
+    1 | #warning redirecting incorrect #include <sys/poll.h> to <poll.h>
+      |  ^~~~~~~
+In file included from usertable.h:22,
+                 from icd-main.cpp:41:
+.../include/sys/poll.h:1:2: warning: #warning redirecting incorrect #include <sys/poll.h> to <poll.h> [-Wcpp]
+    1 | #warning redirecting incorrect #include <sys/poll.h> to <poll.h>
+      |  ^~~~~~~
+...
+.../include/sys/poll.h:1:2: warning: #warning redirecting incorrect #include <sys/poll.h> to <poll.h> [-Wcpp]
+    1 | #warning redirecting incorrect #include <sys/poll.h> to <poll.h>
+      |  ^~~~~~~
 ---
 
---- a/ict-main.cpp
-+++ b/ict-main.cpp
-@@ -19,7 +19,9 @@
-  */
- 
- 
-+#ifdef __GLIBC__
- #include <argp.h>
-+#endif
- #include <pwd.h>
- #include <string>
+--- a/icd-main.cpp
++++ b/icd-main.cpp
+@@ -27,7 +27,11 @@
+ #include <syslog.h>
+ #include <errno.h>
  #include <unistd.h>
++#ifdef __GLIBC__
+ #include <sys/poll.h>
++#else /* MUSL */
++#include <poll.h>
++#endif /* MUSL */
+ #include <sys/stat.h>
+ #include <cstdio>
+ #include <cstring>
+--- a/usertable.h
++++ b/usertable.h
+@@ -19,7 +19,11 @@
+ 
+ #include <map>
+ #include <deque>
++#ifdef __GLIBC__
+ #include <sys/poll.h>
++#else /* MUSL */
++#include <poll.h>
++#endif /* MUSL */
+ 
+ #include "inotify-cxx.h"
+ #include "incrontab.h"

@@ -1,43 +1,44 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2024 Entware
+# Copyright (C) 2011-2025 Entware
 
-# Abandoned in 2012
+# XXX switch to fork
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=incron
-PKG_VERSION:=0.5.12
-PKG_RELEASE:=2
+PKG_VERSION:=0.5.17
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=02c88fb221987bb906f375b9cf31c614af76e829
-PKG_SOURCE_URL:=https://github.com/ar-/incron
-PKG_MIRROR_HASH:=9102e4d0e6ccd2652aed3bd1bf93d9133cebe09e868fcf3b46fb2a96dd12b870
+PKG_SOURCE_VERSION:=$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/dpvpro/incron-next
+PKG_MIRROR_HASH:=125e1ffdaaa23342af76e1aadc7a0cbb174b0714756df1bdc9a7fefdf98a2353
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=GPL-2.0-only LGPL-2.1-only MIT
+PKG_LICENSE_FILES:=COPYING LICENSE-GPL LICENSE-LGPL LICENSE-X11
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/incron
-	SECTION:=utils
-	CATEGORY:=Utilities
-	SUBMENU:=Filesystem
-	DEPENDS:=+libstdcpp
-	TITLE:=inotify cron, a daemon system analogous to cron
-	URL:=http://inotify.aiken.cz
-	MAINTAINER:=Entware team, https://entware.net
+  SECTION:=utils
+  CATEGORY:=Utilities
+  SUBMENU:=Filesystem
+  TITLE:=cron-like daemon which handles filesystem events
+  URL:=https://inotify.aiken.cz/
+  DEPENDS:=+libstdcpp
 endef
 
 define Package/incron/description
- This program is the "inotify cron" system.  You can use it a similar way
- as the regular cron. The difference is that the inotify cron handles
- filesystem events rather than time periods.
+ This program is the "inotify cron" system.
+ You can use it a similar way as the regular cron. The difference is that the
+ inotify cron handles filesystem events rather than time periods.
 endef
 
 define Package/incron/conffiles
 /opt/etc/incron.conf
 endef
-
-TARGET_CXXFLAGS += -std=c++14
 
 define Package/incron/install
 	$(INSTALL_DIR) $(1)/opt/bin
