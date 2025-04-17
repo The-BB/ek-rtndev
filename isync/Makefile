@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=isync
-PKG_VERSION:=1.5.0
+PKG_VERSION:=1.5.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/$(PKG_NAME)/$(PKG_VERSION)
-PKG_HASH:=a0c81e109387bf279da161453103399e77946afecf5c51f9413c5e773557f78d
+PKG_HASH:=28cc90288036aa5b6f5307bfc7178a397799003b96f7fd6e4bd2478265bb22fa
 
 PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=GPL-2.0-or-later
@@ -24,11 +24,11 @@ PKG_INSTALL:=1
 include $(INCLUDE_DIR)/package.mk
 
 define Package/isync
-	SECTION:=mail
-	CATEGORY:=Mail
-	TITLE:=mailbox synchronization program
-	URL:=https://isync.sourceforge.io/
-	DEPENDS:=+libdb47 +libsasl2 +openssl-util
+  SECTION:=mail
+  CATEGORY:=Mail
+  TITLE:=IMAP and MailDir mailbox synchronizer
+  URL:=https://isync.sourceforge.io/
+  DEPENDS:=+libdb47 +libsasl2 +openssl-util
 endef
 
 define Package/isync/description
@@ -39,8 +39,8 @@ define Package/isync/description
 endef
 
 define Package/isync/install
-	$(INSTALL_DIR) $(1)/opt
-	$(CP) $(PKG_INSTALL_DIR)/opt/bin $(1)/opt
+	$(INSTALL_DIR) $(1)/opt/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/{mbsync*,mdconvert} $(1)/opt/bin
 endef
 
 $(eval $(call BuildPackage,isync))
