@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ncdc
-PKG_VERSION:=1.24.1
+PKG_VERSION:=1.25
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://dev.yorhel.nl/download
-PKG_HASH:=2a8ab9ad7d43f018fc73ba8babd689dfa44aba8cec53b88e4770185cb97778f7
+PKG_HASH:=b9be58e7dbe677f2ac1c472f6e76fad618a65e2f8bf1c7b9d3d97bc169feb740
 
 PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=MIT
