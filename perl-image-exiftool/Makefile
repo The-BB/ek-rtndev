@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=perl-image-exiftool
-PKG_VERSION:=13.11
+PKG_VERSION:=13.27
 PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://exiftool.org
 PKG_SOURCE:=Image-ExifTool-$(PKG_VERSION).tar.gz
-PKG_HASH:=b8bb379b8f8d7534792de229f25557a83300d46a2d7c3448f29eb3358998366d
+PKG_HASH:=4b772e8766f8eb098ac8ab208fd80f7736bc65a23a1104511173709f48db43a4
 
 PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=Artistic-1.0-Perl GPL-1.0-or-later
