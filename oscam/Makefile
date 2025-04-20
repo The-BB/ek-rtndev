@@ -5,13 +5,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=oscam
-PKG_VERSION:=2.25.01
+PKG_VERSION:=2.25.03
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=cf18f133645c7dced864d15ecfa74d108c2bf1ed
+PKG_SOURCE_VERSION:=11878
 PKG_SOURCE_URL:=https://git.streamboard.tv/common/oscam
-PKG_MIRROR_HASH:=f043ea8d4e2e3fd9b60d950f17c3d57ae1e2fade563cf4af94bfd78477078179
+PKG_MIRROR_HASH:=cc9c4ad99dafe324b6f204d3d997726e0d7c10813a71548f9ac2bc41c5b36d94
 
 PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=GPL-3.0-or-later
@@ -21,11 +21,11 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
 define Package/oscam
-	SECTION:=net
-	CATEGORY:=Network
-	TITLE:=Open Source CAM software
-	URL:=https://wiki.streamboard.tv/wiki/OSCam/en
-	DEPENDS:=+libopenssl +libpcsclite
+  SECTION:=net
+  CATEGORY:=Network
+  TITLE:=Open Source CAM software
+  URL:=https://wiki.streamboard.tv/wiki/OSCam/en
+  DEPENDS:=+libopenssl +libpcsclite
 endef
 
 define Package/oscam/description
@@ -50,7 +50,8 @@ define Package/oscam/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/oscam $(1)/opt/bin
 	$(INSTALL_DIR) $(1)/opt/etc/oscam
-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/share/doc/oscam/example/* $(1)/opt/etc/oscam
+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/share/doc/oscam/example/* \
+		$(1)/opt/etc/oscam
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/S59oscam $(1)/opt/etc/init.d
 endef
