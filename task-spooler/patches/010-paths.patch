@@ -11,14 +11,14 @@
              error("fork sendmail");
 --- a/execute.c
 +++ b/execute.c
-@@ -156,7 +156,7 @@ static void run_child(int fd_send_filena
+@@ -155,7 +155,7 @@ static void run_child(int fd_send_filena
+         /* Prepare path */
+         int lname;
          char *outfname_full;
+-        char *outdir = tmpdir == NULL ? "/tmp" : tmpdir;
++        char *outdir = tmpdir == NULL ? "/opt/tmp" : tmpdir;
  
-         if (tmpdir == NULL)
--            tmpdir = "/tmp";
-+            tmpdir = "/opt/tmp";
-         lname = strlen(tmpdir) + strlen(outfname) + 1 /* \0 */;
- 
+         lname = strlen(outdir) + strlen(outfname) + 1 /* \0 */;
          outfname_full = (char *) malloc(lname);
 --- a/server_start.c
 +++ b/server_start.c

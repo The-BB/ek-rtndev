@@ -1,0 +1,24 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -50,7 +50,7 @@ add_executable(
+    ${TASK_SPOOLER_SOURCES}
+ )
+ 
+-add_executable(makeman man.c)
++#add_executable(makeman man.c)
+ 
+ if(TASK_SPOOLER_COMPILE_CUDA)
+   if(${CMAKE_VERSION} VERSION_LESS "3.17.0") 
+@@ -84,8 +84,8 @@ else(TASK_SPOOLER_COMPILE_CUDA)
+ endif(TASK_SPOOLER_COMPILE_CUDA)
+ 
+ # install
+-install(CODE "execute_process(COMMAND install -c -d /usr/local/bin)")
+-install(CODE "execute_process(COMMAND install -c ts /usr/local/bin)")
++install(CODE "execute_process(COMMAND install -c -d ./ipkg-install/opt/bin)")
++install(CODE "execute_process(COMMAND install -c ts ./ipkg-install/opt/bin)")
+ install(CODE "execute_process(COMMAND ./makeman)")
+-install(CODE "execute_process(COMMAND install -c -d /usr/local/share/man/man1)")
+-install(CODE "execute_process(COMMAND install -c -m 644 ts.1 /usr/local/share/man/man1)")
++install(CODE "execute_process(COMMAND install -c -d ./ipkg-install/opt/share/man/man1)")
++install(CODE "execute_process(COMMAND install -c -m 644 ts.1 ./ipkg-install/opt/share/man/man1)")
