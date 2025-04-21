@@ -1,17 +1,55 @@
---- a/rules.mk
-+++ b/rules.mk
-@@ -6,12 +6,12 @@
+--- a/Makefile
++++ b/Makefile
+@@ -55,10 +55,10 @@
+ # +--------------------------------------------------------------------------+
+ LANGUAGES	:= cpp c
  
- $(rastertoqpdl_TARGET): $(rastertoqpdl_OBJ)
- 	$(call printCmd, $(cmd_link))
--	$(Q)g++ -o $@ $^ $(rastertoqpdl_CXXFLAGS) $(rastertoqpdl_LDFLAGS) \
-+	$(Q)$(LINKER) -o $@ $^ $(rastertoqpdl_CXXFLAGS) $(rastertoqpdl_LDFLAGS) \
- 		$(rastertoqpdl_LIBS)
+-CC		:= gcc
+-CXX		:= g++
++CC		?= gcc
++CXX		?= g++
+ RM		:= rm -f
+-AR		:= ar crs
++AR		?= ar crs
+ LEX		:= flex
+ YACC		:= bison
+ LINKER		:= $(CXX)
+@@ -74,8 +74,8 @@ comma           := ,
  
- $(pstoqpdl_TARGET): $(pstoqpdl_OBJ)
- 	$(call printCmd, $(cmd_link))
--	$(Q)g++ -o $@ $^ $(pstoqpdl_CXXFLAGS) $(pstoqpdl_LDFLAGS) \
-+	$(Q)$(LINKER) -o $@ $^ $(pstoqpdl_CXXFLAGS) $(pstoqpdl_LDFLAGS) \
- 		$(pstoqpdl_LIBS)
+ DEBUG_CFLAGS    := -O0 -g
+ DEBUG_CXXFLAGS  := -O0 -g
+-OPTIM_CFLAGS	:= -O2
+-OPTIM_CXXFLAGS	:= -O2
++OPTIM_CFLAGS	?=
++OPTIM_CXXFLAGS	?=
  
- .PHONY: install installcms
+ ARCHI           := $(shell uname -s)
+ 
+--- a/module.mk
++++ b/module.mk
+@@ -28,10 +28,10 @@ DRV_ONLY		?= 0
+ 
+ 
+ # Flags
+-CXXFLAGS		+= `cups-config --cflags` -Iinclude -Wall -I/opt/local/include
++CXXFLAGS		+= `cups-config --cflags` -Iinclude -Wall
+ DEBUG_CXXFLAGS		+= -DDEBUG  -DDUMP_CACHE
+ OPTIM_CXXFLAGS 		+= -g
+-rastertoqpdl_LDFLAGS	:= `cups-config --ldflags` -L/opt/local/lib
++rastertoqpdl_LDFLAGS	:= `cups-config --ldflags`
+ rastertoqpdl_LIBS	:= `cups-config --libs` -lcupsimage
+ pstoqpdl_LDFLAGS	:= `cups-config --ldflags`
+ pstoqpdl_LIBS		:= `cups-config --libs` -lcupsimage
+--- a/tools/Makefile
++++ b/tools/Makefile
+@@ -11,8 +11,8 @@ HEADERS_jbgtopbm:= appliargs.h
+ 
+ PROJECTS	:= decompress jbgtopbm
+ 
+-CXXFLAGS  	:= -O0 -g `pkg-config QtCore --cflags`
+-LIBS		:= `pkg-config QtCore --libs`
++CXXFLAGS  	+= -g `pkg-config QtCore --cflags`
++LIBS		+= `pkg-config QtCore --libs`
+ 
+ OBJS_decompress	:= $(SRCS_decompress:.cpp=.o)
+ OBJS_jbgtopbm	:= $(SRCS_jbgtopbm:.cpp=.o)
