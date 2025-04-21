@@ -7,13 +7,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ps3netsrv
-PKG_REAL_VERSION:=1.47.47
-PKG_VERSION:=20240709
+PKG_REAL_VERSION:=1.47.48
+PKG_VERSION:=20250126
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).zip
 PKG_SOURCE_URL:=https://github.com/aldostools/webMAN-MOD/releases/download/$(PKG_REAL_VERSION)
-PKG_HASH:=b3da1d4ce4bf4a5404d76d56f12beca97d5dc213686d906f66517f627a062d3d
+PKG_HASH:=b2a88870c92455ab8242bbdb67b73c1924f8c8d57c32ec43c84cdec280e6cf1a
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(basename $(PKG_SOURCE))
 
@@ -24,24 +24,24 @@ PKG_LICENSE_FILES:=LICENSE.TXT
 include $(INCLUDE_DIR)/package.mk
 
 define Package/ps3netsrv/Default
-	SECTION:=net
-	CATEGORY:=Network
-	TITLE:=C++ implementation of the ps3netsrv server
-	URL:=https://aldostools.github.io/webMAN-MOD/
-	DEPENDS:=+libstdcpp
+  SECTION:=net
+  CATEGORY:=Network
+  TITLE:=C++ implementation of the ps3netsrv server
+  URL:=https://aldostools.github.io/webMAN-MOD/
+  DEPENDS:=+libstdcpp
 endef
 
 define Package/ps3netsrv
-$(call Package/ps3netsrv/Default)
-	VARIANT:=nossl
-	TITLE+= (no SSL)
+  $(call Package/ps3netsrv/Default)
+  VARIANT:=nossl
+  TITLE+= (no SSL)
 endef
 
 define Package/ps3netsrv-mbedtls
-$(call Package/ps3netsrv/Default)
-	VARIANT:=mbedtls
-	TITLE+= (Mbed TLS)
-	DEPENDS+=+libmbedtls
+  $(call Package/ps3netsrv/Default)
+  VARIANT:=mbedtls
+  TITLE+= (Mbed TLS)
+  DEPENDS+=+libmbedtls
 endef
 
 define Package/ps3netsrv/description
