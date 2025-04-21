@@ -15,7 +15,7 @@ PKG_SOURCE_URL:=https://codeload.github.com/ericniebler/range-v3/tar.gz/refs/tag
 PKG_HASH:=015adb2300a98edfceaf0725beec3337f542af4915cec4d0b89fa0886f4ba9cb
 
 PKG_LICENSE:=BSL-1.0
-PKG_LICENSE_FILES:=LICENCE.txt
+PKG_LICENSE_FILES:=LICENSE.txt
 PKG_MAINTAINER:=Entware team, https://entware.net
 
 CMAKE_INSTALL:=1
