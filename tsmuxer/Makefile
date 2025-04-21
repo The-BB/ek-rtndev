@@ -1,20 +1,19 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2024 Entware
+# Copyright (C) 2011-2025 Entware
+
+# Project archieved
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tsmuxer
-PKG_REAL_VERSION:=2.6.16
+PKG_VERSION:=2.7.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_DATE:=2024-06-06
-PKG_SOURCE_VERSION:=7f8667d1e6100a5b6407340d91ad80d57d976e58
+PKG_SOURCE_VERSION:=$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/justdan96/tsMuxer
-PKG_MIRROR_HASH:=46440bbff2d903ec989273f963d9a92a67265dc3715d04f1f57508873b784d56
-
-PKG_VERSION:=$(PKG_REAL_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+PKG_MIRROR_HASH:=14c991a85ff374d81c6573188e694e6ccf9920ad7125bb9ee667bd03ffd3d28b
 
 PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=Apache-2.0
@@ -24,11 +23,11 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
 define Package/tsmuxer
-	SECTION:=multimedia
-	CATEGORY:=Multimedia
-	TITLE:=transport stream (re)muxer
-	URL:=$(PKG_SOURCE_URL)
-	DEPENDS:=+libfreetype +libstdcpp
+  SECTION:=multimedia
+  CATEGORY:=Multimedia
+  TITLE:=transport stream (re)muxer
+  URL:=https://justdan96.github.io/tsMuxer/
+  DEPENDS:=+libfreetype +libstdcpp
 endef
 
 define Package/tsmuxer/description
