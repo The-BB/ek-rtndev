@@ -1,34 +1,34 @@
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2011-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tty-solitaire
-PKG_VERSION:=1.3.1
+PKG_VERSION:=1.4.1
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=4875f34e6bbdb6e975bdcedefd5c1d0acf6e19e5
+PKG_SOURCE_VERSION:=v$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/mpereira/tty-solitaire
-PKG_MIRROR_HASH:=80837a930bafbd08f8b1efe3b5eb976e828e2602db10ce153e05bd22d61c3b2b
+PKG_MIRROR_HASH:=dc29290edc00632accb455c1b5a22ed8a9a4c1756df79fb752574d791d154ee7
+
+PKG_MAINTAINER:=Entware team, https://entware.net
+PKG_LICENSE:=Apache-2.0
+PKG_LICENSE_FILES:=LICENSE
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/tty-solitaire
-	SECTION:=games
-	CATEGORY:=Games
-	TITLE:=klondlike solitaire game
-	DEPENDS:=libncursesw
-	URL:=$(PKG_SOURCE_URL)
-	MAINTAINER:=Entware team, https://entware.net
+  SECTION:=games
+  CATEGORY:=Games
+  TITLE:=klondike solitaire game
+  URL:=https://github.com/mpereira/tty-solitaire
+  DEPENDS:=+libncursesw
 endef
 
 define Package/tty-solitaire/description
- klondlike solitaire game.
+ Ncurses-based klondike solitaire game.
 endef
 
 TARGET_CFLAGS += \
