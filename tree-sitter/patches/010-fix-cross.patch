@@ -9,7 +9,7 @@
  INCLUDEDIR ?= $(PREFIX)/include
  LIBDIR ?= $(PREFIX)/lib
  PCLIBDIR ?= $(LIBDIR)/pkgconfig
-@@ -69,16 +69,13 @@ tree-sitter.pc: lib/tree-sitter.pc.in
+@@ -70,16 +70,13 @@ tree-sitter.pc: lib/tree-sitter.pc.in
  		-e 's|@CMAKE_INSTALL_PREFIX@|$(PREFIX)|' $< > $@
  
  clean:
