@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=poppler
-PKG_VERSION:=24.12.0
+PKG_VERSION:=25.04.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://poppler.freedesktop.org
-PKG_HASH:=1cf374c3146f3f685d9257701bf0c2866c61d6c202c14d1f5c01a1f3a089028a
+PKG_HASH:=b010c596dce127fba88532fd2f1043e55ea30601767952d0f2c0a80e7dc0da3d
 
 PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=GPL-2.0-or-later
@@ -29,24 +29,24 @@ include $(INCLUDE_DIR)/nls.mk
 include $(INCLUDE_DIR)/cmake.mk
 
 define Package/poppler/Default
-	TITLE:=PDF rendering
-	URL:=https://poppler.freedesktop.org/
+  TITLE:=PDF rendering
+  URL:=https://poppler.freedesktop.org/
 endef
 
 define Package/libpoppler
-	$(call Package/poppler/Default)
-	SECTION:=libs
-	CATEGORY:=Libraries
-	TITLE+= library
-	DEPENDS:=+fontconfig +lcms +libpng +libstdcpp +libtiff $(ICONV_DEPENDS)
+  $(call Package/poppler/Default)
+  SECTION:=libs
+  CATEGORY:=Libraries
+  TITLE+= (library)
+  DEPENDS:=+fontconfig +lcms +libpng +libstdcpp +libtiff $(ICONV_DEPENDS)
 endef
 
 define Package/poppler-utils
-	$(call Package/poppler/Default)
-	SECTION:=utils
-	CATEGORY:=Utilities
-	TITLE+= command line utils
-	DEPENDS:=+libpoppler
+  $(call Package/poppler/Default)
+  SECTION:=utils
+  CATEGORY:=Utilities
+  TITLE+= (command line utils)
+  DEPENDS:=+libpoppler
 endef
 
 define Package/libpoppler/description
@@ -58,7 +58,7 @@ define Package/poppler-utils/description
 endef
 
 TARGET_CXXFLAGS += -pthread
-TARGET_LDFLAGS += -lpthread
+TARGET_LDFLAGS += -pthread
 
 CMAKE_OPTIONS += \
 	-DBUILD_CPP_TESTS=OFF \
