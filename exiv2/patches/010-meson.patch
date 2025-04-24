@@ -1,0 +1,99 @@
+.../staging_dir/target-*/opt/include/exiv2/error.hpp:56:16: error: variable 'Exiv2::EXIV2API Exiv2::LogMsg' has initializer but incomplete type
+ class EXIV2API LogMsg {
+                ^~~~~~
+.../staging_dir/target-*/opt/include/exiv2/error.hpp:57:2: error: expected primary-expression before 'public'
+  public:
+  ^~~~~~
+.../staging_dir/target-*/opt/include/exiv2/error.hpp:57:2: error: expected '}' before 'public'
+.../staging_dir/target-*/opt/include/exiv2/error.hpp:56:23: note: to match this '{'
+ class EXIV2API LogMsg {
+                       ^
+.../staging_dir/target-*/opt/include/exiv2/error.hpp:57:2: error: expected ',' or ';' before 'public'
+  public:
+  ^~~~~~
+.../staging_dir/target-*/opt/include/exiv2/error.hpp:61:3: error: 'LogMsg' does not name a type
+   LogMsg& operator=(const LogMsg&) = delete;
+   ^~~~~~
+.../staging_dir/target-*/opt/include/exiv2/error.hpp:84:3: error: 'explicit' outside class declaration
+   explicit LogMsg(Level msgType);
+   ^~~~~~~~
+.../staging_dir/target-*/opt/include/exiv2/error.hpp:87:10: error: expected class-name before '(' token
+   ~LogMsg();
+          ^
+.../staging_dir/target-*/opt/include/exiv2/error.hpp:116:2: error: expected unqualified-id before 'private'
+  private:
+  ^~~~~~~
+.../staging_dir/target-*/opt/include/exiv2/error.hpp:236:22: error: expected initializer before ':' token
+ class EXIV2API Error : public std::exception {
+                      ^
+.../staging_dir/target-*/opt/include/exiv2/error.hpp:296:57: error: 'Error' does not name a type; did you mean 'perror'?
+ inline std::ostream& operator<<(std::ostream& os, const Error& error) {
+                                                         ^~~~~
+                                                         perror
+.../staging_dir/target-*/opt/include/exiv2/error.hpp: In function 'std::ostream& operator<<(std::ostream&, const int&)':
+.../staging_dir/target-*/opt/include/exiv2/error.hpp:297:22: error: request for member 'what' in 'error', which is of non-class type 'const int'
+   return os << error.what();
+                      ^~~~
+.../staging_dir/target-*/opt/include/exiv2/error.hpp: At global scope:
+.../staging_dir/target-*/opt/include/exiv2/error.hpp:304:1: error: expected declaration before '}' token
+ }  // namespace Exiv2
+ ^
+---
+
+--- /dev/null
++++ b/include/exiv2lib_export.h
+@@ -0,0 +1,43 @@
++
++#ifndef EXIV2API_H
++#define EXIV2API_H
++
++#ifdef exiv2lib_STATIC
++#  define EXIV2API
++#  define EXIV2LIB_NO_EXPORT
++#else
++#  ifndef EXIV2API
++#    ifdef exiv2lib_EXPORTS
++        /* We are building this library */
++#      define EXIV2API __attribute__((visibility("default")))
++#    else
++        /* We are using this library */
++#      define EXIV2API __attribute__((visibility("default")))
++#    endif
++#  endif
++
++#  ifndef EXIV2LIB_NO_EXPORT
++#    define EXIV2LIB_NO_EXPORT __attribute__((visibility("hidden")))
++#  endif
++#endif
++
++#ifndef EXIV2LIB_DEPRECATED
++#  define EXIV2LIB_DEPRECATED __attribute__ ((__deprecated__))
++#endif
++
++#ifndef EXIV2LIB_DEPRECATED_EXPORT
++#  define EXIV2LIB_DEPRECATED_EXPORT EXIV2API EXIV2LIB_DEPRECATED
++#endif
++
++#ifndef EXIV2LIB_DEPRECATED_NO_EXPORT
++#  define EXIV2LIB_DEPRECATED_NO_EXPORT EXIV2LIB_NO_EXPORT EXIV2LIB_DEPRECATED
++#endif
++
++/* NOLINTNEXTLINE(readability-avoid-unconditional-preprocessor-if) */
++#if 0 /* DEFINE_NO_DEPRECATED */
++#  ifndef EXIV2LIB_NO_DEPRECATED
++#    define EXIV2LIB_NO_DEPRECATED
++#  endif
++#endif
++
++#endif /* EXIV2API_H */
+--- a/meson.build
++++ b/meson.build
+@@ -25,7 +25,7 @@ if host_machine.system() == 'windows'
+ endif
+ 
+ exiv_api = configuration_data()
+-exiv_conf = configure_file(output: 'exiv2lib_export.h', configuration: exiv_api)
++exiv_conf = configure_file(input: 'include/exiv2lib_export.h', output: 'exiv2lib_export.h', configuration: exiv_api)
+ 
+ cdata = configuration_data()
+ cdata.set('EXV_PACKAGE_NAME', meson.project_name())
