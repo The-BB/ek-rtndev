@@ -1,0 +1,31 @@
+--- a/m4/ax_boost_regex.m4
++++ b/m4/ax_boost_regex.m4
+@@ -25,7 +25,7 @@ AC_DEFUN([AX_BOOST_REGEX],
+     AC_ARG_WITH([boost-regex],
+ [  --with-boost-regex@<:@=special-lib@:>@
+                           use the Boost Regex library, optionally specify a
+-                          path to include/boost and lib/libboost_regex-mt e.g.
++                          path to include/boost and lib/libboost_regex e.g.
+                           --with-boost-regex=/opt/local
+   --without-boost-regex   to disable Boost Regex usage completely],
+         [
+@@ -33,16 +33,16 @@ AC_DEFUN([AX_BOOST_REGEX],
+             want_boost="no"
+         elif test "$withval" = "yes"; then
+             want_boost="yes"
+-            ax_boost_regex_lib="-lboost_regex-mt"
++            ax_boost_regex_lib="-lboost_regex"
+         else
+             want_boost="yes"
+             BOOST_REGEX_HOME="$withval"
+-            ax_boost_regex_lib="-lboost_regex-mt"
++            ax_boost_regex_lib="-lboost_regex"
+         fi
+         ],
+         [
+         want_boost="yes"
+-        ax_boost_regex_lib="-lboost_regex-mt"
++        ax_boost_regex_lib="-lboost_regex"
+         ]
+     )
+ 
