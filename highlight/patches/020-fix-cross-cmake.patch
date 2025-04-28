@@ -1,0 +1,159 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -21,7 +21,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}
+ # Directories
+ set(CORE_DIR src/core)
+ set(CLI_DIR src/cli)
+-set(GUI_QT_DIR src/gui-qt)
+ set(INCLUDE_DIR src/include)
+ 
+ # Include Boost
+@@ -40,7 +39,7 @@ find_package(Lua REQUIRED)
+ include_directories(${Boost_INCLUDE_DIRS} ${INCLUDE_DIR} ${LUA_INCLUDE_DIRS} )
+ 
+ # Set installation directories
+-set(PREFIX /usr)
++set(PREFIX /opt)
+ set(DATA_DIR ${PREFIX}/share)
+ 
+ set(BIN_DIR ${PREFIX}/bin)
+@@ -50,15 +49,12 @@ set(DOC_DIR ${DATA_DIR}/doc)
+ 
+ set(HIGHLIGHT_DATA_DIR ${DATA_DIR}/highlight/)
+ set(HIGHLIGHT_DOC_DIR ${DOC_DIR}/highlight/)
+-set(CONF_DIR /etc/highlight/)
++set(CONF_DIR ${PREFIX}/etc/highlight/)
+ 
+ set(BASH_COMP_DIR ${DATA_DIR}/bash-completion/completions)
+ set(FISH_COMP_DIR ${DATA_DIR}/fish/vendor_completions.d)
+ set(ZSH_COMP_DIR ${DATA_DIR}/zsh/site-functions)
+ 
+-set(DESKTOP_APPS_DIR ${DATA_DIR}/applications)
+-set(DESKTOP_ICONS_DIR ${DATA_DIR}/icons/hicolor/256x256/apps)
+-set(GUI_FILES_DIR ${HIGHLIGHT_DATA_DIR}/gui_files)
+ 
+ # Source files
+ set(CORE_OBJECTS
+@@ -107,13 +103,6 @@ set(CLI_OBJECTS
+     ${CLI_DIR}/main.cpp
+ )
+ 
+-set(GUI_OBJECTS
+-    ${GUI_QT_DIR}/main.cpp
+-    ${GUI_QT_DIR}/mainwindow.cpp
+-    ${GUI_QT_DIR}/io_report.cpp
+-    ${GUI_QT_DIR}/showtextfile.cpp
+-    ${GUI_QT_DIR}/syntax_chooser.cpp
+-)
+ 
+ # Library
+ add_library(highlight-lib STATIC ${CORE_OBJECTS})
+@@ -134,9 +123,6 @@ target_compile_definitions(highlight PRI
+ # Install locations
+ install(DIRECTORY DESTINATION ${HIGHLIGHT_DATA_DIR})
+ install(DIRECTORY DESTINATION ${CONF_DIR})
+-install(DIRECTORY DESTINATION ${GUI_FILES_DIR})
+-install(DIRECTORY DESTINATION ${GUI_FILES_DIR}/ext)
+-install(DIRECTORY DESTINATION ${GUI_FILES_DIR}/l10n)
+ 
+ install(FILES filetypes.conf DESTINATION ${CONF_DIR})
+ install(DIRECTORY langDefs DESTINATION ${HIGHLIGHT_DATA_DIR})
+@@ -157,10 +143,6 @@ install(
+     RENAME _highlight
+     DESTINATION ${ZSH_COMP_DIR}
+ )
+-install(FILES highlight.desktop DESTINATION ${DESKTOP_APPS_DIR} COMPONENT gui)
+-install(FILES src/gui-qt/highlight.png DESTINATION ${DESKTOP_ICONS_DIR} COMPONENT gui)
+-install(FILES gui_files/ext/fileopenfilter.conf DESTINATION ${GUI_FILES_DIR}/ext COMPONENT gui)
+-install(DIRECTORY gui_files/l10n/ DESTINATION ${GUI_FILES_DIR}/l10n FILES_MATCHING PATTERN "*.qm" )
+ 
+ # Installation of binaries
+ install(TARGETS highlight DESTINATION ${BIN_DIR} )
+@@ -191,87 +173,8 @@ add_custom_target(uninstall
+     COMMAND ${CMAKE_COMMAND} -E echo "Done."
+ )
+ 
+-# qt gui
+-
+-set(CMAKE_AUTOMOC ON)
+-set(CMAKE_AUTOUIC ON)
+-set(CMAKE_AUTORCC ON)
+-
+ INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_BINARY_DIR} )
+ 
+-# Qt version detection and setup
+-find_package(Qt6 COMPONENTS Core Gui Widgets)
+-
+-if (NOT Qt6_FOUND)
+-    find_package(Qt5 5.15 COMPONENTS Core Gui Widgets)
+-endif()
+-
+-# Add the sources
+-set(SOURCES
+-    ${GUI_QT_DIR}/main.cpp
+-    ${GUI_QT_DIR}/mainwindow.cpp
+-    ${GUI_QT_DIR}/io_report.cpp
+-    ${GUI_QT_DIR}/showtextfile.cpp
+-    ${GUI_QT_DIR}/syntax_chooser.cpp
+-)
+-
+-# Add the headers
+-set(HEADERS
+-    ${GUI_QT_DIR}/mainwindow.h
+-    ${GUI_QT_DIR}/precomp.h
+-    ${GUI_QT_DIR}/io_report.h
+-    ${GUI_QT_DIR}/showtextfile.h
+-    ${GUI_QT_DIR}/syntax_chooser.h
+-)
+-
+-# Add the UI forms
+-set(FORMS
+-    ${GUI_QT_DIR}/mainwindow.ui
+-    ${GUI_QT_DIR}/io_report.ui
+-    ${GUI_QT_DIR}/showtextfile.ui
+-    ${GUI_QT_DIR}/syntax_chooser.ui
+-)
+-
+-qt_wrap_ui(UIS_HDRS
+-    ${GUI_QT_DIR}/mainwindow.ui
+-    ${GUI_QT_DIR}/io_report.ui
+-    ${GUI_QT_DIR}/showtextfile.ui
+-    ${GUI_QT_DIR}/syntax_chooser.ui
+-)
+-
+-# Add the resources
+-set(RESOURCES
+-    ${GUI_QT_DIR}/highlight-gui.qrc
+-)
+-
+-# Add translations
+-set(TRANSLATIONS
+-    ${GUI_QT_DIR}/highlight_de_DE.ts
+-    ${GUI_QT_DIR}/highlight_es_ES.ts
+-    ${GUI_QT_DIR}/highlight_cs_CZ.ts
+-    ${GUI_QT_DIR}/highlight_zh_CN.ts
+-    ${GUI_QT_DIR}/highlight_it_IT.ts
+-    ${GUI_QT_DIR}/highlight_fr_FR.ts
+-    ${GUI_QT_DIR}/highlight_bg_BG.ts
+-    ${GUI_QT_DIR}/highlight_ja_JP.ts
+-)
+-
+-qt_add_resources(GUI_QRC_SOURCES ${GUI_QT_DIR}/highlight-gui.qrc)
+-
+-# Create the executable
+-add_executable(highlight-gui ${SOURCES} ${HEADERS} ${FORMS} ${RESOURCES} ${UIS_HDRS})
+-
+-target_link_libraries(highlight-gui Qt::Core Qt::Gui Qt::Widgets highlight-lib ${LUA_LIBRARIES} ${Boost_LIBRARIES})
+-
+-set_target_properties(highlight-gui PROPERTIES AUTOMOC TRUE)
+-set_target_properties(highlight-gui PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+-
+-target_include_directories(highlight-gui PRIVATE ${INCLUDE_DIR} ${LUA_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
+-
+-target_compile_definitions(highlight-gui PRIVATE HL_CONFIG_DIR="${CONF_DIR}" HL_DATA_DIR="${HIGHLIGHT_DATA_DIR}" HL_DOC_DIR="${HIGHLIGHT_DOC_DIR}"  -DQT)
+-
+-install(TARGETS highlight-gui DESTINATION ${BIN_DIR} OPTIONAL COMPONENT gui)
+-
+ # Platform-specific configurations
+ if (WIN32)
+     #set(DESTDIR ../..)
