@@ -1,18 +1,19 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2023-2024 Entware
+# Copyright (C) 2023-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qtbase
-PKG_VERSION:=6.8.0
+PKG_VERSION:=6.9.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=v$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/qt/qtbase
-PKG_MIRROR_HASH:=52ec768c181896353af74bfac6ff8a777a17d3a765cc705ef981900cab3dcbff
+PKG_MIRROR_HASH:=59036ab0c066385e3675595195316103d06cbe724cbdb175c32e13af9a91aa9e
 
+PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:= \
 	GPL-2.0-or-later GPL-3.0-only GFDL-1.3-only LGPL-3.0-only \
 	Apache-2.0 BSD-3-Clause BSL-1.0 MIT
@@ -192,7 +193,7 @@ TARGET_CFLAGS += -pthread
 TARGET_CXXFLAGS += -pthread
 TARGET_LDFLAGS:=
 
-define FixPreConfigure
+define Build/Configure
 	$(SED) 's,^QMAKE_CC\s*=.*,QMAKE_CC = $(HOSTCC_NOCACHE),; \
 		s,^QMAKE_CXX\s*=.*,QMAKE_CXX = $(HOSTCXX_NOCACHE),' \
 			$(PKG_BUILD_DIR)/mkspecs/common/g++-base.conf
@@ -208,9 +209,8 @@ define FixPreConfigure
 		s,@STAGING_DIR@,$(STAGING_DIR),g; \
 		s,@TOOLCHAIN_DIR@,$(TOOLCHAIN_DIR),g' \
 			$(PKG_BUILD_DIR)/toolchain.cmake
+	$(call Build/Configure/Default)
 endef
-
-Hooks/Configure/Pre += FixPreConfigure
 
 define Package/qt6-core/install
 	$(INSTALL_DIR) $(1)/opt/lib

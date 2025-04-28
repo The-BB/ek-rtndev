@@ -1,6 +1,6 @@
 --- a/src/corelib/configure.cmake
 +++ b/src/corelib/configure.cmake
-@@ -146,6 +146,8 @@ int pipes[2];
+@@ -150,6 +150,8 @@ qt_config_compile_test(cxa_thread_atexit
  # cxx17_filesystem
  qt_config_compile_test(cxx17_filesystem
      LABEL "C++17 <filesystem>"
