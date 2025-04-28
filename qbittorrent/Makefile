@@ -7,14 +7,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qbittorrent
-PKG_VERSION:=5.0.3
+PKG_VERSION:=5.1.0
 PKG_RELEASE=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=release-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/qbittorrent/qbittorrent
-PKG_MIRROR_HASH:=a3e5361cc1e194a9b1936b19c50abb493b359eabbdd38fc93e943bdcc0dbc25c
+PKG_MIRROR_HASH:=6479055d5cb50db5e2f04de454bf00e1238efff7e4b169a9bf082e0a5510a63e
 
+PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:=GPL-2.0-or-later
 PKG_LICENSE_FILES:=COPYING
 
@@ -26,13 +27,12 @@ include $(INCLUDE_DIR)/nls.mk
 include $(INCLUDE_DIR)/cmake.mk
 
 define Package/qbittorrent
-	SECTION:=net
-	CATEGORY:=Network
-	SUBMENU:=BitTorrent
-	DEPENDS:=+libtorrent-rasterbar $(ICONV_DEPENDS) $(INTL_DEPENDS)
-	TITLE:=bittorrent client programmed in C++ / Qt
-	URL:=https://www.qbittorrent.org/
-	PROVIDES:=qBittorrent
+  SECTION:=net
+  CATEGORY:=Network
+  SUBMENU:=BitTorrent
+  TITLE:=a BitTorrent client in Qt
+  URL:=https://www.qbittorrent.org/
+  DEPENDS:=+libtorrent-rasterbar $(ICONV_DEPENDS) $(INTL_DEPENDS)
 endef
 
 define Package/qbittorrent/description
