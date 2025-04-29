@@ -13,6 +13,8 @@ PKG_SOURCE_VERSION:=v$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/qt/qttools
 PKG_MIRROR_HASH:=98899051614bfd510d2d98aa926113a3f65f3dc44bf28fe948449b53f140b3b9
 
+PKG_SOURCE_SUBMODULES:=skip
+
 PKG_MAINTAINER:=Entware team, https://entware.net
 PKG_LICENSE:= \
 	BSD-3-Clause BSD-3-Clause BSL-1.0 \
