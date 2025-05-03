@@ -31,11 +31,12 @@ define Package/ghostscript
   SECTION:=utils
   CATEGORY:=Utilities
   SUBMENU:=Printing
-  DEPENDS:= \
-	+fontconfig +lcms +libcups +libexpat +libfreetype +libidn +libjpeg-turbo \
-	+libleptonica +libpng +libstdcpp +libtiff +tesseract +zlib $(ICONV_DEPENDS)
   TITLE:=interpreter for the PostScript language and for PDF
   URL:=https://www.ghostscript.com/
+  DEPENDS:= \
+	+fontconfig +lcms +libarchive +libcups +libexpat +libfreetype +libidn \
+	+libjpeg-turbo +libleptonica +libpng +libstdcpp +libtiff +tesseract \
+	+zlib $(ICONV_DEPENDS)
 endef
 
 define Package/ghostscript/description
@@ -79,6 +80,9 @@ CONFIGURE_ARGS += \
 	PKGCONFIG=$(STAGING_DIR_HOST)/bin/pkg-config
 
 RM_DIRS:=expat freetype jpeg lcms2mt leptonica libpng tesseract tiff zlib
+
+# warning: libarchive.so.20, needed by .../lib/libtesseract.so, not found (try using -rpath or -rpath-link)
+TARGET_LDFLAGS += -larchive
 
 define Build/Configure
 	( cd $(PKG_BUILD_DIR) && rm -fr $(RM_DIRS); )
