@@ -69,11 +69,11 @@ define Build/Compile
 	)
 # https://github.com/golang/go/commit/2e97c30d8d9f5740a503428c09efae7bedb68efb
 # remove .../src/debug/elf/testdata/libtiffxx.so_ or fix deps (add lib{tiff,stdcpp}
+	rm -f $(PKG_BUILD_DIR)/src/debug/elf/testdata/libtiffxx.so_
 	if [ -d "$(PKG_BUILD_DIR)/bin/linux_$(GOARCH)" ]; then \
 		rm $(PKG_BUILD_DIR)/bin/go{,fmt}; \
 		mv $(PKG_BUILD_DIR)/bin/linux_$(GOARCH)/* $(PKG_BUILD_DIR)/bin/; \
 		rm -rf $(PKG_BUILD_DIR)/{bin,pkg}/linux_$(GOARCH); \
-		rm -f $(PKG_BUILD_DIR)/src/debug/elf/testdata/libtiffxx.so_; \
 	fi
 	[ "$(BINTYPE)" = "$(GOARCH)" ] || rm -rf $(PKG_BUILD_DIR)/pkg/linux_$(BINTYPE)
 	[ "$(BINTYPE)" = "$(GOARCH)" ] || rm -rf $(PKG_BUILD_DIR)/pkg/tool/linux_$(BINTYPE)
