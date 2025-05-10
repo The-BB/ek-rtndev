@@ -76,21 +76,6 @@ define Package/accel-ppp/install
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/accel-pppd/accel-ppp.conf $(1)/opt/etc
 	$(INSTALL_BIN) files/S60accel-ppp $(1)/opt/etc/init.d
-  ifneq ($(CONFIG_USE_MUSL),y)
-	$(INSTALL_DIR) $(1)/opt/etc/ld.so.conf.d
-	$(INSTALL_DATA) ./files/accel-ppp.conf $(1)/opt/etc/ld.so.conf.d
-  endif
 endef
-
-ifeq ($(CONFIG_USE_MUSL),y)
-define Package/accel-ppp/postinst
-#!/bin/sh
-
-if ! grep -q 'accel-ppp' /opt/etc/ld-musl-$(ARCH)$(if $(or $(CONFIG_mips),$(CONFIG_mipsel)),-sf).path; then
-  printf "# path to accel-ppp libs\n/opt/lib/accel-ppp\n" >> \
-  /opt/etc/ld-musl-$(ARCH)$(if $(or $(CONFIG_mips),$(CONFIG_mipsel)),-sf).path
-fi
-endef
-endif
 
 $(eval $(call BuildPackage,accel-ppp))
