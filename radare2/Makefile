@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=radare2
 PKG_VERSION:=5.9.8
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_VERSION)
@@ -41,10 +41,12 @@ endif
 define Package/radare2/install
 	$(INSTALL_DIR) $(1)/opt/lib
 	$(CP) $(PKG_INSTALL_DIR)/opt/bin $(1)/opt
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libr_* $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libr_*.so* $(1)/opt/lib
 	$(INSTALL_DIR) $(1)/opt/share/radare2
 	$(CP) $(PKG_INSTALL_DIR)/opt/share/radare2/$(PKG_VERSION) \
 		$(1)/opt/share/radare2
+	$(SED) '1c\#!/opt/bin/r2 -j' \
+		$(1)/opt/share/radare2/$(PKG_VERSION)/scripts/licenses.r2.js
 endef
 
 $(eval $(call BuildPackage,radare2))

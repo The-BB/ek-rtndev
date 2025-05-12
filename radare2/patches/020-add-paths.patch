@@ -1,0 +1,32 @@
+--- a/libr/magic/d/default/code
++++ b/libr/magic/d/default/code
+@@ -1,5 +1,7 @@
+ 0	string	#include C source code
+ 0	string	import\  java.	JAVA source code
++0	string	#!/opt/bin/python	Python script
+ 0	string	#!/usr/bin/env python	Python script
+ 0	string	#!/usr/bin/python	Python script
++0	string	#!/opt/bin/perl	PERL script
+ 0	string	#!/usr/bin/perl	PERL script
+--- a/libr/magic/d/default/perl
++++ b/libr/magic/d/default/perl
+@@ -6,6 +6,10 @@
+ # The `eval' lines recognizes an outrageously clever hack.
+ # Keith Waclena <keith@cerberus.uchicago.edu>
+ # Send additions to <perl5-porters@perl.org>
++0	search/1/b	#!/opt/bin/perl			Perl script text executable
++!:mime	application/x-perl
++0	search/1	eval\ "exec\ /opt/bin/perl	Perl script text
++!:mime	application/x-perl
+ 0	search/1/b	#!\ /bin/perl			Perl script text executable
+ !:mime	application/x-perl
+ 0	search/1	eval\ "exec\ /bin/perl		Perl script text
+--- a/libr/magic/d/default/python
++++ b/libr/magic/d/default/python
+@@ -16,5 +16,6 @@
+ 0	belong		0x6df20d0a	python 2.4 byte-compiled
+ 0	belong		0xb3f20d0a	python 2.5 byte-compiled
+ 
++0	string/b  #!/opt/bin/python	python script text executable
+ 0	string/b  #!\ /usr/bin/python	python script text executable
+ 
